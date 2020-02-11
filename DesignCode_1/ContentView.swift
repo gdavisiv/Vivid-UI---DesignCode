@@ -2,8 +2,8 @@
 //  ContentView.swift
 //  DesignCode_1
 //
-//  Created by user163072 on 2/9/20.
-//  Copyright © 2020 user163072. All rights reserved.
+//  Created by GdavisIV on 2/9/20.
+//  Copyright © 2020 GdavisIV. All rights reserved.
 //
 
 import SwiftUI
@@ -13,7 +13,7 @@ struct ContentView: View {
         ZStack{
             //Calls the struct below and displays the top title and image
             TitleView()
-            
+                //.blur(radius: 20)
             
             //Make sure that the order of operations is followed for applying
             //these different effects upon the struct
@@ -44,20 +44,10 @@ struct ContentView: View {
             CardView()
             .blendMode(.hardLight)
             
-            VStack{
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-                    .multilineTextAlignment(.center)
-                    //Use the dynamic types that are defaults for xcode
-                    .font(.subheadline)
-                    .lineSpacing(4)
-                Spacer()
-            }
-            //!!!!!!Always padding before background!!!!!!!
-            .padding()
-            .background(Color.white)
-            .cornerRadius(30)
-            .shadow(radius: 20)
-            .offset(x: 0, y: 500)
+            //This is the Bottom card that shows info about the top card the user
+            //is reading
+            BottomCardView()
+                //.blur(radius: 20)
         }
     }
 }
@@ -128,3 +118,32 @@ struct TitleView: View {
         }
     }
 }
+
+struct BottomCardView: View {
+    var body: some View {
+            //Will place a spacing of 20 between top/bottom each element in the Vstack!
+            VStack(spacing: 20) {
+                Rectangle()
+                    .frame(width: 40, height: 5)
+                    .cornerRadius(3)
+                    .opacity(0.1)
+                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")
+                    .multilineTextAlignment(.center)
+                    //Use the dynamic types that are defaults for xcode
+                    .font(.subheadline)
+                    .lineSpacing(4)
+                Spacer()
+            }
+                //!!!!!!Always padding before background!!!!!!!
+                .padding(.top, 8)
+                .padding(.horizontal, 20)
+                // This property (maxWidth: .infinity) will mmake sure that the sides touch the left and right
+                //regardless of the device that is used!!
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(30)
+                .shadow(radius: 20)
+                .offset(x: 0, y: 550)
+    }
+}
+
