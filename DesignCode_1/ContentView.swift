@@ -13,7 +13,7 @@ struct ContentView: View {
         ZStack{
             //Calls the struct below and displays the top title and image
             TitleView()
-                //.blur(radius: 20)
+                .blur(radius: 20)
             
             //Make sure that the order of operations is followed for applying
             //these different effects upon the struct
@@ -47,7 +47,7 @@ struct ContentView: View {
             //This is the Bottom card that shows info about the top card the user
             //is reading
             BottomCardView()
-                //.blur(radius: 20)
+                .blur(radius: 20)
         }
     }
 }
