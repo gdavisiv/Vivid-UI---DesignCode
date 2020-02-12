@@ -9,45 +9,61 @@
 import SwiftUI
 
 struct ContentView: View {
+    //This is a simple Boolean created at the root level that is True or False that will
+    //allow us to swtich between Animation States (also will need '.self' to be declared)
+    @State var show = false
+    
     var body: some View {
         ZStack{
             //Calls the struct below and displays the top title and image
             TitleView()
-                .blur(radius: 20)
+                .blur(radius: show ? 20 : 0)
+                .animation(.default)
             
             //Make sure that the order of operations is followed for applying
             //these different effects upon the struct
             //This is the back card
             BackCardView()
-                .background(Color("card4"))
+                .background(show ? Color("card3") : Color("card4"))
                 .cornerRadius(20)
                 .shadow(radius: 20)
-                .offset(x:0, y:-40)
+                //This is the ternary operator 'show ? :' if show = true set -400 else set to -40
+                .offset(x:0, y: show ? -400 : -40)
                 .scaleEffect(0.9)
-                .rotationEffect(Angle(degrees: 10))
+                //This is the ternary operator 'show ? :' if show = true set 0 else set to 10
+                .rotationEffect(Angle(degrees: show ? 0 : 10))
                 .rotation3DEffect(Angle(degrees: 10), axis: (x: 10, y: 0, z: 0))
                 .blendMode(.hardLight)
+                .animation(.easeInOut(duration: 0.5))
             
             //Same applies here follow the order of operations for effects
             //This is the middle card or check Assets to find out
             BackCardView()
-                .background(Color("card3"))
+                .background(show ? Color("card4") : Color("card3"))
                 .cornerRadius(20)
                 .shadow(radius: 20)
-                .offset(x:0, y:-20)
+                //This is the ternary operator 'show ? :' if show = true set -200 else set to -20
+                .offset(x:0, y: show ? -200 : -20)
                 .scaleEffect(0.95)
-                .rotationEffect(Angle(degrees: 5))
+                //This is the ternary operator 'show ? :' if show = true set 0 else set to 5
+                .rotationEffect(Angle.degrees(show ? 0 : 5))
                 .rotation3DEffect(Angle(degrees: 5), axis: (x: 10, y: 0, z: 0))
                 .blendMode(.hardLight)
+                .animation(.easeInOut(duration: 0.3))
             
             //This is the front facing card
             CardView()
             .blendMode(.hardLight)
+            //Use the event below to create an Animation
+            .onTapGesture {
+                self.show.toggle()
+            }
             
             //This is the Bottom card that shows info about the top card the user
             //is reading
             BottomCardView()
-                .blur(radius: 20)
+                .blur(radius: show ? 20 : 0)
+                .animation(.default)
         }
     }
 }
