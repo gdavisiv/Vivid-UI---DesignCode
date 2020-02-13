@@ -1,3 +1,4 @@
+//Start from Dismiss and Drag Anchors
 //
 //  ContentView.swift
 //  DesignCode_1
@@ -17,6 +18,8 @@ struct ContentView: View {
     @State var viewState = CGSize.zero
     //This will create a root level animation state for showing the bottom card
     @State var showCard = false
+    @State var bottomState = CGSize.zero
+    @State var showFull = false
     
     var body: some View {
         ZStack{
@@ -114,16 +117,52 @@ struct ContentView: View {
                     }
                 )
             
+            //****Useful Coding trick that will display the current position of an element****
+            //****so you know what values to plug into it!!! :D ****
+//            Text("\(bottomState.height)").offset(y: -300)
             
             //This is the Bottom card that shows info about the top card the user
             //is reading
             BottomCardView()
                 //If showcard is true then it will animate and move to the middle of the screen
                 .offset(x: 0, y: showCard ? 360 : 1000)
+                //This appplies the drag values from .gesture via bottomState for the y position
+                .offset(y: bottomState.height)
                 .blur(radius: show ? 20 : 0)
                 //Use the website www.cubic-bezier.com to get the appropriate timingcurve you want for
                 //the specific animation
                 .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
+                .gesture(
+                    //Use the onChanged event to store the drag values from the user finger.  When
+                    //the drag is released we'll reset the position
+                    DragGesture().onChanged { value in
+                        self.bottomState = value.translation
+                        if self.showFull {
+                            self.bottomState.height += -300
+                        }
+                        if self.bottomState.height < -300 {
+                            self.bottomState.height = -300
+                        }
+                    }
+                    //Using the unique trick above to know what the height is of the bottom card, then
+                    //we setup rules so that if the user drags the bottom card beyong a certain point it will
+                    //either snap to the top or snap to the bottom
+                    .onEnded {  value in
+                        if self.bottomState.height > 50 {
+                            self.showCard = false
+                        }
+                        if (self.bottomState.height < -100 && !self.showFull) || (self.bottomState.height < -250 && self.showFull)
+                        {
+                            self.bottomState.height = -300
+                            self.showFull = true
+                        }
+                        else
+                        {
+                            self.bottomState = .zero
+                            self.showFull = false
+                        }
+                    }
+                )
         }
     }
 }
