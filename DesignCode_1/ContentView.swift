@@ -12,6 +12,9 @@ struct ContentView: View {
     //This is a simple Boolean created at the root level that is True or False that will
     //allow us to swtich between Animation States (also will need '.self' to be declared)
     @State var show = false
+    //We are storing CGSize that has x and y position, and the default value will be zero
+    //We can use it whenever we want to setup animations later on..
+    @State var viewState = CGSize.zero
     
     var body: some View {
         ZStack{
@@ -29,6 +32,9 @@ struct ContentView: View {
                 .shadow(radius: 20)
                 //This is the ternary operator 'show ? :' if show = true set -400 else set to -40
                 .offset(x:0, y: show ? -400 : -40)
+                //Set a modifier offset before gestures for less lag, and then move the card
+                //based off the location of the user finger on the screen
+                .offset(x: viewState.width, y: viewState.height)
                 .scaleEffect(0.9)
                 //This is the ternary operator 'show ? :' if show = true set 0 else set to 10
                 .rotationEffect(Angle(degrees: show ? 0 : 10))
@@ -36,14 +42,18 @@ struct ContentView: View {
                 .blendMode(.hardLight)
                 .animation(.easeInOut(duration: 0.5))
             
-            //Same applies here follow the order of operations for effects
+            
             //This is the middle card or check Assets to find out
+            //Same applies here follow the order of operations for effects
             BackCardView()
                 .background(show ? Color("card4") : Color("card3"))
                 .cornerRadius(20)
                 .shadow(radius: 20)
                 //This is the ternary operator 'show ? :' if show = true set -200 else set to -20
                 .offset(x:0, y: show ? -200 : -20)
+                //Set a modifier offset before gestures for less lag, and then move the card
+                //based off the location of the user finger on the screen
+                .offset(x: viewState.width, y: viewState.height)
                 .scaleEffect(0.95)
                 //This is the ternary operator 'show ? :' if show = true set 0 else set to 5
                 .rotationEffect(Angle.degrees(show ? 0 : 5))
@@ -51,13 +61,35 @@ struct ContentView: View {
                 .blendMode(.hardLight)
                 .animation(.easeInOut(duration: 0.3))
             
+            
             //This is the front facing card
             CardView()
-            .blendMode(.hardLight)
-            //Use the event below to create an Animation
-            .onTapGesture {
-                self.show.toggle()
-            }
+                //Set a modifier offset before gestures for less lag, and then move the card
+                //based off the location of the user finger on the screen
+                .offset(x: viewState.width, y: viewState.height)
+                .blendMode(.hardLight)
+                //Add spring animation here so there is not any lag!
+                .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 0))
+                //Use the event below to create an Animation
+                .onTapGesture {
+                    self.show.toggle()
+                }
+                //Everytime that you drag on the screen with your finger the movement values of x/y are
+                //sent to 'value', and are stroed in 'viewState'
+                .gesture(DragGesture().onChanged { value in
+                        self.viewState = value.translation
+                        //This sets show to TRUE
+                        self.show = true
+                    }
+                //Once your finger is lifted from the scren then 'viewState' will be reset to 0 and the
+                //card will return to its original position
+                .onEnded { value in
+                        self.viewState = .zero
+                        //This sets show to False
+                        self.show = false
+                    }
+                )
+            
             
             //This is the Bottom card that shows info about the top card the user
             //is reading
