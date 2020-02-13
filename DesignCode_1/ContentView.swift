@@ -15,18 +15,31 @@ struct ContentView: View {
     //We are storing CGSize that has x and y position, and the default value will be zero
     //We can use it whenever we want to setup animations later on..
     @State var viewState = CGSize.zero
+    //This will create a root level animation state for showing the bottom card
+    @State var showCard = false
     
     var body: some View {
         ZStack{
+            
             //Calls the struct below and displays the top title and image
             TitleView()
                 .blur(radius: show ? 20 : 0)
-                .animation(.default)
+                .opacity(showCard ? 0.4 : 1)
+                .offset(y: showCard ? -200 : 0)
+                .animation(
+                    Animation
+                        .default
+                        .delay(0.1)
+//                      .speed(2)
+//                      .repeatForever(autoreverses: true)
+                )
+            
             
             //Make sure that the order of operations is followed for applying
             //these different effects upon the struct
             //This is the back card
             BackCardView()
+                .frame(width: showCard ? 300 : 340, height: 220)
                 .background(show ? Color("card3") : Color("card4"))
                 .cornerRadius(20)
                 .shadow(radius: 20)
@@ -35,10 +48,12 @@ struct ContentView: View {
                 //Set a modifier offset before gestures for less lag, and then move the card
                 //based off the location of the user finger on the screen
                 .offset(x: viewState.width, y: viewState.height)
-                .scaleEffect(0.9)
+                .offset(y: showCard ? -180 : 0)
+                .scaleEffect(showCard ? 1 : 0.9)
                 //This is the ternary operator 'show ? :' if show = true set 0 else set to 10
                 .rotationEffect(Angle(degrees: show ? 0 : 10))
-                .rotation3DEffect(Angle(degrees: 10), axis: (x: 10, y: 0, z: 0))
+                .rotationEffect(Angle(degrees: showCard ? -10 : 0))
+                .rotation3DEffect(Angle(degrees: showCard ? 0 : 10), axis: (x: 10, y: 0, z: 0))
                 .blendMode(.hardLight)
                 .animation(.easeInOut(duration: 0.5))
             
@@ -46,6 +61,7 @@ struct ContentView: View {
             //This is the middle card or check Assets to find out
             //Same applies here follow the order of operations for effects
             BackCardView()
+                .frame(width:340, height: 220)
                 .background(show ? Color("card4") : Color("card3"))
                 .cornerRadius(20)
                 .shadow(radius: 20)
@@ -54,25 +70,33 @@ struct ContentView: View {
                 //Set a modifier offset before gestures for less lag, and then move the card
                 //based off the location of the user finger on the screen
                 .offset(x: viewState.width, y: viewState.height)
-                .scaleEffect(0.95)
+                .offset(y: showCard ? -140 : 0)
+                .scaleEffect(showCard ? 1 : 0.95)
                 //This is the ternary operator 'show ? :' if show = true set 0 else set to 5
                 .rotationEffect(Angle.degrees(show ? 0 : 5))
-                .rotation3DEffect(Angle(degrees: 5), axis: (x: 10, y: 0, z: 0))
+                .rotationEffect(Angle(degrees: showCard ? -5 : 0))
+                .rotation3DEffect(Angle(degrees: showCard ? 0 : 5), axis: (x: 10, y: 0, z: 0))
                 .blendMode(.hardLight)
                 .animation(.easeInOut(duration: 0.3))
             
             
             //This is the front facing card
             CardView()
+                .frame(width: showCard ? 415 : 340.0, height: 220.0)
+                .background(Color.black)
+//              .cornerRadius(20)
+                .clipShape(RoundedRectangle(cornerRadius: showCard ? 30 : 20, style: .continuous))
+                .shadow(radius: 20)
                 //Set a modifier offset before gestures for less lag, and then move the card
                 //based off the location of the user finger on the screen
                 .offset(x: viewState.width, y: viewState.height)
+                .offset(y: showCard ? -100 : 0)
                 .blendMode(.hardLight)
                 //Add spring animation here so there is not any lag!
                 .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 0))
                 //Use the event below to create an Animation
                 .onTapGesture {
-                    self.show.toggle()
+                    self.showCard.toggle()
                 }
                 //Everytime that you drag on the screen with your finger the movement values of x/y are
                 //sent to 'value', and are stroed in 'viewState'
@@ -94,8 +118,12 @@ struct ContentView: View {
             //This is the Bottom card that shows info about the top card the user
             //is reading
             BottomCardView()
+                //If showcard is true then it will animate and move to the middle of the screen
+                .offset(x: 0, y: showCard ? 360 : 1000)
                 .blur(radius: show ? 20 : 0)
-                .animation(.default)
+                //Use the website www.cubic-bezier.com to get the appropriate timingcurve you want for
+                //the specific animation
+                .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
         }
     }
 }
@@ -105,6 +133,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
 
 //This is a unique way to store the UI elments neatly so that they can be easily
 //replicated and used in different scenarios
@@ -130,12 +159,9 @@ struct CardView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
         }
-        .frame(width:340.0, height: 220.0)
-        .background(Color.black)
-        .cornerRadius(20)
-        .shadow(radius: 20)
     }
 }
+
 
 //The Back card is already created and sized properly and can be called
 //and then edited as needed
@@ -145,10 +171,10 @@ struct BackCardView: View {
             VStack{
                 Spacer()
             }
-            .frame(width:340, height: 220)
         }
     }
 }
+
 
 struct TitleView: View {
     var body: some View {
@@ -166,6 +192,7 @@ struct TitleView: View {
         }
     }
 }
+
 
 struct BottomCardView: View {
     var body: some View {
@@ -191,7 +218,6 @@ struct BottomCardView: View {
                 .background(Color.white)
                 .cornerRadius(30)
                 .shadow(radius: 20)
-                .offset(x: 0, y: 550)
     }
 }
 
