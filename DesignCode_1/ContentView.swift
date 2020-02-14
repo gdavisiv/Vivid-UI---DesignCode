@@ -85,7 +85,7 @@ struct ContentView: View {
             
             //This is the front facing card
             CardView()
-                .frame(width: showCard ? 415 : 340.0, height: 220.0)
+                .frame(width: showCard ? 370 : 340.0, height: 220.0)
                 .background(Color.black)
 //              .cornerRadius(20)
                 .clipShape(RoundedRectangle(cornerRadius: showCard ? 30 : 20, style: .continuous))
