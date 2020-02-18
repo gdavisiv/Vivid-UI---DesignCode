@@ -1,3 +1,15 @@
-# Vivid-UI---DesignCode
-# Welcome to my iOS UI Repository! I created this repository to practice my skills, 
-# and get a better understanding of how Swift UI works.
+![](Assets/swiftuiLogo.jpg)
+
+# Project Title
+
+This project is a Personal Playground to better understand the new Swift UI Syntax and Design Tools.  Following the tutorial series provided by 
+
+### Prerequisites
+
+xCode 11.3.1
+
+https://developer.apple.com/xcode/swiftui/
+
+## Acknowledgments
+
+* https://designcode.io/swiftui
