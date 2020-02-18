@@ -1,9 +1,6 @@
-![](DesignCode_1/Assets.xcassets/swiftuiLogo.png)
-
 <p align="center">
-  <img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/DesignCode_1/Assets.xcassets/swiftuiLogo.png">
+<img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/DesignCode_1/Assets.xcassets/swiftuiLogo.png">
 </p>
-
 
 # Vivid UI - Design Code
 
