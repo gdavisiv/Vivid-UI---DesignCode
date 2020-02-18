@@ -4,7 +4,7 @@
 
 # Vivid UI - Design Code
 
-This project is a Personal Playground to better understand the new Swift UI Syntax and Design Tools.  Following the tutorial series provided by https://designcode.io/ I've altered/edited multiple elements to improve creation/editing skills.
+This project is a Personal Playground to better understand the new Swift UI Syntax and Design Tools.  Following the tutorial series provided by Designcode.io I've altered/edited multiple elements to improve creation/editing skills.
 
 ### Prerequisites
 
