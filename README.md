@@ -1,6 +1,6 @@
 <p align = "center">
-![](DesignCode_1/Assets.xcassets/swiftuiLogo.png)
- </p>
+ (DesignCode_1/Assets.xcassets/swiftuiLogo.png)
+</p>
 
 # Project Title
 
