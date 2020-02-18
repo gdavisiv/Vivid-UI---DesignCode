@@ -1,4 +1,4 @@
-![](Assets/swiftuiLogo.jpg)
+![](DesignCode_1/Assets.xcassets/swiftuiLogo.png)
 
 # Project Title
 
