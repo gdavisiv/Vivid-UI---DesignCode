@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4124648B23F79FE700ABDEBC /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124648A23F79FE700ABDEBC /* MenuView.swift */; };
+		41740C7523FCECA9009F8E44 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41740C7423FCECA9009F8E44 /* Home.swift */; };
 		41E1368723F0C9FB00F39FDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E1368623F0C9FB00F39FDA /* AppDelegate.swift */; };
 		41E1368923F0C9FB00F39FDA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E1368823F0C9FB00F39FDA /* SceneDelegate.swift */; };
 		41E1368B23F0C9FB00F39FDA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E1368A23F0C9FB00F39FDA /* ContentView.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		4124648A23F79FE700ABDEBC /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		41740C7423FCECA9009F8E44 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		41E1368323F0C9FB00F39FDA /* DesignCode_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignCode_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41E1368623F0C9FB00F39FDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41E1368823F0C9FB00F39FDA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				41E1368823F0C9FB00F39FDA /* SceneDelegate.swift */,
 				41E1368A23F0C9FB00F39FDA /* ContentView.swift */,
 				4124648A23F79FE700ABDEBC /* MenuView.swift */,
+				41740C7423FCECA9009F8E44 /* Home.swift */,
 				41E1368C23F0C9FC00F39FDA /* Assets.xcassets */,
 				41E1369123F0C9FD00F39FDA /* LaunchScreen.storyboard */,
 				41E1369423F0C9FD00F39FDA /* Info.plist */,
@@ -151,6 +154,7 @@
 			files = (
 				41E1368723F0C9FB00F39FDA /* AppDelegate.swift in Sources */,
 				4124648B23F79FE700ABDEBC /* MenuView.swift in Sources */,
+				41740C7523FCECA9009F8E44 /* Home.swift in Sources */,
 				41E1368923F0C9FB00F39FDA /* SceneDelegate.swift in Sources */,
 				41E1368B23F0C9FB00F39FDA /* ContentView.swift in Sources */,
 			);
