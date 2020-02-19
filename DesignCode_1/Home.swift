@@ -9,22 +9,35 @@
 import SwiftUI
 
 struct Home: View {
+    
+    @State var showProfile = false
+    
     var body: some View {
-        HStack {
-            Text("Watching")
-                .font(.system(size: 28, weight: .bold))
-            
-            Spacer()
-            
-            Button(action: {}) {
-                Image("Avatar")
-                    .renderingMode(.original)
-                    .resizable()
-                    .frame(width: 36, height: 36)
-                    .clipShape(Circle())
+        ZStack{
+            VStack {
+                HStack {
+                    Text("Watching")
+                        .font(.system(size: 28, weight: .bold))
+                    
+                    Spacer()
+                    
+                    Button(action: { self.showProfile.toggle() }) {
+                        Image("Avatar")
+                            .renderingMode(.original)
+                            .resizable()
+                            .frame(width: 36, height: 36)
+                            .clipShape(Circle())
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.top, 30)
+                
+                Spacer()
             }
-        }.padding(.horizontal)
-        Spacer()
+            MenuView()
+                .offset(y: showProfile ? 0 : 600)
+                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+        }
     }
 }
 
