@@ -6,7 +6,8 @@
 //  Copyright © 2020 George Davis IV. All rights reserved.
 //
 //  This technique is only recommended for light views like a
-//  menu or a simple modal. It's not recommended for heavy screens since that may affect performance.'
+//  menu or a simple modal. It's not recommended for heavy
+//  screens since that may affect performance.
 //
 
 import SwiftUI
