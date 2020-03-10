@@ -27,6 +27,13 @@ struct HomeView: View {
             .padding(.horizontal)
             .padding(.top, 30)
             
+            HStack {
+                Text("Prototype Design")
+                    .font(.system(size: 24, weight: .bold))
+                    .frame(width: 160, alignment: .leading)
+                Image("Logo1")
+            }
+            
             Spacer()
         }
     }
