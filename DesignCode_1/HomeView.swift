@@ -33,8 +33,11 @@ struct HomeView: View {
             //turn off the scroll indicator
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 30){
-                    ForEach(0 ..< 5) { item in
-                        SectionView()
+                    //Updated with Data structure: use a ForEach() to loop through the collection
+                    //of items and return individual ones declared as item. With item, we can
+                    //specify the variables from your data model.
+                    ForEach(sectionData) { item in
+                        SectionView(section: item)
                         }
                     }
                     //Adds extra padding so the scroll view doesn't clip the dropshadow
@@ -57,19 +60,25 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 struct SectionView: View {
+    //Adding the new data structure to the SectionView
+    var section: Section
+    
     var body: some View {
         VStack {
             HStack(alignment: .top) {
-                Text("Prototype Design")
+                //Data structure replacement below
+                Text(section.title)
                     .font(.system(size: 24, weight: .bold))
                     .frame(width: 160, alignment: .leading)
                 Spacer()
-                Image("Logo1")
+                Image(section.logo)
             }
-            Text("15 Sections".uppercased())
+            //Data structure replacement below
+            Text(section.text.uppercased())
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            Image("Card1")
+            //Replaced Image("Card1" with Data Structure info
+            section.image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 210)
@@ -78,9 +87,10 @@ struct SectionView: View {
         .padding(.top, 20)
         .padding(.horizontal, 20)
         .frame(width: 275, height: 275)
-        .background(Color("card1"))
+        .background(section.color)
         .cornerRadius(30)
-        .shadow(color: Color("card1").opacity(0.3), radius: 20, x: 0, y: 20)
+        //Updated below with new Data Structure
+        .shadow(color: section.color.opacity(0.3), radius: 20, x: 0, y: 20)
     }
 }
 //We are going to create an Data Model or array of data so that it can change the look of the cards
@@ -95,5 +105,14 @@ struct Section: Identifiable {
 }
 
 let sectionData = [
-    Section(title: "Prototype designs made with SwiftUI", text: "18 Sections", logo: "Logo1", image: Image("Card1"), color: Color("card1"))
+    Section(title: "Prototype designs made with SwiftUI", text: "18 Sections", logo: "Logo1", image: Image("Card1"), color: Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1))),
+    Section(title: "Designing with Color Literal", text: "3 Sections", logo: "Logo1", image: Image("Card1"), color: Color(#colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1))),
+    Section(title: "Coding with Image Literal", text: "14 Sections", logo: "Logo1", image: Image("Card1"), color: Color(#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1))),
 ]
+
+//Below with color literal is a great way to find the color you need
+//-> colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//
+//To find a specific image you can use the following!! -> imageliteral
+//#imageLiteral(resourceName: <#T##String#>)
+
