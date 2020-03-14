@@ -39,6 +39,8 @@ struct HomeView: View {
                     ForEach(sectionData) { item in
                         GeometryReader { geomentry in
                                 SectionView(section: item)
+                                    //Adding double converts CGFloat -> Double
+                                    .rotation3DEffect(Angle(degrees:  Double(geomentry.frame(in: .global).minX) / -20), axis:(x: 0, y: 10.0, z: 0))
                             }
                             .frame(width: 275, height: 275)
                         }
