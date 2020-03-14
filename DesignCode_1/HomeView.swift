@@ -80,5 +80,20 @@ struct SectionView: View {
         .frame(width: 275, height: 275)
         .background(Color("card1"))
         .cornerRadius(30)
-        .shadow(color: Color("card1").opacity(0.3), radius: 20, x: 0, y: 20)    }
+        .shadow(color: Color("card1").opacity(0.3), radius: 20, x: 0, y: 20)
+    }
 }
+//We are going to create an Data Model or array of data so that it can change the look of the cards
+//on the main screen by replacing our manual inputs
+struct Section: Identifiable {
+    var id = UUID()
+    var title: String
+    var text: String
+    var logo: String
+    var image: Image
+    var color: Color
+}
+
+let sectionData = [
+    Section(title: "Prototype designs made with SwiftUI", text: "18 Sections", logo: "Logo1", image: Image("Card1"), color: Color("card1"))
+]
