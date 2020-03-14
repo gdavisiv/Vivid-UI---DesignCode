@@ -37,7 +37,10 @@ struct HomeView: View {
                     //of items and return individual ones declared as item. With item, we can
                     //specify the variables from your data model.
                     ForEach(sectionData) { item in
-                        SectionView(section: item)
+                        GeometryReader { geomentry in
+                                SectionView(section: item)
+                            }
+                            .frame(width: 275, height: 275)
                         }
                     }
                     //Adds extra padding so the scroll view doesn't clip the dropshadow
@@ -111,8 +114,8 @@ let sectionData = [
 ]
 
 //Below with color literal is a great way to find the color you need
-//-> colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//colorLiteral
 //
 //To find a specific image you can use the following!! -> imageliteral
-//#imageLiteral(resourceName: <#T##String#>)
+//imageLiteral
 
