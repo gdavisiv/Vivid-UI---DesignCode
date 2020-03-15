@@ -42,6 +42,7 @@ struct HomeView: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
                     
                 }
+                //This brings up the modal ContentView
                 .sheet(isPresented: $showUpdate) {
                     ContentView()
                 }
