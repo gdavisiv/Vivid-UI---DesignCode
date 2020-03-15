@@ -27,13 +27,24 @@ struct HomeView: View {
                 //and all information related to bindings should be owned by the object.
                 AvatarView(showProfile: $showProfile)
                 
+                //This allows the button to toggle between a true/false state and being able to
+                //click the bell
                 Button(action: {self.showUpdate.toggle() }) {
                     Image(systemName: "bell")
                         .renderingMode(.original)
                         .font(.system(size: 16, weight: .medium))
                         .frame(width: 36, height: 36)
+                        .background(Color.white)
+                        //makes the shape a circke
+                        .clipShape(Circle())
+                        //Adds two shadows so that it has a foreground/background Shadow
+                        .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                    
                 }
-            .sheet(isPresented: $showUpdate)
+                .sheet(isPresented: $showUpdate) {
+                    ContentView()
+                }
             }
             .padding(.horizontal)
             .padding(.leading, 14)
