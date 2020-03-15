@@ -10,6 +10,10 @@ import SwiftUI
 
 struct HomeView: View {
     @Binding var showProfile: Bool
+    
+    //Added a new state for the Scene Transition Button
+    @State var showUpdate = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -23,6 +27,13 @@ struct HomeView: View {
                 //and all information related to bindings should be owned by the object.
                 AvatarView(showProfile: $showProfile)
                 
+                Button(action: {self.showUpdate.toggle() }) {
+                    Image(systemName: "bell")
+                        .renderingMode(.original)
+                        .font(.system(size: 16, weight: .medium))
+                        .frame(width: 36, height: 36)
+                }
+            .sheet(isPresented: $showUpdate)
             }
             .padding(.horizontal)
             .padding(.leading, 14)
@@ -32,7 +43,7 @@ struct HomeView: View {
             //make tha scrollview horizontal and then place the image in the HStack
             //turn off the scroll indicator
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 30){
+                HStack(spacing: 20){
                     //Updated with Data structure: use a ForEach() to loop through the collection
                     //of items and return individual ones declared as item. With item, we can
                     //specify the variables from your data model.
@@ -40,7 +51,8 @@ struct HomeView: View {
                         GeometryReader { geomentry in
                                 SectionView(section: item)
                                     //Adding double converts CGFloat -> Double
-                                    .rotation3DEffect(Angle(degrees:  Double(geomentry.frame(in: .global).minX) / -20), axis:(x: 0, y: 10.0, z: 0))
+                                    //For a vertical scroll I'd use '.minY' instead
+                                    .rotation3DEffect(Angle(degrees:  Double(geomentry.frame(in: .global).minX - 30) / -20), axis:(x: 0, y: 10.0, z: 0))
                             }
                             .frame(width: 275, height: 275)
                         }
