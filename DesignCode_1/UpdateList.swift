@@ -14,7 +14,8 @@ struct UpdateList: View {
             List(updateData) { update in
                 //Only works within the Navigation View
                 //Updated the Navigation link to the new file created UpdateDetail
-                NavigationLink(destination: UpdateDetail()) {
+                //We pass in the update, and the value that we get from the array which is update
+                NavigationLink(destination: UpdateDetail(update: update)) {
                     HStack {
                         Image(update.image)
                             .resizable()
