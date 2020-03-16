@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		410B4687241EC3F50016681E /* UpdateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410B4686241EC3F50016681E /* UpdateList.swift */; };
 		4124648B23F79FE700ABDEBC /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124648A23F79FE700ABDEBC /* MenuView.swift */; };
+		41565E12241FE752001B5C9B /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41565E11241FE752001B5C9B /* UpdateDetail.swift */; };
 		41740C7523FCECA9009F8E44 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41740C7423FCECA9009F8E44 /* Home.swift */; };
 		41D91CBA24184AC600E804E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D91CB924184AC600E804E1 /* HomeView.swift */; };
 		41E1368723F0C9FB00F39FDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E1368623F0C9FB00F39FDA /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		410B4686241EC3F50016681E /* UpdateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateList.swift; sourceTree = "<group>"; };
 		4124648A23F79FE700ABDEBC /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		41565E11241FE752001B5C9B /* UpdateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
 		41740C7423FCECA9009F8E44 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		41D91CB924184AC600E804E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		41E1368323F0C9FB00F39FDA /* DesignCode_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignCode_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,7 @@
 				41E1368A23F0C9FB00F39FDA /* ContentView.swift */,
 				4124648A23F79FE700ABDEBC /* MenuView.swift */,
 				410B4686241EC3F50016681E /* UpdateList.swift */,
+				41565E11241FE752001B5C9B /* UpdateDetail.swift */,
 				41740C7423FCECA9009F8E44 /* Home.swift */,
 				41D91CB924184AC600E804E1 /* HomeView.swift */,
 				41E1368C23F0C9FC00F39FDA /* Assets.xcassets */,
@@ -161,6 +164,7 @@
 				41E1368723F0C9FB00F39FDA /* AppDelegate.swift in Sources */,
 				410B4687241EC3F50016681E /* UpdateList.swift in Sources */,
 				4124648B23F79FE700ABDEBC /* MenuView.swift in Sources */,
+				41565E12241FE752001B5C9B /* UpdateDetail.swift in Sources */,
 				41740C7523FCECA9009F8E44 /* Home.swift in Sources */,
 				41D91CBA24184AC600E804E1 /* HomeView.swift in Sources */,
 				41E1368923F0C9FB00F39FDA /* SceneDelegate.swift in Sources */,
