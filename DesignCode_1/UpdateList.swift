@@ -14,6 +14,10 @@ struct UpdateList: View {
             List(updateData) { update in
                 //Only works within the Navigation View
                 //Updated the Navigation link to the new file created UpdateDetail
+<<<<<<< 105eef1ac19e60591fe0c5d0d00c632441a72000
+=======
+                //We pass in the update, and the value that we get from the array which is update
+>>>>>>> Completed Updates to Navigation Style and finished passing data between UpdateDetail/UpdateList
                 NavigationLink(destination: UpdateDetail(update: update)) {
                     HStack {
                         Image(update.image)
