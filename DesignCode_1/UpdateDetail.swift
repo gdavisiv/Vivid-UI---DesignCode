@@ -9,25 +9,25 @@
 import SwiftUI
 
 struct UpdateDetail: View {
-    //We are going to set UpdateData to 0 since it is an array
-    var update: Update = updateData[0]
+    //we are going to set updateData to 1 since it's an array
+    var update: Update = updateData[1]
     
     var body: some View {
-        //Add scrolling to the Info Card Section and snaps the title back to the navbar
-        ScrollView {
-            VStack {
+        //Changed from a scrollview to a list, since this is a list of items
+        List {
+            VStack(spacing: 20) {
                 Image(update.image)
-                    //Add formatting since each info tab does not have consistent formatting
-                    .frame(width: .infinity)
+                    //add formatting since each info tab does not have consistent formatting
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: .infinity)
                 Text(update.text)
-                    //this helps to fix the incosistent formatting
+                    //This helps to fix the inconsistent Formatting
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-                //Set the navigation view title, and is far more adaptive,
-                //this is dependent on the navigation view wrapper
-                .navigationBarTitle(update.title)
+            //Set the navigation view title, and is far more adaptive,
+            //this is dependent on the navigation view wrapper
+            .navigationBarTitle(update.title)
         }
         .listStyle(PlainListStyle())
     }

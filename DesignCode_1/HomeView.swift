@@ -35,7 +35,7 @@ struct HomeView: View {
                         .font(.system(size: 16, weight: .medium))
                         .frame(width: 36, height: 36)
                         .background(Color.white)
-                        //makes the shape a circke
+                        //makes the shape a circle
                         .clipShape(Circle())
                         //Adds two shadows so that it has a foreground/background Shadow
                         .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
