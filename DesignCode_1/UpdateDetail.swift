@@ -14,6 +14,7 @@ struct UpdateDetail: View {
     var update: Update = updateData[0]
     
     var body: some View {
+        //Using List allows the card to be easily scrollable, and autolock at the top
         List {
             VStack {
                 Image(update.image)
