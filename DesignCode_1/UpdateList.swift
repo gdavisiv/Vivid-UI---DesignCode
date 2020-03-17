@@ -9,42 +9,67 @@
 import SwiftUI
 
 struct UpdateList: View {
+    //This is a store that contains the data
+    @ObservedObject var store = UpdateStore()
+    
+    //This will
+    func addUpdate() {
+        store.updates.append(Update(image: "Card1", title: "New Items", text: "text", date: "Jan 4"))
+    }
+    
+    
     var body: some View {
         NavigationView {
-            List(updateData) { update in
-                //Only works within the Navigation View
-                //Updated the Navigation link to the new file created UpdateDetail
-                //We pass in the update, and the value that we get from the array which is update
-                NavigationLink(destination: UpdateDetail(update: update)) {
-                    HStack {
-                        Image(update.image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 80)
-                            .background(Color.black)
-                            .cornerRadius(20)
-                            .padding(.trailing, 4)
-                        
-                        VStack(alignment: .leading, spacing: 8.0) {
-                            Text(update.title)
-                                .font(.system(size: 20, weight: .bold))
+            List {
+                ForEach(store.updates) { update in
+                    //Only works within the Navigation View
+                    //Updated the Navigation link to the new file created UpdateDetail
+                    //We pass in the update, and the value that we get from the array which is update
+                    NavigationLink(destination: UpdateDetail(update: update)) {
+                        HStack {
+                            Image(update.image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 80, height: 80)
+                                .background(Color.black)
+                                .cornerRadius(20)
+                                .padding(.trailing, 4)
                             
-                            Text(update.text)
-                                //Limit the Descriptions to 2 lines instead of 3
-                                .lineLimit(2)
-                                .font(.subheadline)
-                                .foregroundColor(Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)))
-                            
-                            Text(update.date)
-                                .font(.caption)
-                                .fontWeight(.bold)
-                                .foregroundColor(.secondary)
+                            VStack(alignment: .leading, spacing: 8.0) {
+                                Text(update.title)
+                                    .font(.system(size: 20, weight: .bold))
+                                
+                                Text(update.text)
+                                    //Limit the Descriptions to 2 lines instead of 3
+                                    .lineLimit(2)
+                                    .font(.subheadline)
+                                    .foregroundColor(Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)))
+                                
+                                Text(update.date)
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 8)
                         }
                     }
-                    .padding(.vertical, 8)
+                    //We can simply add this function that will be able to remove a specific
+                    .onDelete { index in
+                        self.store.updates.remove(at: index.first!)
+                    }
+                    //This allows us to reorganize the elements that we have added to our list
+                    .onMove {
+                        (source: IndexSet, destination: Int) in
+                        self.store.updates.move(fromOffsets: source, toOffset: destination)
+                    }
                 }
-            }
-            .navigationBarTitle(Text("Updates"))
+                .navigationBarTitle(Text("Updates"))
+                //Added functionality so that we could add elements easily to our list of items,
+                //Also added edit at the tail end of this elemente
+                .navigationBarItems(leading: Button(action: addUpdate) {
+                    Text("Add Update")
+                }, trailing: EditButton())
         }
     }
 }
