@@ -14,6 +14,7 @@ struct UpdateDetail: View {
     var update: Update = updateData[0]
     
     var body: some View {
+<<<<<<< HEAD
 <<<<<<< 105eef1ac19e60591fe0c5d0d00c632441a72000
         //Using List allows the card to be easily scrollable, and autolock at the top
         List {
@@ -51,6 +52,25 @@ struct UpdateDetail: View {
         }
     .listStyle(PlainListStyle())
 >>>>>>> Completed Updates to Navigation Style and finished passing data between UpdateDetail/UpdateList
+=======
+        //Add scrolling to the Info Card Section and snaps the title back to the navbar
+        ScrollView {
+            VStack {
+                Image(update.image)
+                    //Add formatting since each info tab does not have consistent formatting
+                    .frame(width: .infinity)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: .infinity)
+                Text(update.text)
+                    //this helps to fix the incosistent formatting
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            //Set the navigation view title, and is far more adaptive,
+            //this is dependent on the navigation view wrapper
+            .navigationBarTitle(update.title)
+        }
+    .listStyle(PlainListStyle())
+>>>>>>> UI-Updates
     }
 }
 
