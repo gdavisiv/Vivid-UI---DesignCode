@@ -2,7 +2,7 @@
 //  MenuView.swift
 //  DesignCode_1
 //
-//  Created by GDavisIV on 2/14/20.
+//  Created by GdavisIV on 2/14/20.
 //  Copyright © 2020 George Davis IV. All rights reserved.
 //
 

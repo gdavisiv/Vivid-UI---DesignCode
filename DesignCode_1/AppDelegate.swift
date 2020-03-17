@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  DesignCode_1
 //
-//  Created by user163072 on 2/9/20.
-//  Copyright © 2020 user163072. All rights reserved.
+//  Created by GdavisIV on 2/9/20.
+//  Copyright © 2020 George Davis IV. All rights reserved.
 //
 
 import UIKit

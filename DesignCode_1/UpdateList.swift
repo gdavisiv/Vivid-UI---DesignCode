@@ -2,16 +2,26 @@
 //  UpdateList.swift
 //  DesignCode_1
 //
-//  Created by user163072 on 3/15/20.
-//  Copyright © 2020 user163072. All rights reserved.
+//  Created by GdavisIV on 3/15/20.
+//  Copyright © 2020 George Davis IV. All rights reserved.
 //
 
 import SwiftUI
 
 struct UpdateList: View {
+    //To use the Update Store which is the class we created
+    //This is the store that contains the data now
+    @ObservedObject var store = UpdateStore()
+    
+    //Going to add a new function that will alow the creation of new data
+    func addUpdate() {
+        store.updates.append(Update(image: "Card1", title: "New Item", text: "Text", date: "Jan 4"))
+    }
+    
     var body: some View {
         NavigationView {
-            List(updateData) { update in
+            //Updated this to the store
+            List(store.updates) { update in
                 //Only works within the Navigation View
                 //Updated the Navigation link to the new file created UpdateDetail
 <<<<<<< 105eef1ac19e60591fe0c5d0d00c632441a72000

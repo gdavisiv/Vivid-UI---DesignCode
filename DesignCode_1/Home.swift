@@ -2,7 +2,7 @@
 //  Home.swift
 //  DesignCode_1
 //
-//  Created by Gdavisiv on 2/18/20.
+//  Created by GdavisIV on 2/18/20.
 //  Copyright © 2020 George Davis IV. All rights reserved.
 //
 //  This technique is only recommended for light views like a
