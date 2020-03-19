@@ -1,5 +1,6 @@
 <p align="center">
 <img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/DesignCode_1/Assets.xcassets/swiftuiLogo.png" height="100" width="100">
+<img src="https://firebase.google.com/images/brand-guidelines/logo-vertical.png" height="100" width="100">
 </p>
 
 # Vivid UI - Design Code
