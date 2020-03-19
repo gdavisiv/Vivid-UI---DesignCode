@@ -4,7 +4,7 @@
 <img src ="https://d21buns5ku92am.cloudfront.net/41748/logo/small-1441291075.png" height="100" width="100">
 </p>
 
-# Vivid UI - Design Code
+# iOS App with a Vivid UI + Firebase Login + Contentful CMS!
 
 This project is a Personal Playground to better understand the new Swift UI Syntax and Design Tools.  Following the tutorial series provided by Designcode.io I've altered/edited multiple elements to improve creation/editing skills.
 
