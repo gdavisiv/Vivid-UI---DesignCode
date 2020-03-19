@@ -1,7 +1,7 @@
 <p align="center">
 <img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/DesignCode_1/Assets.xcassets/swiftuiLogo.png" height="100" width="100">
 <img src="https://firebase.google.com/images/brand-guidelines/logo-vertical.png" height="100" width="100">
-<img src ="https://d21buns5ku92am.cloudfront.net/41748/images/347873-Mark_Circular_white_no%20shadow-3d0a86-large-1582585736.png" height="100" width="100">
+<img src ="https://d21buns5ku92am.cloudfront.net/41748/logo/small-1441291075.png" height="100" width="100">
 </p>
 
 # Vivid UI - Design Code
