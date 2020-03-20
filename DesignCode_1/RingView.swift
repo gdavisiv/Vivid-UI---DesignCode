@@ -55,7 +55,6 @@ struct RingView: View {
             .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
             .frame(width: width, height: height)
             .shadow(color: Color(color2).opacity(0.1), radius: 3 * multiplier, x: 0, y: 3 * multiplier)
-            .animation(.easeInOut)
             
             //Adds text in the middle of the status circle
             //positioning is important

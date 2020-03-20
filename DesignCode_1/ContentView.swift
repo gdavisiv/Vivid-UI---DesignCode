@@ -123,7 +123,8 @@ struct ContentView: View {
             
             //This is the Bottom card that shows info about the top card the user
             //is reading
-            BottomCardView()
+            //Connect the Binding from outside the Bottom Card View for the Ring Animation using $showCard
+            BottomCardView(show: $showCard)
                 //If showcard is true then it will animate and move to the middle of the screen
                 .offset(x: 0, y: showCard ? 360 : 1000)
                 //This appplies the drag values from .gesture via bottomState for the y position
@@ -234,6 +235,9 @@ struct TitleView: View {
 
 
 struct BottomCardView: View {
+    //We need to create a Binding for a the Animation Ring, and pass the Binding to the RingView
+    @Binding var show: Bool
+    
     var body: some View {
             //Will place a spacing of 20 between top/bottom each element in the Vstack!
             VStack(spacing: 20) {
@@ -246,6 +250,13 @@ struct BottomCardView: View {
                     //Use the dynamic types that are defaults for xcode
                     .font(.subheadline)
                     .lineSpacing(4)
+                
+                //implementing the ring animation into the bottom info card
+                RingView(color1: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), color2: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), width: 88, height: 88, percent: 78, show: $show)
+                    //This adds a delay to the Animation of the Ring Loading
+                    //Had to delete the animation easeinout in the RingView.swift because it was over-riding this animation
+                    .animation(Animation.easeInOut.delay(0.3))
+                
                 Spacer()
             }
                 //!!!!!!Always padding before background!!!!!!!
