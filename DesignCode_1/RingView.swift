@@ -14,9 +14,12 @@ struct RingView: View {
     var color1 = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
     var color2 = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
     //.frame uses CGFloat and not default Int
-    var width: CGFloat = 88
-    var height: CGFloat = 88
-    var percent: CGFloat = 25
+    var width: CGFloat = 300
+    var height: CGFloat = 300
+    var percent: CGFloat = 88
+    
+    //We'll
+    @State var show = true
     
     var body: some View {
         //Add the variable inside the body because it will not intialize with the
@@ -37,7 +40,8 @@ struct RingView: View {
             //This creates the main color circle
             Circle()
                 //The trim is a bit counter-intuitive, the 0.2 = 80%, and starts around x=10, y =0
-                .trim(from: progress, to: 1)
+                //If it is true show the full progress otherwise show 1
+                .trim(from: show ? progress : 1, to: 1)
                 .stroke(
                     LinearGradient(gradient: Gradient(colors:[Color(color1),
                             Color(color2)]), startPoint: .topTrailing,
@@ -51,6 +55,7 @@ struct RingView: View {
             .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
             .frame(width: width, height: height)
             .shadow(color: Color(color2).opacity(0.1), radius: 3 * multiplier, x: 0, y: 3 * multiplier)
+                .animation(.easeInOut)
             
             //Adds text in the middle of the status circle
             //positioning is important
@@ -58,6 +63,9 @@ struct RingView: View {
             Text("\(Int(percent))%")
                 .font(.system(size: 14 * multiplier))
                 .fontWeight(.bold)
+                .onTapGesture {
+                    self.show.toggle()
+            }
         }
     }
 }
