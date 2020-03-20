@@ -54,6 +54,7 @@ struct HomeView: View {
             
             //Added this Ring Indicator to the top of the HomeView
             //This RingView will not be animated an instead .constant(true)
+            //Added a bouding box with apply edits to the HStack
             HStack {
                 RingView(color1: #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), color2: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), width: 44, height: 44, percent: 68, show: .constant(true))
                 VStack{
