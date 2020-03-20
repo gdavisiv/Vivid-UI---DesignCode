@@ -13,6 +13,7 @@
 		4166848C242171780011B025 /* UpdateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4166848B242171780011B025 /* UpdateStore.swift */; };
 		41740C7523FCECA9009F8E44 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41740C7423FCECA9009F8E44 /* Home.swift */; };
 		418CE1B52422EDD9003B297A /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418CE1B42422EDD9003B297A /* TabBar.swift */; };
+		419A465F242560CC006C2D3E /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419A465E242560CC006C2D3E /* Modifiers.swift */; };
 		41C76B32242409F3007E3545 /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C76B31242409F3007E3545 /* RingView.swift */; };
 		41D91CBA24184AC600E804E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D91CB924184AC600E804E1 /* HomeView.swift */; };
 		41E1368723F0C9FB00F39FDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E1368623F0C9FB00F39FDA /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 		4166848B242171780011B025 /* UpdateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStore.swift; sourceTree = "<group>"; };
 		41740C7423FCECA9009F8E44 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		418CE1B42422EDD9003B297A /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		419A465E242560CC006C2D3E /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		41C76B31242409F3007E3545 /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
 		41D91CB924184AC600E804E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		41E1368323F0C9FB00F39FDA /* DesignCode_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignCode_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +78,7 @@
 				41E1368823F0C9FB00F39FDA /* SceneDelegate.swift */,
 				41E1368A23F0C9FB00F39FDA /* ContentView.swift */,
 				41C76B31242409F3007E3545 /* RingView.swift */,
+				419A465E242560CC006C2D3E /* Modifiers.swift */,
 				4124648A23F79FE700ABDEBC /* MenuView.swift */,
 				410B4686241EC3F50016681E /* UpdateList.swift */,
 				41565E11241FE752001B5C9B /* UpdateDetail.swift */,
@@ -174,6 +177,7 @@
 				4166848C242171780011B025 /* UpdateStore.swift in Sources */,
 				410B4687241EC3F50016681E /* UpdateList.swift in Sources */,
 				4124648B23F79FE700ABDEBC /* MenuView.swift in Sources */,
+				419A465F242560CC006C2D3E /* Modifiers.swift in Sources */,
 				41565E12241FE752001B5C9B /* UpdateDetail.swift in Sources */,
 				41C76B32242409F3007E3545 /* RingView.swift in Sources */,
 				41740C7523FCECA9009F8E44 /* Home.swift in Sources */,
