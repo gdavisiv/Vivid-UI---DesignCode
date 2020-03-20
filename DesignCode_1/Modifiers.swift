@@ -5,7 +5,7 @@
 //  Created by GdavisIV on 3/20/20.
 //  Copyright © 2020 George Davis IV. All rights reserved.
 //
-
+//This shows how to import custom fonts for an app!
 import SwiftUI
 
 //Creating the Components of modifiers similar to have a style guide in CSS
@@ -26,6 +26,16 @@ struct FontModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .font(.system(.body, design: .rounded))
+            .font(.system(.body, design: .default))
+    }
+}
+
+struct CustomFontModifier: ViewModifier {
+    //Create a variable to make size customizable
+    var size: CGFloat
+    
+    func body(content: Content) -> some View {
+        
+        content.font(.custom("Overpass-ExtraBold", size: size))
     }
 }

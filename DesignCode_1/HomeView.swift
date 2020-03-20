@@ -18,7 +18,8 @@ struct HomeView: View {
         VStack {
             HStack {
                 Text("Watching")
-                    .font(.system(size: 28, weight: .bold))
+                    //.font(.system(size: 28, weight: .bold))
+                    .modifier(CustomFontModifier(size: 35))
                 
                 Spacer()
                 
@@ -56,14 +57,17 @@ struct HomeView: View {
             //This RingView will not be animated an instead .constant(true)
             //Added a bouding box with apply edits to the HStack
             HStack {
-                RingView(color1: #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), color2: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), width: 44, height: 44, percent: 68, show: .constant(true))
-                VStack{
-                    //We can call upon the modifier that was created that also allows editing
-                    //to the .body with the following modifier
-                    Text("10 mins left!!").modifier(FontModifier(style: .subheadline))
-                    Text("Watch 10 mins today!").modifier(FontModifier(style: .caption))
+                HStack {
+                    RingView(color1: #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), color2: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), width: 44, height: 44,
+                        percent: 68, show: .constant(true))
+                    VStack(alignment: .leading, spacing: 4.0){
+                        //We can call upon the modifier that was created that also allows editing
+                        //to the .body with the following modifier
+                        Text("10 mins left!!").bold().modifier(FontModifier(style: .subheadline))
+                        Text("Watch 10 mins today!").modifier(FontModifier(style: .caption))
+                    }
+                    .modifier(FontModifier())
                 }
-                .modifier(FontModifier())
             }
             .padding(8)
             .background(Color.white)
