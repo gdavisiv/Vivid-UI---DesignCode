@@ -251,12 +251,27 @@ struct BottomCardView: View {
                     .font(.subheadline)
                     .lineSpacing(4)
                 
+                HStack(spacing: 20.0) {
                 //implementing the ring animation into the bottom info card
                 RingView(color1: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), color2: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), width: 88, height: 88, percent: 78, show: $show)
                     //This adds a delay to the Animation of the Ring Loading
                     //Had to delete the animation easeinout in the RingView.swift because it was over-riding this animation
                     .animation(Animation.easeInOut.delay(0.3))
                 
+                //
+                    VStack(alignment: .leading, spacing: 8.0) {
+                        Text("SwiftUI")
+                            .fontWeight(.bold)
+                        Text("12 of 12 sections completed\n10 hours spent so far!")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                            .lineSpacing(4)
+                    }
+                    .padding(20)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 10)
+                }
                 Spacer()
             }
                 //!!!!!!Always padding before background!!!!!!!

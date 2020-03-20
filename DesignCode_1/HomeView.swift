@@ -52,6 +52,23 @@ struct HomeView: View {
             .padding(.leading, 14)
             .padding(.top, 30)
             
+            HStack {
+                RingView(color1: #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), color2: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), width: 44, height: 44, percent: 68, show: .constant(true))
+                VStack{
+                    Text("10 mins left!!")
+                        .font(.subheadline)
+                        .fontWeight(.bold)
+                    Text("Watch 10 mins today!")
+                        .font(.caption)
+                }
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(20)
+            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
+            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+            
+            
             //Created Section View now we need to create a repeat for each of these elements and then we
             //make tha scrollview horizontal and then place the image in the HStack
             //turn off the scroll indicator
