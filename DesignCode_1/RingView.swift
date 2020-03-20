@@ -19,7 +19,7 @@ struct RingView: View {
     var percent: CGFloat = 88
     
     //We'll
-    @State var show = true
+    @Binding var show: Bool
     
     var body: some View {
         //Add the variable inside the body because it will not intialize with the
@@ -55,7 +55,7 @@ struct RingView: View {
             .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
             .frame(width: width, height: height)
             .shadow(color: Color(color2).opacity(0.1), radius: 3 * multiplier, x: 0, y: 3 * multiplier)
-                .animation(.easeInOut)
+            .animation(.easeInOut)
             
             //Adds text in the middle of the status circle
             //positioning is important
@@ -72,6 +72,7 @@ struct RingView: View {
 
 struct RingView_Previews: PreviewProvider {
     static var previews: some View {
-        RingView()
+        //setting this is only neccesary when you have a preview
+        RingView(show: .constant(true))
     }
 }
