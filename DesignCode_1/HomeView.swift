@@ -53,27 +53,12 @@ struct HomeView: View {
             .padding(.leading, 14)
             .padding(.top, 30)
             
-            //Added this Ring Indicator to the top of the HomeView
-            //This RingView will not be animated an instead .constant(true)
-            //Added a bouding box with apply edits to the HStack
-            HStack {
-                HStack {
-                    RingView(color1: #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), color2: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), width: 44, height: 44,
-                        percent: 68, show: .constant(true))
-                    VStack(alignment: .leading, spacing: 4.0){
-                        //We can call upon the modifier that was created that also allows editing
-                        //to the .body with the following modifier
-                        Text("10 mins left!!").bold().modifier(FontModifier(style: .subheadline))
-                        Text("Watch 10 mins today!").modifier(FontModifier(style: .caption))
-                    }
-                    .modifier(FontModifier())
-                }
+            //Enables Horizontal scrolling, and turns off indicators
+            ScrollView(.horizontal, showsIndicators: false) {
+                WatchRingsView()
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 30)
             }
-            .padding(8)
-            .background(Color.white)
-            .cornerRadius(20)
-            //This allows us to use the shadow modifier by calling it in this instance
-            .modifier(ShadowModifier())
             
             //Created Section View now we need to create a repeat for each of these elements and then we
             //make tha scrollview horizontal and then place the image in the HStack
@@ -169,3 +154,49 @@ let sectionData = [
 //To find a specific image you can use the following!! -> imageliteral
 //imageLiteral
 
+
+struct WatchRingsView: View {
+    var body: some View {
+        //Added this Ring Indicator to the top of the HomeView
+        //This RingView will not be animated an instead .constant(true)
+        //Added a bouding box with apply edits to the HStack
+        HStack(spacing: 30) {
+            HStack {
+                RingView(color1: #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), color2: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), width: 44, height: 44,
+                         percent: 68, show: .constant(true))
+                VStack(alignment: .leading, spacing: 4.0){
+                    //We can call upon the modifier that was created that also allows editing
+                    //to the .body with the following modifier
+                    Text("10 mins left!!").bold().modifier(FontModifier(style: .subheadline))
+                    Text("Watch 10 mins today!").modifier(FontModifier(style: .caption))
+                }
+                .modifier(FontModifier())
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(20)
+            //This allows us to use the shadow modifier by calling it in this instance
+            .modifier(ShadowModifier())
+            
+            HStack(spacing: 12) {
+                RingView(color1: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), color2: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), width: 40, height: 40,
+                         percent: 36, show: .constant(true))
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(20)
+            //This allows us to use the shadow modifier by calling it in this instance
+            .modifier(ShadowModifier())
+            
+            HStack(spacing: 12.0) {
+                RingView(color1: #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1), color2: #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), width: 40, height: 40,
+                         percent: 89, show: .constant(true))
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(20)
+            //This allows us to use the shadow modifier by calling it in this instance
+            .modifier(ShadowModifier())
+        }
+    }
+}
