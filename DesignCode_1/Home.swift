@@ -9,6 +9,7 @@
 //  menu or a simple modal. It's not recommended for heavy
 //  screens since that may affect performance.
 //
+//This document has all the screens stacked on top of each other
 
 import SwiftUI
 
@@ -68,13 +69,31 @@ struct Home: View {
                         self.viewState = .zero
                         }
                 )
-                //This if statement will allow us to show the entirely different view
+                //This if statement will allow us to show an entirely different view with If statement
                 if showContent {
                     //The content stacks on top of each other so we can hide it by simply setting
                     //the background to white, and then we make it fullscreen by ignoring the safe areas
                     Color.white.edgesIgnoringSafeArea(.all)
                     
                     ContentView()
+                    
+                    //Add this content so it will close the showContent view with a x in the top right
+                    //corner using systemicons
+                    VStack {
+                        HStack {
+                            Spacer()
+                                Image(systemName: "xmark")
+                                    .frame(width: 36, height: 36)
+                                    .foregroundColor(.white)
+                                    .background(Color.black)
+                                    .clipShape(Circle())
+                                }
+                                Spacer()
+                            }
+                            .offset(x: -16, y: 16)
+                        .onTapGesture{
+                            self.showContent = false
+                        }
             }
         }
     }

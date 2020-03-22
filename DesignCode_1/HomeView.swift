@@ -66,7 +66,7 @@ struct HomeView: View {
                     //showContent
                     .onTapGesture {
                         self.showContent = true
-                }
+                    }
             }
             
             //Created Section View now we need to create a repeat for each of these elements and then we
