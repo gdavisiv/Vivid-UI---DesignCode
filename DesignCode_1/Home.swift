@@ -18,13 +18,16 @@ struct Home: View {
     
     //Created a state to store the DRAG gesture translation value
     @State var viewState = CGSize.zero
+    //Created the new state: using the state we bind it to HomeView
+    @State var showContent = false
     
     var body: some View {
         ZStack{
             Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
                 .edgesIgnoringSafeArea(.all)
             
-            HomeView(showProfile: $showProfile)
+            //
+            HomeView(showProfile: $showProfile, showContent: $showContent)
                 .padding(.top, 35)
                 .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
@@ -63,9 +66,16 @@ struct Home: View {
                             self.showProfile = false
                         }
                         self.viewState = .zero
-                        
-                    }
+                        }
                 )
+                //This if statement will allow us to show the entirely different view
+                if showContent {
+                    //The content stacks on top of each other so we can hide it by simply setting
+                    //the background to white, and then we make it fullscreen by ignoring the safe areas
+                    Color.white.edgesIgnoringSafeArea(.all)
+                    
+                    ContentView()
+            }
         }
     }
 }
