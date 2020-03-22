@@ -14,6 +14,10 @@ struct HomeView: View {
     //Added a new state for the Scene Transition Button
     @State var showUpdate = false
     
+    //We want to organize all our views in HomeSwift so we create this new binding and
+    //bind it to a state in home.swift
+    @Binding var showContent: Bool
+    
     var body: some View {
         VStack {
             HStack {
@@ -58,6 +62,11 @@ struct HomeView: View {
                 WatchRingsView()
                     .padding(.horizontal, 30)
                     .padding(.bottom, 30)
+                    //This will allow that anytime the ring views are clicked it will be aware of that via
+                    //showContent
+                    .onTapGesture {
+                        self.showContent = true
+                }
             }
             
             //Created Section View now we need to create a repeat for each of these elements and then we
@@ -82,6 +91,8 @@ struct HomeView: View {
                     .padding(30)
                     .padding(.bottom, 30)
                 }
+                //This code will offset and move the sections data cards up a bit to reduce the spacing
+                .offset(y: -30)
             
             Spacer()
         }
@@ -93,7 +104,8 @@ struct HomeView_Previews: PreviewProvider {
         //Have to update this because we created a new file HomeView, this is different from
         //extracting a subview : the HomeView needs some setting.  WE CAN'T pass a state, because
         //we don't have a state to use.  So instead we set .constant(false)
-        HomeView(showProfile: .constant(false))
+        //We have to do this for both showProfile and showContent for the ringviews
+        HomeView(showProfile: .constant(false), showContent: .constant(false))
     }
 }
 
