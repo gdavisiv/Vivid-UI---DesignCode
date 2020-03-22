@@ -30,7 +30,16 @@ struct Home: View {
             //
             HomeView(showProfile: $showProfile, showContent: $showContent)
                 .padding(.top, 35)
-                .background(Color.white)
+                //Created a background gradient for the main screen
+                .background(
+                    VStack {
+                    LinearGradient(gradient: Gradient(colors:[Color("background2"), Color.white]),
+                                   startPoint: .top, endPoint: .bottom)
+                                .frame(height: 200)
+                        Spacer()
+                    }
+                    .background(Color.white)
+                )
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
                 .offset(y: showProfile ? -450 : 0)
@@ -79,21 +88,27 @@ struct Home: View {
                     
                     //Add this content so it will close the showContent view with a x in the top right
                     //corner using systemicons
-                    VStack {
-                        HStack {
-                            Spacer()
-                                Image(systemName: "xmark")
-                                    .frame(width: 36, height: 36)
-                                    .foregroundColor(.white)
-                                    .background(Color.black)
-                                    .clipShape(Circle())
-                                }
-                                Spacer()
-                            }
-                            .offset(x: -16, y: 16)
-                        .onTapGesture{
-                            self.showContent = false
-                        }
+        VStack {
+            HStack {
+                Spacer()
+                    Image(systemName: "xmark")
+                        .frame(width: 36, height: 36)
+                        .foregroundColor(.white)
+                        .background(Color.black)
+                        .clipShape(Circle())
+                    }
+                    Spacer()
+                }
+                .offset(x: -16, y: 16)
+                //Downside with IF is that you don't have the same control over the custom animations
+                //what you use instead is a modifier called .transition
+//The out-transition is being masked by the bottom content
+//No current solution to this unfortunately
+                .transition(.move(edge: .top))
+                .animation(.spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0))
+                .onTapGesture{
+                    self.showContent = false
+                }
             }
         }
     }

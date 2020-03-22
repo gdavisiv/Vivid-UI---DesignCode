@@ -19,43 +19,44 @@ struct HomeView: View {
     @Binding var showContent: Bool
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("Watching")
-                    //.font(.system(size: 28, weight: .bold))
-                    .modifier(CustomFontModifier(size: 35))
-                
-                Spacer()
-                
-                //Pass that state as a binding and add the $ :
-                //Bindings are considered to be a property of the object which is bound,
-                //and all information related to bindings should be owned by the object.
-                AvatarView(showProfile: $showProfile)
-                
-                //This allows the button to toggle between a true/false state and being able to
-                //click the bell
-                Button(action: {self.showUpdate.toggle() }) {
-                    Image(systemName: "bell")
-                        .renderingMode(.original)
-                        .font(.system(size: 16, weight: .medium))
-                        .frame(width: 36, height: 36)
-                        .background(Color.white)
-                        //makes the shape a circle
-                        .clipShape(Circle())
-                        //Adds two shadows so that it has a foreground/background Shadow
-                        .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+        ScrollView {
+            VStack {
+                HStack {
+                    Text("Watching")
+                        //.font(.system(size: 28, weight: .bold))
+                        .modifier(CustomFontModifier(size: 35))
                     
+                    Spacer()
+                    
+                    //Pass that state as a binding and add the $ :
+                    //Bindings are considered to be a property of the object which is bound,
+                    //and all information related to bindings should be owned by the object.
+                    AvatarView(showProfile: $showProfile)
+                    
+                    //This allows the button to toggle between a true/false state and being able to
+                    //click the bell
+                    Button(action: {self.showUpdate.toggle() }) {
+                        Image(systemName: "bell")
+                            .renderingMode(.original)
+                            .font(.system(size: 16, weight: .medium))
+                            .frame(width: 36, height: 36)
+                            .background(Color.white)
+                            //makes the shape a circle
+                            .clipShape(Circle())
+                            //Adds two shadows so that it has a foreground/background Shadow
+                            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                        
+                    }
+                    //This brings up the modal ContentView
+                    .sheet(isPresented: $showUpdate) {
+                        //Changed this from ContentView() after finishing the buildout of UpdateList()
+                        UpdateList()
+                    }
                 }
-                //This brings up the modal ContentView
-                .sheet(isPresented: $showUpdate) {
-                    //Changed this from ContentView() after finishing the buildout of UpdateList()
-                    UpdateList()
-                }
-            }
-            .padding(.horizontal)
-            .padding(.leading, 14)
-            .padding(.top, 30)
+                .padding(.horizontal)
+                .padding(.leading, 14)
+                .padding(.top, 30)
             
             //Enables Horizontal scrolling, and turns off indicators
             ScrollView(.horizontal, showsIndicators: false) {
@@ -93,8 +94,22 @@ struct HomeView: View {
                 }
                 //This code will offset and move the sections data cards up a bit to reduce the spacing
                 .offset(y: -30)
+                
+                HStack {
+                    Text("Courses")
+                        .font(.title).bold()
+                    Spacer()
+                }
+                .padding(.leading, 30)
+                //Moves up "Courses" on the y axis a bit higher
+                .offset(y: -60)
             
-            Spacer()
+            //Pulling in the values from the SectionView Allows the width and height to be easily customizable
+                SectionView(section: sectionData[2], width: screen.width - 60, height: 275)
+                .offset(y: -60)
+            
+                Spacer()
+            }
         }
     }
 }
@@ -112,6 +127,9 @@ struct HomeView_Previews: PreviewProvider {
 struct SectionView: View {
     //Adding the new data structure to the SectionView
     var section: Section
+    //Added these two variables to make the width and height easily customizable
+    var width: CGFloat = 275
+    var height: CFloat = 275
     
     var body: some View {
         VStack {
