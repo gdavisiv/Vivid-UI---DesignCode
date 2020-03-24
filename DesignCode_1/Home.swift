@@ -9,7 +9,7 @@
 //  menu or a simple modal. It's not recommended for heavy
 //  screens since that may affect performance.
 //
-//This document has all the screens stacked on top of each other
+//This document has all the screens stacked on top of each other using a ZStack
 
 import SwiftUI
 
@@ -27,7 +27,7 @@ struct Home: View {
             Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
                 .edgesIgnoringSafeArea(.all)
             
-            //
+            //Using the above state we will bind $showContent
             HomeView(showProfile: $showProfile, showContent: $showContent)
                 .padding(.top, 35)
                 //Created a background gradient for the main screen
@@ -50,7 +50,7 @@ struct Home: View {
                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
                 .edgesIgnoringSafeArea(.all)
             
-            
+            //This shows on demand when clicked
             MenuView()
                 //This allows you to not see the menu, but still make it interactive
                 .background(Color.black.opacity(0.001))
@@ -78,7 +78,7 @@ struct Home: View {
                         self.viewState = .zero
                         }
                 )
-                //This if statement will allow us to show an entirely different view with If statement
+                //This if statement will allow us to show ContentView() with an If statement
                 if showContent {
                     //The content stacks on top of each other so we can hide it by simply setting
                     //the background to white, and then we make it fullscreen by ignoring the safe areas
@@ -86,24 +86,24 @@ struct Home: View {
                     
                     ContentView()
                     
-                    //Add this content so it will close the showContent view with a x in the top right
+                    //Add this systemname symbol of 'X' so it will close the showContent view with a x in the top right
                     //corner using systemicons
-        VStack {
-            HStack {
-                Spacer()
-                    Image(systemName: "xmark")
-                        .frame(width: 36, height: 36)
-                        .foregroundColor(.white)
-                        .background(Color.black)
-                        .clipShape(Circle())
-                    }
-                    Spacer()
-                }
-                .offset(x: -16, y: 16)
+                    VStack {
+                        HStack {
+                            Spacer()
+                                Image(systemName: "xmark")
+                                    .frame(width: 36, height: 36)
+                                    .foregroundColor(.white)
+                                    .background(Color.black)
+                                    .clipShape(Circle())
+                                }
+                                Spacer()
+                            }
+                            .offset(x: -16, y: 16)
                 //Downside with IF is that you don't have the same control over the custom animations
                 //what you use instead is a modifier called .transition
-//The out-transition is being masked by the bottom content
-//No current solution to this unfortunately
+//The OUT-transition is being masked by the bottom content
+//No current solution to this unfortunately in Swift Coding
                 .transition(.move(edge: .top))
                 .animation(.spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0))
                 .onTapGesture{

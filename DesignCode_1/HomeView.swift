@@ -63,6 +63,7 @@ struct HomeView: View {
                 WatchRingsView()
                     .padding(.horizontal, 30)
                     .padding(.bottom, 30)
+                    //This will set it to true whenever the screen is touched
                     //This will allow that anytime the ring views are clicked it will be aware of that via
                     //showContent
                     .onTapGesture {
@@ -104,7 +105,7 @@ struct HomeView: View {
                 //Moves up "Courses" on the y axis a bit higher
                 .offset(y: -60)
             
-            //Pulling in the values from the SectionView Allows the width and height to be easily customizable
+                //Pulling in the values from the SectionView Allows the width and height to be easily customizable
                 SectionView(section: sectionData[2], width: screen.width - 60, height: 275)
                 .offset(y: -60)
             
@@ -129,7 +130,7 @@ struct SectionView: View {
     var section: Section
     //Added these two variables to make the width and height easily customizable
     var width: CGFloat = 275
-    var height: CFloat = 275
+    var height: CGFloat = 275
     
     var body: some View {
         VStack {
