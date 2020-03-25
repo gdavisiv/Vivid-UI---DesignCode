@@ -44,6 +44,7 @@ struct CourseView: View {
             .background(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
+            .opacity(show ? 1 : 0)
             
             
             VStack {
@@ -57,7 +58,22 @@ struct CourseView: View {
                         }
                         Spacer()
                         //ImageLiteral to easily select an image in your assets folder!
+                    ZStack {
                         Image(uiImage: #imageLiteral(resourceName: "Logo1"))
+                            //This will set the opacity to 0 otherwise set it to 1 or show
+                            //This will make the logo disappear in fullscreen mode
+                            .opacity(show ? 0 : 1)
+                        VStack {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(.white)
+                            }
+                            .frame(width: 36, height: 36)
+                            .background(Color.black)
+                            .clipShape(Circle())
+                            //We set this up in reverse since we only want the 'X' to show when we are in full screen mode
+                            .opacity(show ? 1 : 0)
+                        }
                     }
                     Spacer()
                     Image(uiImage: #imageLiteral(resourceName: "Card2"))
