@@ -39,7 +39,12 @@ struct CourseView: View {
             }
             .padding(30)
             //show .infinity otherwise set it to screen.width - 60
-                .frame(maxWidth: show ? .infinity : screen.width - 60, maxHeight: show ? .infinity : 280, alignment: .top)
+            .frame(maxWidth: show ? .infinity : screen.width - 60, maxHeight: show ? .infinity : 280, alignment: .top)
+            .offset(y: show ? 460 : 0)
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
+            
             
             VStack {
                 HStack(alignment: .top) {
@@ -70,16 +75,22 @@ struct CourseView: View {
                 //.frame(width: show ? screen.width : screen.width - 60, height: show ? screen.height : 280)
                 //There is a better way to write the same code as shown above!  This will ensure that the card
                 //maximizes and takes up the entire screen
-                .frame(maxWidth: show ? .infinity : screen.width - 60, maxHeight: show ? .infinity : 280)
+                .frame(maxWidth: show ? .infinity : screen.width - 60, maxHeight: show ? 460 : 280)
                 .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)).opacity(0.3), radius: 20, x: 0, y: 20)
-                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+                //Have to move the animation from this location to parent container because we want it to effect
+                //the text and card at the same time, instead of just the card
+                //.animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
                 .onTapGesture {
                     self.show.toggle()
             }
             //This works in tandem with the .frame code from above to make the card expand to fullscreen MODE
-            .edgesIgnoringSafeArea(.all)
+            //Move this also with the addition of the Text
+            //.edgesIgnoringSafeArea(.all)
         }
+        .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+        .edgesIgnoringSafeArea(.all)
+        
     }
 }
