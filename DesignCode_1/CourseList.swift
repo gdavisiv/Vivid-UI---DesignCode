@@ -10,7 +10,10 @@ import SwiftUI
 
 struct CourseList: View {
     //State a starts from Courselist and pass this to each instance of CourseView
+    //Bound to a state show at the root level
     @State var show = false
+    //This allows a different state for each card
+    @State var show2 = false
     
     var body: some View {
         ScrollView {
@@ -19,11 +22,16 @@ struct CourseList: View {
                 //Use the gemetry reader to detect the scroll positions of every single card, and use those positions
                 //to create a gap between the two cardsdetermine the spacing over every single card
                     GeometryReader { geometry in
-                        //W will need to use self since we are inside Geometry Reader
-                        CourseView(show: self.$show)
+                        //We will need to use self since we are inside Geometry Reader
+                        CourseView(show: self.$show2)
+                            //If self.show2 this is in fullscreen it will use minY position else don't change anything
+                            .offset(y: self.show2 ? -geometry.frame(in: .global).minY: 0)
                 }
-                .frame(height: 280)
-                .frame(maxWidth: .infinity)
+                //this should fix the height of the container at fullscreen
+                //If show2 is true, set it to scree.height, otherwise set it to 280
+                .frame(height: show2 ? screen.height : 280)
+                //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
+                .frame(maxWidth: show2 ? .infinity : screen.width - 60)
             }
             .frame(width: screen.width)
         }
