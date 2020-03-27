@@ -9,9 +9,23 @@
 import SwiftUI
 
 struct CourseList: View {
+    //State a starts from Courselist and pass this to each instance of CourseView
+    @State var show = false
+    
     var body: some View {
-        VStack {
-            CourseView()
+        ScrollView {
+            VStack(spacing: 30) {
+                CourseView(show: $show)
+                //Use the gemetry reader to detect the scroll positions of every single card, and use those positions
+                //to create a gap between the two cardsdetermine the spacing over every single card
+                    GeometryReader { geometry in
+                        //W will need to use self since we are inside Geometry Reader
+                        CourseView(show: self.$show)
+                }
+                .frame(height: 280)
+                .frame(maxWidth: .infinity)
+            }
+            .frame(width: screen.width)
         }
     }
 }
@@ -25,7 +39,9 @@ struct CourseList_Previews: PreviewProvider {
 //Create a new struct to reference
 struct CourseView: View {
     //Need to use a State to create animation
-    @State var show = false
+    //To add a second card we need to change the state from State to a Binding
+    //@State var show = false
+    @Binding var show: Bool
     
     var body: some View {
         //Added ZStack to add content behind the created card on Z axis
