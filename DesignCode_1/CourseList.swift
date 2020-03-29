@@ -24,7 +24,9 @@ struct CourseList: View {
                     GeometryReader { geometry in
                         //We will need to use self since we are inside Geometry Reader
                         CourseView(show: self.$show2)
-                            //If self.show2 this is in fullscreen it will use minY position else don't change anything
+                            //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
+                            //minY is the position of the top of the second card, and we use negative minY to fill the gap left
+                            //by the top card as it receeds, else don't change anything
                             .offset(y: self.show2 ? -geometry.frame(in: .global).minY: 0)
                 }
                 //this should fix the height of the container at fullscreen
