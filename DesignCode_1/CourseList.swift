@@ -14,11 +14,16 @@ struct CourseList: View {
     @State var show = false
     //This allows a different state for each card
     @State var show2 = false
+    //This new state will allow us to use the course Array Data created
+    @State var courses = courseData
     
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
-                CourseView(show: $show)
+                //This will repeat the demo record 5 times (***PAY ATTENTION TO SPACING!!!***)
+                ForEach(0 ..< 5) { item in
+                //Don't need the code below now that we are implementing Course Data from an Array
+                //CourseView(show: $show)
                 //Use the gemetry reader to detect the scroll positions of every single card, and use those positions
                 //to create a gap between the two cardsdetermine the spacing over every single card
                     GeometryReader { geometry in
@@ -28,12 +33,13 @@ struct CourseList: View {
                             //minY is the position of the top of the second card, and we use negative minY to fill the gap left
                             //by the top card as it receeds, else don't change anything
                             .offset(y: self.show2 ? -geometry.frame(in: .global).minY: 0)
+                    }
+                    //this should fix the height of the container at fullscreen
+                    //If show2 is true, set it to scree.height, otherwise set it to 280
+                    .frame(height: self.show2 ? screen.height : 280)
+                    //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
+                    .frame(maxWidth: self.show2 ? .infinity : screen.width - 60)
                 }
-                //this should fix the height of the container at fullscreen
-                //If show2 is true, set it to scree.height, otherwise set it to 280
-                .frame(height: show2 ? screen.height : 280)
-                //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
-                .frame(maxWidth: show2 ? .infinity : screen.width - 60)
             }
             .frame(width: screen.width)
         }
@@ -136,3 +142,25 @@ struct CourseView: View {
         
     }
 }
+
+//Set the data model via Array
+//This is going to store the show state for each variation of the cards
+
+struct Course: Identifiable {
+    var id = UUID()
+    var title: String
+    var subtitle: String
+    var image: UIImage
+    var logo: UIImage
+    var color: UIColor
+    var show: Bool
+    
+}
+
+//Created the mock Data
+//Each array is using a Data model, and set show to false by default
+var courseData = [
+    Course(title: "Protyping for Designing in SwiftUI", subtitle: "18 Sections", image: #imageLiteral(resourceName: "Background1"), logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), show: false),
+    Course(title: "Advanced Designing in SwiftUI", subtitle: "18 Sections", image: #imageLiteral(resourceName: "Background1"), logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1), show: false),
+    Course(title: "UI Design for Developers", subtitle: "18 Sections", image: #imageLiteral(resourceName: "Card5"), logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), show: false)
+]
