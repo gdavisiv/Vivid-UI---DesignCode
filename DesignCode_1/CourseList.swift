@@ -21,6 +21,13 @@ struct CourseList: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
+                Text("Courses")
+                    .font(.largeTitle).bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 30)
+                    .padding(.top, 30)
+                
+                
                 //This will repeat the demo record 5 times (***PAY ATTENTION TO SPACING!!!***)
                 //instead of looping through the courses we are going to get the index value for the courses
                 //This will provide the index
@@ -42,13 +49,15 @@ struct CourseList: View {
                         //Since I added the for each, have to update self.show2 with self first with self.courses[index].show
                     //this should fix the height of the container at fullscreen
                     //If show2 is true, set it to scree.height, otherwise set it to 280
-                    .frame(height: self.courses[index].show ? screen.height : 280)
+                //Updating the height value so that it expands consistently and not based off its geometry location
+                        //but the cards after are still being displayed
+                    .frame(height: 280)
                     //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
                     .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
                 }
             }
             .frame(width: screen.width)
-            //This fixes the sudden animation transition
+            //This fixes the sudden animation transition with the loading cards
             .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             
         }
@@ -160,6 +169,8 @@ struct CourseView: View {
             //Move this also with the addition of the Text
             //.edgesIgnoringSafeArea(.all)
         }
+        //added this code so that it can expands
+        .frame(height: show ? screen.height : 280)
         .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
         .edgesIgnoringSafeArea(.all)
         
