@@ -17,52 +17,66 @@ struct CourseList: View {
     //Manual States no Longer needed with implementation of Data model
     //This new state will allow us to use the course Array Data created
     @State var courses = courseData
+    //Create this state for the status bar toggle
+    @State var active = false
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 30) {
-                Text("Courses")
-                    .font(.largeTitle).bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 30)
-                    .padding(.top, 30)
-                
-                
-                //This will repeat the demo record 5 times (***PAY ATTENTION TO SPACING!!!***)
-                //instead of looping through the courses we are going to get the index value for the courses
-                //This will provide the index
-                ForEach(courses.indices, id: \.self) { index in
-                //Don't need the code below now that we are implementing Course Data from an Array
-                //CourseView(show: $show)
-                //Use the gemetry reader to detect the scroll positions of every single card, and use those positions
-                //to create a gap between the two cardsdetermine the spacing over every single card
-                    GeometryReader { geometry in
-                        //We will need to use self since we are inside Geometry Reader
-                        //CourseView(show: self.$show2)
-                        //To use the Courses Array we call the following
-                        CourseView(show: self.$courses[index].show, course: self.courses[index])
-                            //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
-                            //minY is the position of the top of the second card, and we use negative minY to fill the gap left
-                            //by the top card as it receeds, else don't change anything
-                            .offset(y: self.courses[index].show ? -geometry.frame(in: .global).minY: 0)
+        ZStack {
+            Color.black.opacity(active ? 0.5 : 0)
+                .animation(.linear)
+                .edgesIgnoringSafeArea(.all)
+            ScrollView {
+                VStack(spacing: 30) {
+                    Text("Courses")
+                        .font(.largeTitle).bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 30)
+                        .padding(.top, 30)
+                        //Simple blur animation that is set to 20, otherwise 0
+                        .blur(radius: active ? 20 : 0)
+                    
+                    
+                    //This will repeat the demo record 5 times (***PAY ATTENTION TO SPACING!!!***)
+                    //instead of looping through the courses we are going to get the index value for the courses
+                    //This will provide the index
+                    ForEach(courses.indices, id: \.self) { index in
+                    //Don't need the code below now that we are implementing Course Data from an Array
+                    //CourseView(show: $show)
+                    //Use the gemetry reader to detect the scroll positions of every single card, and use those positions
+                    //to create a gap between the two cardsdetermine the spacing over every single card
+                        GeometryReader { geometry in
+                            //We will need to use self since we are inside Geometry Reader
+                            //CourseView(show: self.$show2)
+                            //To use the Courses Array we call the following
+                            CourseView(show: self.$courses[index].show, course: self.courses[index], active: self.$active)
+                                //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
+                                //minY is the position of the top of the second card, and we use negative minY to fill the gap left
+                                //by the top card as it receeds, else don't change anything
+                                .offset(y: self.courses[index].show ? -geometry.frame(in: .global).minY: 0)
+                        }
+                            //Since I added the for each, have to update self.show2 with self first with self.courses[index].show
+                        //this should fix the height of the container at fullscreen
+                        //If show2 is true, set it to scree.height, otherwise set it to 280
+                    //Updating the height value so that it expands consistently and not based off its geometry location
+                            //but the cards after are still being displayed
+                        .frame(height: 280)
+                        //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
+                        .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
+                        //If you ever want to animate one element and you want that one element to be ontop of the other elements,
+                        //zIndex is what you use to allow that to happen
+                        .zIndex(self.courses[index].show ? 1 : 0)
                     }
-                        //Since I added the for each, have to update self.show2 with self first with self.courses[index].show
-                    //this should fix the height of the container at fullscreen
-                    //If show2 is true, set it to scree.height, otherwise set it to 280
-                //Updating the height value so that it expands consistently and not based off its geometry location
-                        //but the cards after are still being displayed
-                    .frame(height: 280)
-                    //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
-                    .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
-                    //If you ever want to animate one element and you want that one element to be ontop of the other elements,
-                    //zIndex is what you use to allow that to happen
-                    .zIndex(self.courses[index].show ? 1 : 0)
                 }
+                .frame(width: screen.width)
+                //This fixes the sudden animation transition with the loading cards
+                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+                
             }
-            .frame(width: screen.width)
-            //This fixes the sudden animation transition with the loading cards
-            .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-            
+            //How to animate hiding the statusbar
+            //active set it to true, otherwise set it to false
+            .statusBar(hidden: active ? true : false)
+            //Add a simple fadeout animation
+            .animation(.linear)
         }
     }
 }
@@ -81,6 +95,9 @@ struct CourseView: View {
     @Binding var show: Bool
     //State applying the Data Array
     var course: Course
+    
+    //This binding is created so that whenever we open a card, that card will auto hide the status bar
+    @Binding var active: Bool
     
     var body: some View {
         //Added ZStack to add content behind the created card on Z axis
@@ -146,7 +163,7 @@ struct CourseView: View {
                         .frame(height: 140, alignment: .top)
                 }
                 //Add animation to the padding modifier so that it updates from CArd to Fullscreen Mode
-                .padding(show ? 30 : 20)
+                .padding(show ? 40 : 20)
                 //This adds extra padding at the very top so that it does not intefer with the top Status Menu
                 //.padding(.top, show ? 30 : 0)
                 //This following code will add the transition animation
@@ -167,6 +184,7 @@ struct CourseView: View {
                 //.animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
                 .onTapGesture {
                     self.show.toggle()
+                    self.active.toggle()
             }
             //This works in tandem with the .frame code from above to make the card expand to fullscreen MODE
             //Move this also with the addition of the Text
