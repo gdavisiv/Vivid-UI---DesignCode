@@ -54,6 +54,9 @@ struct CourseList: View {
                     .frame(height: 280)
                     //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
                     .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
+                    //If you ever want to animate one element and you want that one element to be ontop of the other elements,
+                    //zIndex is what you use to allow that to happen
+                    .zIndex(self.courses[index].show ? 1 : 0)
                 }
             }
             .frame(width: screen.width)
