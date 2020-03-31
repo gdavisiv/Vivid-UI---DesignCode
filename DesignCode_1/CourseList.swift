@@ -59,6 +59,10 @@ struct CourseList: View {
                                 //minY is the position of the top of the second card, and we use negative minY to fill the gap left
                                 //by the top card as it receeds, else don't change anything
                                 .offset(y: self.courses[index].show ? -geometry.frame(in: .global).minY: 0)
+                                //When the card is not the one that is active, the card not active will have an opacity of 0 otherwise 1 or visible
+                                .opacity(self.activeIndex != index && self.active ? 0 : 1)
+                                //Same as above only will reduce the size of the cards now
+                                .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
                         }
                             //Since I added the for each, have to update self.show2 with self first with self.courses[index].show
                         //this should fix the height of the container at fullscreen
@@ -193,6 +197,13 @@ struct CourseView: View {
                 .onTapGesture {
                     self.show.toggle()
                     self.active.toggle()
+                    //When we are tapping on the card, and it is active
+                    //This allows us to pass the value of the index, and track which card is active when clicked
+                    if self.show {
+                        self.activeIndex = self.index
+                    } else {
+                        self.activeIndex = -1
+                    }
             }
             //This works in tandem with the .frame code from above to make the card expand to fullscreen MODE
             //Move this also with the addition of the Text
