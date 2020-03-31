@@ -19,7 +19,7 @@ struct CourseList: View {
     @State var courses = courseData
     //Create this state for the status bar toggle
     @State var active = false
-    
+    @State var activeIndex = -1
     var body: some View {
         ZStack {
             Color.black.opacity(active ? 0.5 : 0)
@@ -48,7 +48,13 @@ struct CourseList: View {
                             //We will need to use self since we are inside Geometry Reader
                             //CourseView(show: self.$show2)
                             //To use the Courses Array we call the following
-                            CourseView(show: self.$courses[index].show, course: self.courses[index], active: self.$active)
+                            CourseView(
+                                show: self.$courses[index].show,
+                                course: self.courses[index],
+                                index: index,
+                                activeIndex: self.$activeIndex,
+                                active: self.$active
+                            )
                                 //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
                                 //minY is the position of the top of the second card, and we use negative minY to fill the gap left
                                 //by the top card as it receeds, else don't change anything
@@ -95,6 +101,8 @@ struct CourseView: View {
     @Binding var show: Bool
     //State applying the Data Array
     var course: Course
+    var index: Int
+    @Binding var activeIndex: Int
     
     //This binding is created so that whenever we open a card, that card will auto hide the status bar
     @Binding var active: Bool
