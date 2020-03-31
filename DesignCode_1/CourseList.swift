@@ -63,6 +63,8 @@ struct CourseList: View {
                                 .opacity(self.activeIndex != index && self.active ? 0 : 1)
                                 //Same as above only will reduce the size of the cards now
                                 .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
+                                //this animation will move the cards to the side
+                                .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
                         }
                             //Since I added the for each, have to update self.show2 with self first with self.courses[index].show
                         //this should fix the height of the container at fullscreen
