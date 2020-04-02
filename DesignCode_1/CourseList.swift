@@ -20,10 +20,13 @@ struct CourseList: View {
     //Create this state for the status bar toggle
     @State var active = false
     @State var activeIndex = -1
+    @State var activeView = CGSize.zero
+    
     
     var body: some View {
         ZStack {
-            Color.black.opacity(active ? 0.5 : 0)
+            //Enables the background to change color due to state and binding
+            Color.black.opacity(Double(self.activeView.height/500))
                 .animation(.linear)
                 .edgesIgnoringSafeArea(.all)
             ScrollView {
@@ -52,9 +55,10 @@ struct CourseList: View {
                             CourseView(
                                 show: self.$courses[index].show,
                                 course: self.courses[index],
+                                active: self.$active,
                                 index: index,
                                 activeIndex: self.$activeIndex,
-                                active: self.$active
+                                activeView: self.$activeView
                             )
                                 //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
                                 //minY is the position of the top of the second card, and we use negative minY to fill the gap left
@@ -108,13 +112,12 @@ struct CourseView: View {
     @Binding var show: Bool
     //State applying the Data Array
     var course: Course
+    @Binding var active: Bool
     var index: Int
     @Binding var activeIndex: Int
     //Creating a new state for our dismiss gesture
-    @State var activeView = CGSize.zero
-    
+    @Binding var activeView: CGSize
     //This binding is created so that whenever we open a card, that card will auto hide the status bar
-    @Binding var active: Bool
     
     var body: some View {
         //Added ZStack to add content behind the created card on Z axis
@@ -202,7 +205,12 @@ struct CourseView: View {
                     show ?
                     //When we tap and drag we will get the translation sent to our activeView
                     DragGesture().onChanged { value in
+                        //MAke sure to drag less than 300 else stop/return
+                        guard value.translation.height < 300 else { return }
+                        //Disable the ability to drag upward and make the card animate
+                        guard value.translation.height > 0 else { return }
                         self.activeView = value.translation
+                        
                     }
                         //This will reset the position when the let got of the screen
                     .onEnded { value in
@@ -243,6 +251,32 @@ struct CourseView: View {
         //A Flash technique that can or can not be used
         .hueRotation(Angle(degrees: Double(self.activeView.height)))
         .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+        //Copying the gesture code from above will allow the user to drag from any point on the screen and not
+        //just the upper half
+        .gesture(
+            //Only will be enabled when we click on the actual card
+            show ?
+                //When we tap and drag we will get the translation sent to our activeView
+                DragGesture().onChanged { value in
+                    //MAke sure to drag less than 300 else stop/return
+                    guard value.translation.height < 300 else { return }
+                    //Disable the ability to drag upward and make the card animate
+                    guard value.translation.height > 0 else { return }
+                    self.activeView = value.translation
+                    
+                }
+                    //This will reset the position when the let got of the screen
+                    .onEnded { value in
+                        //DRag a little anymore than 50 and it goes back to the main screen
+                        if self.activeView.height > 50 {
+                            self.show = false
+                            self.active = false
+                            self.activeIndex = -1
+                        }
+                        self.activeView = .zero
+                }
+                : nil
+        )
         .edgesIgnoringSafeArea(.all)
         
     }
