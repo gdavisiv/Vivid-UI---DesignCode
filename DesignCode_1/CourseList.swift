@@ -198,12 +198,15 @@ struct CourseView: View {
                 .shadow(color: Color(course.color).opacity(0.3), radius: 20, x: 0, y: 20)
                 //Adding an Drag Gesture to the card exit/intro animations
                 .gesture(
+                    //Only will be enabled when we click on the actual card
+                    show ?
                     //When we tap and drag we will get the translation sent to our activeView
                     DragGesture().onChanged { value in
                         self.activeView = value.translation
                     }
                         //This will reset the position when the let got of the screen
                     .onEnded { value in
+                        //DRag a little anymore than 50 and it goes back to the main screen
                         if self.activeView.height > 50 {
                             self.show = false
                             self.active = false
@@ -211,6 +214,7 @@ struct CourseView: View {
                         }
                         self.activeView = .zero
                     }
+                    : nil
                 )
                 //Have to move the animation from this location to parent container because we want it to effect
                 //the text and card at the same time, instead of just the card
@@ -235,6 +239,9 @@ struct CourseView: View {
         //This scale effect will add the animation for the Drag Gesture
         //we divide by 1000 because the number is large due to pizel density of the screen
         .scaleEffect(1 - self.activeView.height / 1000)
+        .rotation3DEffect(Angle(degrees: Double(self.activeView.height / 10)), axis: (x: 0, y: 10.0, z: 0))
+        //A Flash technique that can or can not be used
+        .hueRotation(Angle(degrees: Double(self.activeView.height)))
         .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
         .edgesIgnoringSafeArea(.all)
         
