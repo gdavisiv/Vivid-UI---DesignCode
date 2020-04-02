@@ -20,6 +20,7 @@ struct CourseList: View {
     //Create this state for the status bar toggle
     @State var active = false
     @State var activeIndex = -1
+    
     var body: some View {
         ZStack {
             Color.black.opacity(active ? 0.5 : 0)
@@ -109,6 +110,8 @@ struct CourseView: View {
     var course: Course
     var index: Int
     @Binding var activeIndex: Int
+    //Creating a new state for our dismiss gesture
+    @State var activeView = CGSize.zero
     
     //This binding is created so that whenever we open a card, that card will auto hide the status bar
     @Binding var active: Bool
@@ -193,6 +196,22 @@ struct CourseView: View {
                 //Update to new Array Data
                 //.shadow(color: Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)).opacity(0.3), radius: 20, x: 0, y: 20)
                 .shadow(color: Color(course.color).opacity(0.3), radius: 20, x: 0, y: 20)
+                //Adding an Drag Gesture to the card exit/intro animations
+                .gesture(
+                    //When we tap and drag we will get the translation sent to our activeView
+                    DragGesture().onChanged { value in
+                        self.activeView = value.translation
+                    }
+                        //This will reset the position when the let got of the screen
+                    .onEnded { value in
+                        if self.activeView.height > 50 {
+                            self.show = false
+                            self.active = false
+                            self.activeIndex = -1
+                        }
+                        self.activeView = .zero
+                    }
+                )
                 //Have to move the animation from this location to parent container because we want it to effect
                 //the text and card at the same time, instead of just the card
                 //.animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
@@ -213,6 +232,9 @@ struct CourseView: View {
         }
         //added this code so that it can expands
         .frame(height: show ? screen.height : 280)
+        //This scale effect will add the animation for the Drag Gesture
+        //we divide by 1000 because the number is large due to pizel density of the screen
+        .scaleEffect(1 - self.activeView.height / 1000)
         .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
         .edgesIgnoringSafeArea(.all)
         
