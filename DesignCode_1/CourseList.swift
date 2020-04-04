@@ -238,6 +238,14 @@ struct CourseView: View {
                         self.activeIndex = -1
                     }
             }
+            
+            if show {
+                //Until the errors with dragging and gestures can be resolved it is
+                //best to leave this code commented out for now
+//                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex)
+//                    .background(Color.white)
+//                    .animation(nil)
+            }
             //This works in tandem with the .frame code from above to make the card expand to fullscreen MODE
             //Move this also with the addition of the Text
             //.edgesIgnoringSafeArea(.all)
