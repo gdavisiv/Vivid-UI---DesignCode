@@ -15,12 +15,18 @@ struct Post: Codable, Identifiable {
 }
 
 class Api {
-    func getPost() {
-        let url = URL(string: "https://jsonplaceholder.typicode.com/posts")
+    func getPost(completion: @escaping ([Post]) -> ()) {
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
         
         //Come back to FULL understand the importance of this!! and Comment it!
-        URLSession.shared.dataTask(with: url!) { (data, _, _) in
-            <#code#>
+        //This is about optionals and working with APIs
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
+            let posts = try! JSONDecoder().decode([Post].self, from: data!)
+            
+            DispatchQueue.main.async {
+                completion(posts)
+            }
         }
+    .resume()
     }
 }

@@ -42,6 +42,7 @@
 		41E1369023F0C9FC00F39FDA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41E1368F23F0C9FC00F39FDA /* Preview Assets.xcassets */; };
 		41E1369323F0C9FD00F39FDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41E1369123F0C9FD00F39FDA /* LaunchScreen.storyboard */; };
 		E2D2A7D02439956C00CDA7D2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7CF2439956C00CDA7D2 /* Data.swift */; };
+		E2D2A7D22439986400CDA7D2 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7D12439986400CDA7D2 /* PostList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		41E1369223F0C9FD00F39FDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41E1369423F0C9FD00F39FDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2D2A7CF2439956C00CDA7D2 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		E2D2A7D12439986400CDA7D2 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				41565E11241FE752001B5C9B /* UpdateDetail.swift */,
 				4166848B242171780011B025 /* UpdateStore.swift */,
 				E2D2A7CF2439956C00CDA7D2 /* Data.swift */,
+				E2D2A7D12439986400CDA7D2 /* PostList.swift */,
 				418CE1B42422EDD9003B297A /* TabBar.swift */,
 				41E1368C23F0C9FC00F39FDA /* Assets.xcassets */,
 				412597C724257D4A00CABA76 /* Overpass */,
@@ -269,6 +272,7 @@
 				41740C7523FCECA9009F8E44 /* Home.swift in Sources */,
 				41D91CBA24184AC600E804E1 /* HomeView.swift in Sources */,
 				41E1368923F0C9FB00F39FDA /* SceneDelegate.swift in Sources */,
+				E2D2A7D22439986400CDA7D2 /* PostList.swift in Sources */,
 				41E1368B23F0C9FB00F39FDA /* ContentView.swift in Sources */,
 				41B7818C2438060000CD5332 /* CourseDetail.swift in Sources */,
 				418CE1B52422EDD9003B297A /* TabBar.swift in Sources */,
