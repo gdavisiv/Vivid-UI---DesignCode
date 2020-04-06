@@ -3,7 +3,7 @@
 //  DesignCode_1
 //
 //  Created by George Davis IV on 4/5/20.
-//  Copyright © 2020 user163072. All rights reserved.
+//  Copyright © 2020 George Davis IV. All rights reserved.
 //
 
 import SwiftUI
@@ -11,7 +11,7 @@ import SwiftUI
 
 struct PostList: View {
     //While we are running the API call we will use this state, and we will set it to default so that
-    //it will load empty results
+    //it will load the empty results
     @State var posts: [Post] = []
     
     var body: some View {
