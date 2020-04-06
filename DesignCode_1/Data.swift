@@ -20,6 +20,9 @@ struct Post: Codable, Identifiable {
 
 //Create an API class
 class Api {
+    //When we make the API call we want to return something, ie the post that we made
+    //We're going to have an array of post ie our Data Model
+    //we'll be able to return values for this function getPost
     func getPost(completion: @escaping ([Post]) -> ()) {
         //Needed to create an API call, and then input the website link of the JSON format of the Data
         //Using Guard we can use it tso that if it is not a URL otherwise it will stop running the code
@@ -32,7 +35,9 @@ class Api {
             //We will now decode the JSON in Swift.  It will decode and use the data model we created
             let posts = try! JSONDecoder().decode([Post].self, from: data!)
             
+            //This will allow us to interact with the app while running the API call
             DispatchQueue.main.async {
+                //Use completion handles
                 completion(posts)
             }
         }
