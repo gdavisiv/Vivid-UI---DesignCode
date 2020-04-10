@@ -33,7 +33,11 @@ class Api {
         //response.  For the rest of the responses we will set as '_' and that simply means we will not use it for the moment
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             //We will now decode the JSON in Swift.  It will decode and use the data model we created
-            let posts = try! JSONDecoder().decode([Post].self, from: data!)
+            //We can get rid of tha exclamation point on from:data! with a guard statement
+            //This will stop running the rest of the function instead of having the app crash
+            guard let data = data else { return }
+            
+            let posts = try! JSONDecoder().decode([Post].self, from: data)
             
             //This will allow us to interact with the app while running the API call
             DispatchQueue.main.async {

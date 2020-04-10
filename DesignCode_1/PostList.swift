@@ -23,7 +23,11 @@ struct PostList: View {
         //Use a list to display the post, rename the value recieving from it as post
         //Update post with store.posts
         List(store.posts) { post in
-            Text(post.title)
+            VStack(alignment: .leading, spacing: 8) {
+                //Updates the display of the code info
+                Text(post.title).font(.system(.title, design: .serif)).bold()
+                Text(post.body).font(.subheadline).foregroundColor(.secondary)
+            }
         }
         //No need for the following code since I created the DataStore
 //        //Quick way to implement the display of data from the JSOn call
