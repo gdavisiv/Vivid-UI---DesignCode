@@ -41,6 +41,7 @@
 		41E1368D23F0C9FC00F39FDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41E1368C23F0C9FC00F39FDA /* Assets.xcassets */; };
 		41E1369023F0C9FC00F39FDA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41E1368F23F0C9FC00F39FDA /* Preview Assets.xcassets */; };
 		41E1369323F0C9FD00F39FDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41E1369123F0C9FD00F39FDA /* LaunchScreen.storyboard */; };
+		E27A935A243FF5E6007E50EF /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A9359243FF5E6007E50EF /* DataStore.swift */; };
 		E2D2A7D02439956C00CDA7D2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7CF2439956C00CDA7D2 /* Data.swift */; };
 		E2D2A7D22439986400CDA7D2 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7D12439986400CDA7D2 /* PostList.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +83,7 @@
 		41E1368F23F0C9FC00F39FDA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		41E1369223F0C9FD00F39FDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41E1369423F0C9FD00F39FDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E27A9359243FF5E6007E50EF /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		E2D2A7CF2439956C00CDA7D2 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		E2D2A7D12439986400CDA7D2 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +156,7 @@
 				41565E11241FE752001B5C9B /* UpdateDetail.swift */,
 				4166848B242171780011B025 /* UpdateStore.swift */,
 				E2D2A7CF2439956C00CDA7D2 /* Data.swift */,
+				E27A9359243FF5E6007E50EF /* DataStore.swift */,
 				E2D2A7D12439986400CDA7D2 /* PostList.swift */,
 				418CE1B42422EDD9003B297A /* TabBar.swift */,
 				41E1368C23F0C9FC00F39FDA /* Assets.xcassets */,
@@ -263,6 +266,7 @@
 			files = (
 				41E1368723F0C9FB00F39FDA /* AppDelegate.swift in Sources */,
 				E2D2A7D02439956C00CDA7D2 /* Data.swift in Sources */,
+				E27A935A243FF5E6007E50EF /* DataStore.swift in Sources */,
 				4166848C242171780011B025 /* UpdateStore.swift in Sources */,
 				410B4687241EC3F50016681E /* UpdateList.swift in Sources */,
 				4124648B23F79FE700ABDEBC /* MenuView.swift in Sources */,

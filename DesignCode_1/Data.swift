@@ -23,7 +23,7 @@ class Api {
     //When we make the API call we want to return something, ie the post that we made
     //We're going to have an array of post ie our Data Model
     //we'll be able to return values for this function getPost
-    func getPost(completion: @escaping ([Post]) -> ()) {
+    func getPosts(completion: @escaping ([Post]) -> ()) {
         //Needed to create an API call, and then input the website link of the JSON format of the Data
         //Using Guard we can use it tso that if it is not a URL otherwise it will stop running the code
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
