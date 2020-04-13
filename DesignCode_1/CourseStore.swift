@@ -25,6 +25,6 @@ func getArray() {
     //To make the API call use client which was configured above, entry is the content model from contentful
     //
     client.fetchArray(of: Entry.self, matching: query) { result in
-        
+        print(result)
     }
 }
