@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,6 +41,7 @@
 		41E1368D23F0C9FC00F39FDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41E1368C23F0C9FC00F39FDA /* Assets.xcassets */; };
 		41E1369023F0C9FC00F39FDA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41E1368F23F0C9FC00F39FDA /* Preview Assets.xcassets */; };
 		41E1369323F0C9FD00F39FDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41E1369123F0C9FD00F39FDA /* LaunchScreen.storyboard */; };
+		E26341442443FD0400457D84 /* Contentful in Frameworks */ = {isa = PBXBuildFile; productRef = E26341432443FD0400457D84 /* Contentful */; };
 		E27A935A243FF5E6007E50EF /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A9359243FF5E6007E50EF /* DataStore.swift */; };
 		E2D2A7D02439956C00CDA7D2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7CF2439956C00CDA7D2 /* Data.swift */; };
 		E2D2A7D22439986400CDA7D2 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7D12439986400CDA7D2 /* PostList.swift */; };
@@ -93,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E26341442443FD0400457D84 /* Contentful in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +194,9 @@
 			dependencies = (
 			);
 			name = DesignCode_1;
+			packageProductDependencies = (
+				E26341432443FD0400457D84 /* Contentful */,
+			);
 			productName = DesignCode_1;
 			productReference = 41E1368323F0C9FB00F39FDA /* DesignCode_1.app */;
 			productType = "com.apple.product-type.application";
@@ -220,6 +225,9 @@
 				Base,
 			);
 			mainGroup = 41E1367A23F0C9FB00F39FDA;
+			packageReferences = (
+				E26341422443FD0400457D84 /* XCRemoteSwiftPackageReference "contentful.swift" */,
+			);
 			productRefGroup = 41E1368423F0C9FB00F39FDA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -472,6 +480,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E26341422443FD0400457D84 /* XCRemoteSwiftPackageReference "contentful.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/contentful/contentful.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E26341432443FD0400457D84 /* Contentful */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E26341422443FD0400457D84 /* XCRemoteSwiftPackageReference "contentful.swift" */;
+			productName = Contentful;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 41E1367B23F0C9FB00F39FDA /* Project object */;
 }

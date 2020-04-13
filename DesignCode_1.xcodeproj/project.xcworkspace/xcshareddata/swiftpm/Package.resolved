@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Contentful",
+        "repositoryURL": "https://github.com/contentful/contentful.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "59402c444e0015c2e781e2212e2d815ad8c11745",
+          "version": "5.0.9"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
