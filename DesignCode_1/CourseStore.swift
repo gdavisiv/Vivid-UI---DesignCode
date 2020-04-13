@@ -17,8 +17,13 @@ let client = Client(spaceId: "q9yfx3ed18xx", accessToken: "CLoS8H84d0SYq9-zZjy1u
 
 //How to use their API : https://github.com/contentful/contentful.swift/
 func getArray() {
+    //The EntryDecodable protocol allows you to define a mapping between your content
+    //types and your Swift classes that entries will be serialized to.
+    //Couse is simply the content model
     let query = Query.where(contentTypeId: "course")
     
+    //To make the API call use client which was configured above, entry is the content model from contentful
+    //
     client.fetchArray(of: Entry.self, matching: query) { result in
         
     }
