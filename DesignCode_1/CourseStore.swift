@@ -29,6 +29,14 @@ func getArray(id: String, completion: @escaping([Entry]) -> ()) {
     //To make the API call use client which was configured above, entry is the content model from contentful
     //
     client.fetchArray(of: Entry.self, matching: query) { result in
-        print(result)
+        switch result {
+        case .success(let array):
+            //Make the data asyncrinous so we can work with the UI and Data in real time
+            DispatchQueue.main.sync {
+                completion(array.items)
+            }
+        case .error(let error):
+            print(error)
+        }
     }
 }
