@@ -16,7 +16,9 @@ struct CourseList: View {
     //@State var show2 = false
     //Manual States no Longer needed with implementation of Data model
     //This new state will allow us to use the course Array Data created
-    @State var courses = courseData
+    //@State var courses = courseData
+    //Going to use the Combine store instead
+    @ObservedObject var store = CourseStore()
     //Create this state for the status bar toggle
     @State var active = false
     @State var activeIndex = -1
@@ -30,9 +32,7 @@ struct CourseList: View {
                 .animation(.linear)
                 .edgesIgnoringSafeArea(.all)
                 //Adding in the contentful API Data to test!
-                .onAppear {
-                    getArray()
-            }
+
             ScrollView {
                 VStack(spacing: 30) {
                     Text("Courses")
@@ -47,7 +47,7 @@ struct CourseList: View {
                     //This will repeat the demo record 5 times (***PAY ATTENTION TO SPACING!!!***)
                     //instead of looping through the courses we are going to get the index value for the courses
                     //This will provide the index
-                    ForEach(courses.indices, id: \.self) { index in
+                    ForEach(store.courses.indices, id: \.self) { index in
                     //Don't need the code below now that we are implementing Course Data from an Array
                     //CourseView(show: $show)
                     //Use the gemetry reader to detect the scroll positions of every single card, and use those positions
@@ -57,8 +57,8 @@ struct CourseList: View {
                             //CourseView(show: self.$show2)
                             //To use the Courses Array we call the following
                             CourseView(
-                                show: self.$courses[index].show,
-                                course: self.courses[index],
+                                show: self.$store.courses[index].show,
+                                course: self.store.courses[index],
                                 active: self.$active,
                                 index: index,
                                 activeIndex: self.$activeIndex,
@@ -67,7 +67,7 @@ struct CourseList: View {
                                 //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
                                 //minY is the position of the top of the second card, and we use negative minY to fill the gap left
                                 //by the top card as it receeds, else don't change anything
-                                .offset(y: self.courses[index].show ? -geometry.frame(in: .global).minY: 0)
+                                .offset(y: self.store.courses[index].show ? -geometry.frame(in: .global).minY: 0)
                                 //When the card is not the one that is active, the card not active will have an opacity of 0 otherwise 1 or visible
                                 .opacity(self.activeIndex != index && self.active ? 0 : 1)
                                 //Same as above only will reduce the size of the cards now
@@ -82,10 +82,10 @@ struct CourseList: View {
                             //but the cards after are still being displayed
                         .frame(height: 280)
                         //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
-                        .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
+                            .frame(maxWidth: self.store.courses[index].show ? .infinity : screen.width - 60)
                         //If you ever want to animate one element and you want that one element to be ontop of the other elements,
                         //zIndex is what you use to allow that to happen
-                        .zIndex(self.courses[index].show ? 1 : 0)
+                            .zIndex(self.store.courses[index].show ? 1 : 0)
                     }
                 }
                 .frame(width: screen.width)

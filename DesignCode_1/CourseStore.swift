@@ -9,6 +9,7 @@
 import SwiftUI
 //This is only available because we downloaded the library contentful
 import Contentful
+import Combine
 
 //Here we will manage the API calls from Contentful
 
@@ -37,6 +38,20 @@ func getArray(id: String, completion: @escaping([Entry]) -> ()) {
             }
         case .error(let error):
             print(error)
+        }
+    }
+}
+
+//Create a class for an obeservable Object
+class CourseStore: ObservableObject {
+    @Published var courses: [Course] = courseData
+    init() {
+        getArray(id: "course") { (items) in
+            items.forEach { (item) in
+                //Swift UI doesn't like this because this value type is of ANY, usually u have to tell swift what
+                //kind of data you are recieving so add 'as! String'
+                print(item.fields["title"] as! String)
+            }
         }
     }
 }
