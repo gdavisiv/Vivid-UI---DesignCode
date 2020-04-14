@@ -48,9 +48,18 @@ class CourseStore: ObservableObject {
     init() {
         getArray(id: "course") { (items) in
             items.forEach { (item) in
+                //w
+                self.courses.append(Course(
+                    title: item.fields["title"] as! String,
+                    subtitle: item.fields["subtitle"] as! String,
+                    //Need to update this later with a library that will load it asynchronously
+                    image: #imageLiteral(resourceName: "Card6"),
+                    logo: #imageLiteral(resourceName: "Logo1"),
+                    color: #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1),
+                    show: false))
                 //Swift UI doesn't like this because this value type is of ANY, usually u have to tell swift what
                 //kind of data you are recieving so add 'as! String'
-                print(item.fields["title"] as! String)
+                //print(item.fields["title"] as! String)
             }
         }
     }
