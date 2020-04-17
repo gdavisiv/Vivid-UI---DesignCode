@@ -312,7 +312,7 @@ struct Course: Identifiable {
 //Created the mock Data
 //Each array is using a Data model, and set show to false by default
 var courseData = [
-    Course(title: "Protyping for Designing in SwiftUI", subtitle: "18 Sections", image: #imageLiteral(resourceName: "Background1"), logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), show: false),
-    Course(title: "Advanced Designing in SwiftUI", subtitle: "18 Sections", image: #imageLiteral(resourceName: "Background1"), logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1), show: false),
-    Course(title: "UI Design for Developers", subtitle: "18 Sections", image: #imageLiteral(resourceName: "Card5"), logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), show: false)
+    Course(title: "Protyping for Designing in SwiftUI", subtitle: "18 Sections", image: URL(string: "https://webcomicms.net/sites/default/files/clipart/133115/education-graphics-133115-5569486.jpg")!, logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), show: false),
+    Course(title: "Advanced Designing in SwiftUI", subtitle: "18 Sections", image: URL(string: "https://i.dlpng.com/static/png/4709906-imagination-png-93-images-in-collection-page-1-imagination-png-650_651_preview.png")!, logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1), show: false),
+    Course(title: "UI Design for Developers", subtitle: "18 Sections", image: URL(string: "https://i.dlpng.com/static/png/4709866-imagination-png-vector-psd-and-clipart-with-transparent-imagination-png-650_551_preview.png")!, logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), show: false)
 ]
