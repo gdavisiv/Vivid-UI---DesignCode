@@ -52,8 +52,12 @@ class CourseStore: ObservableObject {
                 self.courses.append(Course(
                     title: item.fields["title"] as! String,
                     subtitle: item.fields["subtitle"] as! String,
-                    //Need to update this later with a library that will load it asynchronously
-                    image: #imageLiteral(resourceName: "Card6"),
+                    //Change from an image literal to the following;
+                    //instead of targetting the field instead we are going to use a .linkedAsset
+                    //with a field name of image, we have either wrap everything in a paranthesis
+                    //a second solution is to create a default value.  we can keep the string empty
+                    //or use a fallback URL 
+                    image: item.fields.linkedAsset(at: "image")?.url ?? URL(string: "")!,
                     logo: #imageLiteral(resourceName: "Logo1"),
                     color: #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1),
                     show: false))

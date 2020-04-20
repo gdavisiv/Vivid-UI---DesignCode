@@ -311,7 +311,8 @@ struct Course: Identifiable {
 
 //Created the mock Data
 //Each array is using a Data model, and set show to false by default
-//Still not working for some reasn
+//I've updated the image to use a URL from DropBox, we also have to make sure that the link has
+//the 'dl.' added after the '//'
 var courseData = [
     Course(title: "Protyping for Designing in SwiftUI", subtitle: "18 Sections", image: URL(string: "https://dl.dropbox.com/s/dpq6sdc4kls3ntz/Card2%402x.png?dl=0")!, logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1), show: false),
     Course(title: "Advanced Designing in SwiftUI", subtitle: "18 Sections", image: URL(string: "https://dl.dropbox.com/s/oiiz78l7urk9zj5/Card4%402x.png?dl=0")!, logo: #imageLiteral(resourceName: "Logo1"), color: #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1), show: false),
