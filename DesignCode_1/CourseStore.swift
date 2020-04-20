@@ -46,6 +46,8 @@ func getArray(id: String, completion: @escaping([Entry]) -> ()) {
 class CourseStore: ObservableObject {
     @Published var courses: [Course] = courseData
     init() {
+        //Create an array of colors to randomize the colors displayed
+        let colors = [#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1), #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1), #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1), #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1), #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1), #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1), #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)]
         getArray(id: "course") { (items) in
             items.forEach { (item) in
                 //w
@@ -59,7 +61,8 @@ class CourseStore: ObservableObject {
                     //or use a fallback URL 
                     image: item.fields.linkedAsset(at: "image")?.url ?? URL(string: "")!,
                     logo: #imageLiteral(resourceName: "Logo1"),
-                    color: #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1),
+                    //Randomize the colors used on the cardswith the following
+                    color: colors.randomElement()!,
                     show: false))
                 //Swift UI doesn't like this because this value type is of ANY, usually u have to tell swift what
                 //kind of data you are recieving so add 'as! String'
