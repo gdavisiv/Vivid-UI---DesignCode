@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CourseList: View {
     //State a starts from Courselist and pass this to each instance of CourseView
@@ -180,7 +181,9 @@ struct CourseView: View {
                     Spacer()
                     //Update to new Datay Array
                     //Image(uiImage: #imageLiteral(resourceName: "Card2"))
-                    Image(uiImage: course.image)
+                    //Image(uiImage: course.image)
+                    //With the implementation of SDWebImage this is how we can now properly display images from the web
+                    WebImage(url: course.image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: .infinity)
