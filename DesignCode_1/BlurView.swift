@@ -19,24 +19,32 @@ struct BlurView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<BlurView>) -> UIView {
         //Using normal swift now
         let view = UIView(frame: CGRect.zero)
+        //Make sure the background does not have any color
         view.backgroundColor = .clear
         //to use the blur view we have to declare it first
         //systemMaterial will auto update for light/dark mode
         let blurEffect = UIBlurEffect(style: .systemMaterial)
+        //Now we set the blur effect
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.translatesAutoresizingMaskIntoConstraints = false
+        //Insert the blurview into the main view 'at' is the similar to the Z-Index
         view.insertSubview(blurView, at: 0)
         
-        //
+        //Setup the constraints
         NSLayoutConstraint.activate([
-            blurView.widthAnchor.constraint(equalTo: view.widthAnchor)
-            
+            //Set an Array with constraints for width
+            //This ensure the blur view will have the same width as the parent view
+            blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            //Setup the height constraint as well
+            blurView.heightAnchor.constraint(equalTo: view.heightAnchor)
         ])
         
+        //This function needs to return a UIView
         return view
         
     }
+    //This is useful for animation when your view gets changed
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<BlurView>) {
-        <#code#>
+        
     }
 }
