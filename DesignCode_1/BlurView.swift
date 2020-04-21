@@ -20,6 +20,18 @@ struct BlurView: UIViewRepresentable {
         //Using normal swift now
         let view = UIView(frame: CGRect.zero)
         view.backgroundColor = .clear
+        //to use the blur view we have to declare it first
+        //systemMaterial will auto update for light/dark mode
+        let blurEffect = UIBlurEffect(style: .systemMaterial)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(blurView, at: 0)
+        
+        //
+        NSLayoutConstraint.activate([
+            blurView.widthAnchor.constraint(equalTo: view.widthAnchor)
+            
+        ])
         
         return view
         
