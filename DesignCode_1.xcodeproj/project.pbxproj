@@ -47,6 +47,7 @@
 		E27A935A243FF5E6007E50EF /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A9359243FF5E6007E50EF /* DataStore.swift */; };
 		E2D2A7D02439956C00CDA7D2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7CF2439956C00CDA7D2 /* Data.swift */; };
 		E2D2A7D22439986400CDA7D2 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7D12439986400CDA7D2 /* PostList.swift */; };
+		E2E4D708244E8F110013F3A8 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4D707244E8F110013F3A8 /* BlurView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		E27A9359243FF5E6007E50EF /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		E2D2A7CF2439956C00CDA7D2 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		E2D2A7D12439986400CDA7D2 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
+		E2E4D707244E8F110013F3A8 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				E27A9359243FF5E6007E50EF /* DataStore.swift */,
 				E2D2A7D12439986400CDA7D2 /* PostList.swift */,
 				418CE1B42422EDD9003B297A /* TabBar.swift */,
+				E2E4D707244E8F110013F3A8 /* BlurView.swift */,
 				41E1368C23F0C9FC00F39FDA /* Assets.xcassets */,
 				412597C724257D4A00CABA76 /* Overpass */,
 				41E1369123F0C9FD00F39FDA /* LaunchScreen.storyboard */,
@@ -295,6 +298,7 @@
 				E2D2A7D22439986400CDA7D2 /* PostList.swift in Sources */,
 				41E1368B23F0C9FB00F39FDA /* ContentView.swift in Sources */,
 				41B7818C2438060000CD5332 /* CourseDetail.swift in Sources */,
+				E2E4D708244E8F110013F3A8 /* BlurView.swift in Sources */,
 				418CE1B52422EDD9003B297A /* TabBar.swift in Sources */,
 				41C9C288242A88AF00507E51 /* CourseList.swift in Sources */,
 			);
