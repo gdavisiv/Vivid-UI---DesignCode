@@ -8,7 +8,23 @@
 
 import SwiftUI
 
-//Going to create a 
+//SwiftUI still does not have a way to allow a backgorund Blur
+//Going to create a going to allow us to use UIKit or normal swift in order to
+//use the feature of background blur
 struct BlurView: UIViewRepresentable {
-    typlealias typealias UIViewType = <#T##Type###>
+    //Setup up the UIView and put the Blur View ontop of that using
+    //inset subview
+    typealias UIViewType = UIView
+    
+    func makeUIView(context: UIViewRepresentableContext<BlurView>) -> UIView {
+        //Using normal swift now
+        let view = UIView(frame: CGRect.zero)
+        view.backgroundColor = .clear
+        
+        return view
+        
+    }
+    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<BlurView>) {
+        <#code#>
+    }
 }
