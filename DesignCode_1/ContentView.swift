@@ -280,7 +280,9 @@ struct BottomCardView: View {
                 // This property (maxWidth: .infinity) will mmake sure that the sides touch the left and right
                 //regardless of the device that is used!!
                 .frame(maxWidth: .infinity)
-                .background(Color.white)
+                //.background(Color.white)
+                //Updating the background from code used above
+                .background(BlurView(style: .systemThinMaterial))
                 .cornerRadius(30)
                 .shadow(radius: 20)
     }

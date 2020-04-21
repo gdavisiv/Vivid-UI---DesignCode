@@ -15,6 +15,8 @@ struct BlurView: UIViewRepresentable {
     //Setup up the UIView and put the Blur View ontop of that using
     //inset subview
     typealias UIViewType = UIView
+    //We create style to allow customization in the ContentView.swift
+    var style: UIBlurEffect.Style
     
     func makeUIView(context: UIViewRepresentableContext<BlurView>) -> UIView {
         //Using normal swift now
@@ -23,7 +25,7 @@ struct BlurView: UIViewRepresentable {
         view.backgroundColor = .clear
         //to use the blur view we have to declare it first
         //systemMaterial will auto update for light/dark mode
-        let blurEffect = UIBlurEffect(style: .systemMaterial)
+        let blurEffect = UIBlurEffect(style: style)
         //Now we set the blur effect
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.translatesAutoresizingMaskIntoConstraints = false
