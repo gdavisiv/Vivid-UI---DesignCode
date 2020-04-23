@@ -116,7 +116,9 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        //Commented out original Home to add in customization of app in dark mode
+        //Home()
+        Home().environment(\.colorScheme, .dark)
     }
 }
 
