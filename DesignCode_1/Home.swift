@@ -24,7 +24,8 @@ struct Home: View {
     
     var body: some View {
         ZStack{
-            Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+            //Updating for Dark Mode in iOS
+            Color("background2")
                 .edgesIgnoringSafeArea(.all)
             
             //Using the above state we will bind $showContent
@@ -33,12 +34,13 @@ struct Home: View {
                 //Created a background gradient for the main screen
                 .background(
                     VStack {
-                    LinearGradient(gradient: Gradient(colors:[Color("background2"), Color.white]),
+                    //Updating for Dark Mode
+                    LinearGradient(gradient: Gradient(colors:[Color("background2"), Color("background1")]),
                                    startPoint: .top, endPoint: .bottom)
                                 .frame(height: 200)
                         Spacer()
                     }
-                    .background(Color.white)
+                    .background(Color("background1"))
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)

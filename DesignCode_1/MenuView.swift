@@ -38,7 +38,9 @@ struct MenuView: View {
             .frame(height: 300)
             //Create an Linear Gradient and use 'Color Literal' to bring up the hidden menu for choosing
             //a specific color desired.
-            .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)), Color(#colorLiteral(red: 0.8705882353, green: 0.8941176471, blue: 0.9450980392, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+            .background(BlurView(style: .systemMaterial))
+            //Updated color literal for background : Dark Mode iOS
+            //.background(LinearGradient(gradient: Gradient(colors: [Color("background3"), Color("background3").opacity(0.6)]), startPoint: .top, endPoint: .bottom))
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
             //Create a custom Shadow
             .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
