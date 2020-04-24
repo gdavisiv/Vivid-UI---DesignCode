@@ -83,10 +83,10 @@ struct CourseList: View {
                             //but the cards after are still being displayed
                         .frame(height: 280)
                         //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
-                            .frame(maxWidth: self.store.courses[index].show ? .infinity : screen.width - 60)
+                        .frame(maxWidth: self.store.courses[index].show ? .infinity : screen.width - 60)
                         //If you ever want to animate one element and you want that one element to be ontop of the other elements,
                         //zIndex is what you use to allow that to happen
-                            .zIndex(self.store.courses[index].show ? 1 : 0)
+                        .zIndex(self.store.courses[index].show ? 1 : 0)
                     }
                 }
                 .frame(width: screen.width)
@@ -138,7 +138,9 @@ struct CourseView: View {
             //show .infinity otherwise set it to screen.width - 60
             .frame(maxWidth: show ? .infinity : screen.width - 60, maxHeight: show ? .infinity : 280, alignment: .top)
             .offset(y: show ? 460 : 0)
-            .background(Color.white)
+            //Update code for dark mode
+            //.background(Color.white)
+            .background(Color("background2"))
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
             .opacity(show ? 1 : 0)

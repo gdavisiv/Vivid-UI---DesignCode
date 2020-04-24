@@ -19,10 +19,10 @@ struct TabBar: View {
                 Text("Home")
             }
             //Summon ContentView() and ... ""
-            ContentView().tabItem {
+            CourseList().tabItem {
                 //add an sf icon and text
                 Image(systemName: "rectangle.stack.fill")
-                Text("Certificates")
+                Text("Courses")
             }
         }
         //Add the modifier below to ignore the safe area at the top of the phone
@@ -34,10 +34,9 @@ struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
         //to preview on a specific device change below to following example :
         //You can also preview on multiple devices, but you'll need to turn off live preview FIRST
-        //Group {
-        //TabBar().previewDevice("iPhone 8")
-        //TabBar().previewDevice("iPhone 11 Pro Max")
-        // }
-        TabBar()
+        Group {
+            TabBar().previewDevice("iPhone 8")
+            TabBar().previewDevice("iPhone 11 Pro Max")
+        }
     }
 }
