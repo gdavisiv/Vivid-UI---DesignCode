@@ -37,10 +37,14 @@ struct HomeView: View {
                     //click the bell
                     Button(action: {self.showUpdate.toggle() }) {
                         Image(systemName: "bell")
-                            .renderingMode(.original)
+                            //Comment out renderMode and instead use foreground
+                            //.renderingMode(.original)
+                            .foregroundColor(.primary)
                             .font(.system(size: 16, weight: .medium))
                             .frame(width: 36, height: 36)
-                            .background(Color.white)
+                            //Updating code for dark mode
+                            //.background(Color.white)
+                            .background(Color("background3"))
                             //makes the shape a circle
                             .clipShape(Circle())
                             //Adds two shadows so that it has a foreground/background Shadow
@@ -214,7 +218,9 @@ struct WatchRingsView: View {
                          percent: 36, show: .constant(true))
             }
             .padding(8)
-            .background(Color.white)
+            //Update code for dark mode
+            //.background(Color.white)
+            .background(Color("background3"))
             .cornerRadius(20)
             //This allows us to use the shadow modifier by calling it in this instance
             .modifier(ShadowModifier())
@@ -224,7 +230,9 @@ struct WatchRingsView: View {
                          percent: 89, show: .constant(true))
             }
             .padding(8)
-            .background(Color.white)
+            //Update code for dark mode
+            //.background(Color.white)
+            .background(Color("background3"))
             .cornerRadius(20)
             //This allows us to use the shadow modifier by calling it in this instance
             .modifier(ShadowModifier())
