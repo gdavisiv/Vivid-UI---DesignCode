@@ -208,7 +208,9 @@ struct WatchRingsView: View {
                 .modifier(FontModifier())
             }
             .padding(8)
-            .background(Color.white)
+            //Update code for dark mode
+            //.background(Color.white)
+            .background(Color("background3"))
             .cornerRadius(20)
             //This allows us to use the shadow modifier by calling it in this instance
             .modifier(ShadowModifier())

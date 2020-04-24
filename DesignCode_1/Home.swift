@@ -84,7 +84,9 @@ struct Home: View {
                 if showContent {
                     //The content stacks on top of each other so we can hide it by simply setting
                     //the background to white, and then we make it fullscreen by ignoring the safe areas
-                    Color.white.edgesIgnoringSafeArea(.all)
+                    //Updating below for Dark Mode
+                    //Color.white.edgesIgnoringSafeArea(.all)
+                    BlurView(style: .systemMaterial).edgesIgnoringSafeArea(.all)
                     
                     ContentView()
                     
@@ -121,6 +123,8 @@ struct Home_Previews: PreviewProvider {
         //Commented out original Home to add in customization of app in dark mode
         //Home()
         Home().environment(\.colorScheme, .dark)
+            //For accessibility you can add the following code to preview works best with dynamic types
+                //.environment(\.sizeCategory, .extraExtraLarge)
     }
 }
 
