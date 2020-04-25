@@ -26,7 +26,7 @@ struct TabBar: View {
             }
         }
         //Add the modifier below to ignore the safe area at the top of the phone
-        .edgesIgnoringSafeArea(.top)
+        //.edgesIgnoringSafeArea(.top)
     }
 }
 

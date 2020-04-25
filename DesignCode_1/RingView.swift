@@ -11,8 +11,8 @@ import SwiftUI
 struct RingView: View {
     
     //setting variables so that we can customize our component
-    var color1 = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
-    var color2 = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+    var color1 = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+    var color2 = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
     //.frame uses CGFloat and not default Int
     var width: CGFloat = 300
     var height: CGFloat = 300
