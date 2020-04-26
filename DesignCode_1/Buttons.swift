@@ -9,8 +9,12 @@
 import SwiftUI
 
 struct Buttons: View {
+    //Creating a State for Tap Gesture
+    @State var tap = false
+    //Creating a State for Press Gesture
+    @State var press = false
+    
     var body: some View {
-        //
         VStack {
             Text("Button")
                 .font(.system(size: 20, weight: .semibold, design: .rounded))
@@ -42,15 +46,33 @@ struct Buttons: View {
                 //Roundes the edges of the Rectangle
                 .clipShape(RoundedRectangle(cornerRadius: 60, style: .continuous))
                 //Creating two drop shadows one from top left, and one from the Bottom Right
-                .shadow(color: Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 20, x: 20, y: 20)
-                .shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), radius: 20, x: -20, y: -20)
+                //This will also change the color when the button is pressed from grey to light blue
+                .shadow(color: Color(press ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 20, x: 20, y: 20)
+                .shadow(color: Color(press ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), radius: 20, x: -20, y: -20)
+                .scaleEffect(tap ? 1.2 : 1)
+                //Adding the LongPressGesture with Duration, distance
+                .gesture(
+                    LongPressGesture(minimumDuration: 0.5, maximumDistance: 2).onChanged { value in
+                        self.tap = true
+                        //Adding a touch delay
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.tap = false
+                        }
+                    }
+                    //This will handle the press toggle gesture state
+                    .onEnded { value in
+                        self.press.toggle()
+                    }
+                )
         }
-        //
+        //Sets the screen width and height
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         //Setting the background color to color literal set below
         .background(Color(#colorLiteral(red: 0.8933308721, green: 0.935842216, blue: 1, alpha: 1)))
         //Going to ignore the edges and fill the entire screenw
         .edgesIgnoringSafeArea(.all)
+        //Adding Spring animation to the button click action
+        .animation(.spring(response: 0.5, dampingFraction: .8, blendDuration: 0))
     }
 }
 
