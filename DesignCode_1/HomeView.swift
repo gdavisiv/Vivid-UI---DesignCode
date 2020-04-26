@@ -115,6 +115,8 @@ struct HomeView: View {
             
                 Spacer()
             }
+            //I need to set a specific width to fix the odd transition between screens
+            .frame(width: screen.width)
         }
     }
 }
