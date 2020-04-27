@@ -21,12 +21,15 @@ struct Buttons: View {
                 .frame(width: 200, height: 60)
                 .background(
                     ZStack {
-                        Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+                        //Default will be Grey: If I press it will become white instead
+                        Color(press ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
                     
                         //Creating a Second Color Layer with an inner shadow within the button
                         RoundedRectangle(cornerRadius: 16, style:
                             .continuous)
-                            .foregroundColor(.white)
+                            //Updated the White inner shadow, it will be white by default and when pressed it will
+                            //become light blue instead
+                            .foregroundColor(Color(press ? #colorLiteral(red: 0.7350739837, green: 0.8465071321, blue: 0.9345290065, alpha: 0.9990234375) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                             .blur(radius: 4)
                             .offset(x: -8, y: -8)
                         
@@ -45,21 +48,42 @@ struct Buttons: View {
                 )
                 //Roundes the edges of the Rectangle
                 .clipShape(RoundedRectangle(cornerRadius: 60, style: .continuous))
+                //This will create an overlay on the button that display a person system icon
+                .overlay(
+                    HStack {
+                        Image(systemName: "person.crop.circle")
+                            .font(.system(size: 24, weight: .light))
+                            //This will make the person icon disappear upon being pressed
+                            .foregroundColor(Color.white.opacity(press ? 0 : 1))
+                            //This will make the person icon disappear upon being pressed
+                            .frame(width: press ? 64 : 54, height: press ? 4 :50)
+                            .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
+                            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                            .shadow(color: Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)).opacity(0.3), radius: 10, x: 10, y: 10)
+                            //Creating the press animation where the offset will be -10 otherwise 70
+                            .offset(x: press ? 70 : -10, y: press ? 16 : 0)
+                        Spacer()
+                    }
+                )
                 //Creating two drop shadows one from top left, and one from the Bottom Right
-                //This will also change the color when the button is pressed from grey to light blue
+                //This will also change the color when the button is pressed from white to light grey
+                //and from light grey to white
                 .shadow(color: Color(press ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 20, x: 20, y: 20)
                 .shadow(color: Color(press ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), radius: 20, x: -20, y: -20)
+                //Use a scale effect to expand and normalize the size of the button as it is tapped
                 .scaleEffect(tap ? 1.2 : 1)
-                //Adding the LongPressGesture with Duration, distance
+                //Adding the LongPressGesture with Duration, distance..
+                //When we tap on the button it will expand and then come back to its normal size
                 .gesture(
                     LongPressGesture(minimumDuration: 0.5, maximumDistance: 2).onChanged { value in
                         self.tap = true
-                        //Adding a touch delay
+                        //Adding a touch delay after the button is tapped
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            //It will once again expand and comes back to normal size
                             self.tap = false
                         }
                     }
-                    //This will handle the press toggle gesture state
+                    //This will handle the long press toggle gesture state
                     .onEnded { value in
                         self.press.toggle()
                     }
@@ -72,7 +96,7 @@ struct Buttons: View {
         //Going to ignore the edges and fill the entire screenw
         .edgesIgnoringSafeArea(.all)
         //Adding Spring animation to the button click action
-        .animation(.spring(response: 0.5, dampingFraction: .8, blendDuration: 0))
+        .animation(.spring(response: 0.5, dampingFraction: 0.8, blendDuration: 0))
     }
 }
 
