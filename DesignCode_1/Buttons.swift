@@ -10,18 +10,10 @@ import SwiftUI
 
 struct Buttons: View {
     var body: some View {
-        VStack(spacing: 50) {
+        VStack(spacing: 80) {
             RectangleButton()
             
-            VStack {
-                Image(systemName: "sun.max")
-                    .font(.system(size: 44, weight: .light))
-            }
-            .frame(width: 100, height: 100)
-            .background(Color.white)
-            .clipShape(Circle())
-            .shadow(color: Color.white, radius: 20, x: -20, y: -20)
-            .shadow(color: Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)), radius: 20, x: 20, y: 20)
+            CircleButton()
             
         }
         //Sets the screen width and height
@@ -120,5 +112,36 @@ struct RectangleButton: View {
                         self.press.toggle()
                 }
         )
+    }
+}
+
+struct CircleButton: View {
+    //Create the states neede to Transition between
+    @State var tap = false
+    @State var press = false
+    
+    var body: some View {
+        VStack {
+            Image(systemName: "sun.max")
+                .font(.system(size: 44, weight: .light))
+        }
+        .frame(width: 100, height: 100)
+        .background(
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)), Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                //Gives a light grey stroke around the bottom right of the round button
+                Circle()
+                    .stroke(Color.clear, lineWidth: 10)
+                    .shadow(color: Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 3, x: -5, y: -5)
+                //Gives a white stroke around the top Left corner of the round button
+                Circle()
+                    .stroke(Color.clear, lineWidth: 10)
+                    .shadow(color: Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), radius: 3, x: 3, y: 3)
+            }
+            
+        )
+            .clipShape(Circle())
+            .shadow(color: Color.white, radius: 20, x: -20, y: -20)
+            .shadow(color: Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 20, x: 20, y: 20)
     }
 }
