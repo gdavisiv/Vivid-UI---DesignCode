@@ -9,11 +9,20 @@
 import SwiftUI
 
 struct Buttons: View {
-
-    
     var body: some View {
-        VStack {
+        VStack(spacing: 50) {
             RectangleButton()
+            
+            VStack {
+                Image(systemName: "sun.max")
+                    .font(.system(size: 44, weight: .light))
+            }
+            .frame(width: 100, height: 100)
+            .background(Color.white)
+            .clipShape(Circle())
+            .shadow(color: Color.white, radius: 20, x: -20, y: -20)
+            .shadow(color: Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)), radius: 20, x: 20, y: 20)
+            
         }
         //Sets the screen width and height
         .frame(maxWidth: .infinity, maxHeight: .infinity)
