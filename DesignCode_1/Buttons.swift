@@ -128,7 +128,7 @@ struct CircleButton: View {
         .frame(width: 100, height: 100)
         .background(
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)), Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), Color(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 //Gives a light grey stroke around the bottom right of the round button
                 Circle()
                     .stroke(Color.clear, lineWidth: 10)
@@ -143,5 +143,18 @@ struct CircleButton: View {
             .clipShape(Circle())
             .shadow(color: Color.white, radius: 20, x: -20, y: -20)
             .shadow(color: Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 20, x: 20, y: 20)
+            //Use a scale effect to expand and normalize the size of the button as it is tapped
+            .scaleEffect(tap ? 1.2 : 1)
+            .gesture(
+                LongPressGesture().onChanged { value in
+                    self.tap = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.tap = false
+                    }
+                }
+                .onEnded { value in
+                    self.press.toggle()
+                }
+            )
     }
 }
