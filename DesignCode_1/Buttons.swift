@@ -121,9 +121,15 @@ struct CircleButton: View {
     @State var press = false
     
     var body: some View {
-        VStack {
+        ZStack {
             Image(systemName: "sun.max")
                 .font(.system(size: 44, weight: .light))
+                .offset(x: press ? -90 : 0, y: press ? -90 : 0)
+                .rotation3DEffect(Angle(degrees: press ? 20 : 0), axis: (x: 10, y: -8, z: 0))
+            Image(systemName: "moon")
+                .font(.system(size: 44, weight: .light))
+                .offset(x: press ? 0 : 90, y: press ? 0 : 90)
+                .rotation3DEffect(Angle(degrees: press ? 0 : 20), axis: (x: -10, y: 8, z: 0))
         }
         .frame(width: 100, height: 100)
         .background(
@@ -148,6 +154,7 @@ struct CircleButton: View {
             .gesture(
                 LongPressGesture().onChanged { value in
                     self.tap = true
+                    //Make tap go back to false after a delay
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         self.tap = false
                     }
