@@ -214,11 +214,16 @@ struct PayButton: View {
             .clipShape(Circle())
             .overlay(
                 Circle()
-                    .trim(from: 0.3, to: 1)
-                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                    .trim(from: tap ? 0.001 : 1, to: 1)
+                    //Adding a gradient to the line animation
+                    .stroke(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)), Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing), style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                    .frame(width: 88, height: 88)
                     //Sets the line to start from the clock and run clockwise
                     .rotationEffect(Angle(degrees: 90))
                     .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
+                    .shadow(color: Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)).opacity(0.3), radius: 5, x: 3, y: 3)
+                    //remove boucing animation
+                    .animation(.easeInOut)
                 
             )
             .shadow(color: Color(press ? #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 0.49) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 20, x: -20, y: -20)
