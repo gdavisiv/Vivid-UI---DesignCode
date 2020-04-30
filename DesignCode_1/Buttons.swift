@@ -136,7 +136,7 @@ struct CircleButton: View {
         .frame(width: 100, height: 100)
         .background(
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color(press ? #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1) : #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), Color(press ? #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1) : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                LinearGradient(gradient: Gradient(colors: [Color(press ? #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1) : #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), Color(press ? #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1) : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 //Gives a light grey stroke around the bottom right of the round button
                 Circle()
                     .stroke(Color.clear, lineWidth: 10)
@@ -176,18 +176,32 @@ struct PayButton: View {
     var body: some View {
         ZStack {
             Image("fingerprint")
+                .opacity(press ? 0 : 1)
+                .scaleEffect(press ? 0 : 1)
             
             Image("fingerprint-2")
+                //This will use a mask to hide the purple fingerprint, the lower the number the more of the
+                //image we will show; 50 = Hidden
                 .clipShape(Rectangle().offset(y: tap ? 0 : 50))
+                .animation(.easeInOut)
+                .opacity(press ? 0 : 1)
+                .scaleEffect(press ? 0 : 1)
+            
+            Image(systemName: "checkmark.circle.fill")
+                .font(.system(size: 44, weight: .light))
+                .foregroundColor(Color(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)))
+                .opacity(press ? 1 : 0)
+                .scaleEffect(press ? 1: 0)
+            
         }
         .frame(width: 120, height: 120)
         .background(
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color(press ? #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), Color(press ? #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                LinearGradient(gradient: Gradient(colors: [Color(press ? #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), Color(press ? #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 //Gives a light grey stroke around the bottom right of the round button
                 Circle()
                     .stroke(Color.clear, lineWidth: 10)
-                    .shadow(color: Color(press ? #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1) : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)), radius: 3, x: -5, y: -5)
+                    .shadow(color: Color(press ? #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1) : #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)), radius: 1, x: -5, y: -5)
                 //Gives a white stroke around the top Left corner of the round button
                 Circle()
                     .stroke(Color.clear, lineWidth: 10)
@@ -196,7 +210,18 @@ struct PayButton: View {
             
         )
             .clipShape(Circle())
-            .shadow(color: Color(press ? #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 20, x: -20, y: -20)
+            //Adding the Ring Animation
+            .clipShape(Circle())
+            .overlay(
+                Circle()
+                    .trim(from: 0.3, to: 1)
+                    .stroke(Color.blue, style: StrokeStyle(lineWidth: 5, lineCap: .round))
+                    //Sets the line to start from the clock and run clockwise
+                    .rotationEffect(Angle(degrees: 90))
+                    .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
+                
+            )
+            .shadow(color: Color(press ? #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 0.49) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 20, x: -20, y: -20)
             .shadow(color: Color(press ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), radius: 20, x: 20, y: 20)
             //Use a scale effect to expand and normalize the size of the button as it is tapped
             .scaleEffect(tap ? 1.2 : 1)
