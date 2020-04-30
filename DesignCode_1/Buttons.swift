@@ -15,6 +15,8 @@ struct Buttons: View {
             
             CircleButton()
             
+            PayButton()
+            
         }
         //Sets the screen width and height
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -138,7 +140,58 @@ struct CircleButton: View {
                 //Gives a light grey stroke around the bottom right of the round button
                 Circle()
                     .stroke(Color.clear, lineWidth: 10)
-                    .shadow(color: Color(press ? #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1) : #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)), radius: 3, x: -5, y: -5)
+                    .shadow(color: Color(press ? #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1) : #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)), radius: 3, x: -5, y: -5)
+                //Gives a white stroke around the top Left corner of the round button
+                Circle()
+                    .stroke(Color.clear, lineWidth: 10)
+                    .shadow(color: Color(press ? #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1) : #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)), radius: 3, x: 3, y: 3)
+            }
+            
+        )
+            .clipShape(Circle())
+            .shadow(color: Color(press ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 20, x: -20, y: -20)
+            .shadow(color: Color(press ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), radius: 20, x: 20, y: 20)
+            //Use a scale effect to expand and normalize the size of the button as it is tapped
+            .scaleEffect(tap ? 1.2 : 1)
+            .gesture(
+                LongPressGesture().onChanged { value in
+                    self.tap = true
+                    //Make tap go back to false after a delay
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.tap = false
+                    }
+                }
+                .onEnded { value in
+                    self.press.toggle()
+                }
+            )
+    }
+}
+
+struct PayButton: View {
+    //Create the states neede to Transition between
+    @State var tap = false
+    @State var press = false
+    
+    var body: some View {
+        ZStack {
+            Image(systemName: "sun.max")
+                .font(.system(size: 44, weight: .light))
+                .offset(x: press ? -90 : 0, y: press ? -90 : 0)
+                .rotation3DEffect(Angle(degrees: press ? 20 : 0), axis: (x: 10, y: -8, z: 0))
+            Image(systemName: "moon")
+                .font(.system(size: 44, weight: .light))
+                .offset(x: press ? 0 : 90, y: press ? 0 : 90)
+                .rotation3DEffect(Angle(degrees: press ? 0 : 20), axis: (x: -10, y: 8, z: 0))
+        }
+        .frame(width: 100, height: 100)
+        .background(
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [Color(press ? #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1) : #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), Color(press ? #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1) : #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                //Gives a light grey stroke around the bottom right of the round button
+                Circle()
+                    .stroke(Color.clear, lineWidth: 10)
+                    .shadow(color: Color(press ? #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1) : #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)), radius: 3, x: -5, y: -5)
                 //Gives a white stroke around the top Left corner of the round button
                 Circle()
                     .stroke(Color.clear, lineWidth: 10)
