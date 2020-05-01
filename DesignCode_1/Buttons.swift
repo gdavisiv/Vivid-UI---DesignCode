@@ -11,13 +11,16 @@ import SwiftUI
 //If you don't want these functions widely available for all the buttons then you
 //can move them right before 'var body:'
 //Haptic Feedback only works with a Apple Phone, not simulator
-//Use the following code to implement it
+//Use the following code to implement Haptic Feedback
 func haptic(type: UINotificationFeedbackGenerator.FeedbackType) {
+    //This is one line of code needed to implement haptic feedback
     UINotificationFeedbackGenerator().notificationOccurred(type)
 }
 
 //When the button is clicked and the phone vibrates we can control the amount of feedback
+//this will implement something smoother and subtle
 func impact(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+    //We can select how light or heavy we want the vibration pulse to be
     UIImpactFeedbackGenerator(style: style).impactOccurred()
 }
 
@@ -116,7 +119,7 @@ struct RectangleButton: View {
             .gesture(
                 LongPressGesture(minimumDuration: 0.5, maximumDistance: 2).onChanged { value in
                     self.tap = true
-                    //Short vibration when user taps button
+                    //We can customize here how heavy/soft the haptic vibration will be when user taps the button
                     impact(style: .heavy)
                     //Adding a touch delay after the button is tapped
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -127,7 +130,7 @@ struct RectangleButton: View {
                     //This will handle the long press toggle gesture state
                     .onEnded { value in
                         self.press.toggle()
-                        //This adds haptic feedback to the button
+                        //This adds haptic feedback to the button when the long press is SUCCESSFUL
                         haptic(type: .success)
                 }
         )
