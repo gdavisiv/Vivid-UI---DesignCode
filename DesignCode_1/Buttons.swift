@@ -8,6 +8,12 @@
 
 import SwiftUI
 
+//Haptic Feedback only works with a Apple Phone, not simulator
+//Use the following code to implement it
+func haptic(type: UINotificationFeedbackGenerator.FeedbackType) {
+    UINotificationFeedbackGenerator().notificationOccurred(.success)
+}
+
 struct Buttons: View {
     var body: some View {
         VStack(spacing: 80) {
@@ -103,6 +109,8 @@ struct RectangleButton: View {
             .gesture(
                 LongPressGesture(minimumDuration: 0.5, maximumDistance: 2).onChanged { value in
                     self.tap = true
+                    //This adds haptic feedback to the button
+                    haptic()
                     //Adding a touch delay after the button is tapped
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         //It will once again expand and comes back to normal size
