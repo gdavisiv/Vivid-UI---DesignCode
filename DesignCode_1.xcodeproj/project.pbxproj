@@ -46,6 +46,7 @@
 		E26341442443FD0400457D84 /* Contentful in Frameworks */ = {isa = PBXBuildFile; productRef = E26341432443FD0400457D84 /* Contentful */; };
 		E26341462444A39500457D84 /* CourseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26341452444A39500457D84 /* CourseStore.swift */; };
 		E27A935A243FF5E6007E50EF /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27A9359243FF5E6007E50EF /* DataStore.swift */; };
+		E29C8961245E3FDB00310528 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C8960245E3FDB00310528 /* LoginView.swift */; };
 		E2D2A7D02439956C00CDA7D2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7CF2439956C00CDA7D2 /* Data.swift */; };
 		E2D2A7D22439986400CDA7D2 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7D12439986400CDA7D2 /* PostList.swift */; };
 		E2E4D708244E8F110013F3A8 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4D707244E8F110013F3A8 /* BlurView.swift */; };
@@ -91,6 +92,7 @@
 		E212D6F524553EA200629DC0 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		E26341452444A39500457D84 /* CourseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseStore.swift; sourceTree = "<group>"; };
 		E27A9359243FF5E6007E50EF /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		E29C8960245E3FDB00310528 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E2D2A7CF2439956C00CDA7D2 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		E2D2A7D12439986400CDA7D2 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
 		E2E4D707244E8F110013F3A8 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				419A465E242560CC006C2D3E /* Modifiers.swift */,
 				41740C7423FCECA9009F8E44 /* Home.swift */,
 				41D91CB924184AC600E804E1 /* HomeView.swift */,
+				E29C8960245E3FDB00310528 /* LoginView.swift */,
 				41C9C287242A88AF00507E51 /* CourseList.swift */,
 				E26341452444A39500457D84 /* CourseStore.swift */,
 				41B7818B2438060000CD5332 /* CourseDetail.swift */,
@@ -300,6 +303,7 @@
 				41E1368923F0C9FB00F39FDA /* SceneDelegate.swift in Sources */,
 				E2D2A7D22439986400CDA7D2 /* PostList.swift in Sources */,
 				41E1368B23F0C9FB00F39FDA /* ContentView.swift in Sources */,
+				E29C8961245E3FDB00310528 /* LoginView.swift in Sources */,
 				E212D6F624553EA200629DC0 /* Buttons.swift in Sources */,
 				41B7818C2438060000CD5332 /* CourseDetail.swift in Sources */,
 				E2E4D708244E8F110013F3A8 /* BlurView.swift in Sources */,
