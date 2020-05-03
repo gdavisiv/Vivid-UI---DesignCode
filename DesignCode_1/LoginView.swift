@@ -10,17 +10,27 @@ import SwiftUI
 
 struct LoginView: View {
     var body: some View {
-        GeometryReader { geometry in
-            Text("Learn, Design & Code.\nFrom scratch!")
-                .font(.system(size: 30, weight: .bold))
+        VStack {
+            GeometryReader { geometry in
+                Text("Learn, Design & Code.\nFrom scratch!")
+                    .font(.system(size: geometry.size.width/10.3, weight: .bold))
+            }
+            .frame(maxWidth: 375, maxHeight: 100)
+            .padding(.horizontal, 16)
+            .multilineTextAlignment(.center)
+            
+            Text("80 Hours of courses for SwiftUI, React and design tools.")
+                .font(.subheadline)
+                .frame(width: 250)
+                .multilineTextAlignment(.center)
         }
-        .frame(maxWidth: .infinity)
-
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+        //Use to preivew on different devices
+        //.previewDevice("iPad Air 2")
     }
 }
