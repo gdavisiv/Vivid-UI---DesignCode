@@ -13,7 +13,6 @@ struct LoginView: View {
         //This will only work to align the elements inside the Zstack; !against each other!
         ZStack(alignment: .top) {
             //Add black background to the top dropdown bar, and ignore safe areas
-            
             Color.black.edgesIgnoringSafeArea(.all)
             
             //Adds the grey Colored background
@@ -43,8 +42,25 @@ struct LoginView: View {
             .padding(.top, 100)
             .frame(height: 477)
             .frame(maxWidth: .infinity)
+            //Adding Circle Blobs to image
+            .background(
+                ZStack {
+                    Image(uiImage: #imageLiteral(resourceName: "Blob"))
+                        //Moves the image to the specific x/y coordinates
+                        .offset(x: -150, y: -200)
+                        //Makes image darker
+                        .blendMode(.plusDarker)
+                    
+                    Image(uiImage: #imageLiteral(resourceName: "Blob"))
+                        //Moves the image to the specific x/y coordinates
+                        .offset(x: 200, y: -175)
+                        //Makes image blendmode as differene
+                        .blendMode(.difference)
+                }
+            )
             //This adds the Image background
             .background(Image(uiImage: #imageLiteral(resourceName: "Card3")), alignment: .bottom)
+            //Background Color the forefront image
             .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
             //Rounds the Edges
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
