@@ -24,6 +24,10 @@ struct LoginView: View {
                 .frame(width: 250)
                 .multilineTextAlignment(.center)
         }
+        .frame(height: 477)
+        .frame(maxWidth: .infinity)
+        .background(Image(uiImage: #imageLiteral(resourceName: "Card3")))
+        .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
     }
 }
 
