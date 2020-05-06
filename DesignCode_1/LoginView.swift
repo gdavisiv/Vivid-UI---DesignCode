@@ -14,20 +14,26 @@ struct LoginView: View {
             GeometryReader { geometry in
                 Text("Learn, Design & Code.\nFrom scratch!")
                     .font(.system(size: geometry.size.width/10.3, weight: .bold))
+                    //Makes text white
+                    .foregroundColor(.white)
             }
             .frame(maxWidth: 375, maxHeight: 100)
             .padding(.horizontal, 16)
-            .multilineTextAlignment(.center)
             
             Text("80 Hours of courses for SwiftUI, React and design tools.")
                 .font(.subheadline)
                 .frame(width: 250)
-                .multilineTextAlignment(.center)
+                
+            Spacer()
         }
+        //Multiline will apply to all children in the VSTack
+        .multilineTextAlignment(.center)
+        .padding(.top, 100)
         .frame(height: 477)
         .frame(maxWidth: .infinity)
-        .background(Image(uiImage: #imageLiteral(resourceName: "Card3")))
+        .background(Image(uiImage: #imageLiteral(resourceName: "Card3")), alignment: .bottom)
         .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
+        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
     }
 }
 
