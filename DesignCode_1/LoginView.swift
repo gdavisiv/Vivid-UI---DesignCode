@@ -10,30 +10,40 @@ import SwiftUI
 
 struct LoginView: View {
     var body: some View {
-        VStack {
-            GeometryReader { geometry in
-                Text("Learn, Design & Code.\nFrom scratch!")
-                    .font(.system(size: geometry.size.width/10.3, weight: .bold))
-                    //Makes text white
-                    .foregroundColor(.white)
-            }
-            .frame(maxWidth: 375, maxHeight: 100)
-            .padding(.horizontal, 16)
+        //This will only work to align the elements inside the Zstack against each other
+        ZStack(alignment: .top) {
+            //Add black background
+            Color.black.edgesIgnoringSafeArea(.all)
             
-            Text("80 Hours of courses for SwiftUI, React and design tools.")
-                .font(.subheadline)
-                .frame(width: 250)
+            Color("background2")
+                //This removes the bar at the very top of the screen adn turns it black
+                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                .edgesIgnoringSafeArea(.bottom)
+            VStack {
+                GeometryReader { geometry in
+                    Text("Learn, Design & Code.\nFrom scratch!")
+                        .font(.system(size: geometry.size.width/10.3, weight: .bold))
+                        //Makes text white
+                        .foregroundColor(.white)
+                }
+                .frame(maxWidth: 375, maxHeight: 100)
+                .padding(.horizontal, 16)
                 
-            Spacer()
+                Text("80 Hours of courses for SwiftUI, React and design tools.")
+                    .font(.subheadline)
+                    .frame(width: 250)
+                    
+                Spacer()
+            }
+            //Multiline will apply to all children in the VSTack
+            .multilineTextAlignment(.center)
+            .padding(.top, 100)
+            .frame(height: 477)
+            .frame(maxWidth: .infinity)
+            .background(Image(uiImage: #imageLiteral(resourceName: "Card3")), alignment: .bottom)
+            .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
+            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
         }
-        //Multiline will apply to all children in the VSTack
-        .multilineTextAlignment(.center)
-        .padding(.top, 100)
-        .frame(height: 477)
-        .frame(maxWidth: .infinity)
-        .background(Image(uiImage: #imageLiteral(resourceName: "Card3")), alignment: .bottom)
-        .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
-        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
     }
 }
 
