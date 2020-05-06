@@ -10,13 +10,15 @@ import SwiftUI
 
 struct LoginView: View {
     var body: some View {
-        //This will only work to align the elements inside the Zstack against each other
+        //This will only work to align the elements inside the Zstack; !against each other!
         ZStack(alignment: .top) {
-            //Add black background
+            //Add black background to the top dropdown bar, and ignore safe areas
+            
             Color.black.edgesIgnoringSafeArea(.all)
             
+            //Adds the grey Colored background
             Color("background2")
-                //This removes the bar at the very top of the screen adn turns it black
+                //Clips the shape of the corners and rounds the top/bottom corners
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .edgesIgnoringSafeArea(.bottom)
             VStack {
@@ -35,13 +37,16 @@ struct LoginView: View {
                     
                 Spacer()
             }
-            //Multiline will apply to all children in the VSTack
+            //Multiline will apply to all children in the VSTack and CENTER the text!
             .multilineTextAlignment(.center)
+            //Padding will push down the text from the top in the VStack
             .padding(.top, 100)
             .frame(height: 477)
             .frame(maxWidth: .infinity)
+            //This adds the Image background
             .background(Image(uiImage: #imageLiteral(resourceName: "Card3")), alignment: .bottom)
             .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
+            //Rounds the Edges
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
         }
     }
