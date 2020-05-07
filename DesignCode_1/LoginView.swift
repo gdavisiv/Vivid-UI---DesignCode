@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct LoginView: View {
+    //Set the Animation State to False
+    @State var show = false
+    //Use for 3D Parallax
+    
     var body: some View {
         //This will only work to align the elements inside the Zstack; !against each other!
         ZStack(alignment: .top) {
@@ -47,15 +51,24 @@ struct LoginView: View {
                 ZStack {
                     Image(uiImage: #imageLiteral(resourceName: "Blob"))
                         //Moves the image to the specific x/y coordinates
-                        .offset(x: -150, y: -200)
+                        .offset(x: -150, y: 200)
+                        //Now I added an offset so that it starts at 90Degrees, to fix a jump in the animation
+                        //simple add '+ 90'
+                        .rotationEffect(Angle(degrees: show ? 360+90 : 90), anchor: .leading)
                         //Makes image darker
                         .blendMode(.plusDarker)
+                        //This Animation will cause the movement to loop forever within 30 seconds
+                        //and turns off autoreverse
+                        .animation(Animation.linear(duration: 120).repeatForever(autoreverses: false))
+                        .onAppear { self.show = true}
                     
                     Image(uiImage: #imageLiteral(resourceName: "Blob"))
                         //Moves the image to the specific x/y coordinates
                         .offset(x: 200, y: -175)
-                        //Makes image blendmode as differene
+                        .rotationEffect(Angle(degrees: show ? 360 : 0), anchor: .trailing)
+                        //Makes image blendmode as difference
                         .blendMode(.difference)
+                        .animation(Animation.linear(duration: 100).repeatForever(autoreverses: true))
                 }
             )
             //This adds the Image background
