@@ -34,10 +34,14 @@ struct LoginView: View {
                 }
                 .frame(maxWidth: 375, maxHeight: 100)
                 .padding(.horizontal, 16)
+                //Can also implement the parallax here divide it to slow down movement
+                .offset(x: viewState.width/18, y: viewState.height/18)
                 
                 Text("80 Hours of courses for SwiftUI, React and design tools.")
                     .font(.subheadline)
                     .frame(width: 250)
+                    //Can also implement the parallax here divide it to slow down movement
+                    .offset(x: viewState.width/23, y: viewState.height/23)
                     
                 Spacer()
             }
@@ -73,7 +77,11 @@ struct LoginView: View {
                 }
             )
             //This adds the Image background
-            .background(Image(uiImage: #imageLiteral(resourceName: "Card3")), alignment: .bottom)
+            //Implement the 3D Parallax Effect to the background as well!
+            .background(
+                Image(uiImage: #imageLiteral(resourceName: "Card3")).offset(x: viewState.width/26, y: viewState.height/26),
+                alignment: .bottom
+            )
             //Background Color the forefront image
             .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
             //Rounds the Edges
