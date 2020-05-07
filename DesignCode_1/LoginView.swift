@@ -12,7 +12,8 @@ struct LoginView: View {
     //Set the Animation State to False
     @State var show = false
     //Use for 3D Parallax
-    
+    @State var viewState = CGSize.zero
+    @State var isDragging = false
     var body: some View {
         //This will only work to align the elements inside the Zstack; !against each other!
         ZStack(alignment: .top) {
@@ -65,7 +66,7 @@ struct LoginView: View {
                     Image(uiImage: #imageLiteral(resourceName: "Blob"))
                         //Moves the image to the specific x/y coordinates
                         .offset(x: 200, y: -175)
-                        .rotationEffect(Angle(degrees: show ? 360 : 0), anchor: .trailing)
+                        .rotationEffect(Angle(degrees: show ? 180 : 0), anchor: .trailing)
                         //Makes image blendmode as difference
                         .blendMode(.difference)
                         .animation(Animation.linear(duration: 100).repeatForever(autoreverses: true))
@@ -77,6 +78,26 @@ struct LoginView: View {
             .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
             //Rounds the Edges
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+            //Implement Scale Effect with .isDragging
+            .scaleEffect(isDragging ? 0.95 : 1)
+            //Smooths the transition from the scaling!!
+            .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
+            //Implement 3D Rotation Effects to wiggle on x/y axis with .viewState
+            .rotation3DEffect(Angle(degrees: 5), axis: (x: viewState.width, y: viewState.height, z: 0))
+            //Add a Gesture to our ZStack
+            .gesture(
+                DragGesture().onChanged { value in
+                    self.viewState = value.translation
+                    //Add a Scale effect
+                    self.isDragging = true
+                }
+                //When the use takes their finger off the screen
+                .onEnded { value in
+                    //Reset the position
+                    self.viewState = .zero
+                    self.isDragging = false
+                }
+            )
         }
     }
 }
