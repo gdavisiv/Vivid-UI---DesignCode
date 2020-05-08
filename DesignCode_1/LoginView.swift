@@ -30,14 +30,14 @@ struct LoginView: View {
             VStack {
                 HStack {
                     Image(systemName: "person.crop.circle.fill")
-                        .foregroundColor(Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)))
+                        .foregroundColor(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
                         .frame(width:44, height: 44)
                         .background(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                         .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
                         .padding(.leading)
                     
-                    TextField("You Email", text: $email)
+                    TextField("You Email".uppercased(), text: $email)
                     //Customize the keyboard type
                         .keyboardType(.emailAddress)
                         .font(.subheadline)
@@ -46,7 +46,28 @@ struct LoginView: View {
                         .padding(.leading)
                         .frame(height: 44)
                 }
-                TextField("You Password", text: $password)
+                
+                Divider()
+                    .padding(.horizontal, 20)
+                
+                HStack {
+                    Image(systemName: "lock.fill")
+                        .foregroundColor(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
+                        .frame(width:44, height: 44)
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                        .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
+                        .padding(.leading)
+                    
+                    SecureField("Password".uppercased(), text: $password)
+                    //Customize the keyboard type
+                        .keyboardType(.default)
+                        .font(.subheadline)
+                        //This will hopefully be fixed in an update for xcode
+                        //.textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.leading)
+                        .frame(height: 44)
+                }
             }
             .frame(height: 136)
             .frame(maxWidth: .infinity)
