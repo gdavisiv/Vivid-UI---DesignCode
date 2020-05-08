@@ -12,71 +12,93 @@ struct LoginView: View {
     //Create empty State
     @State var email = ""
     @State var password = ""
+    @State var isFocused = false
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
     
     var body: some View {
+        //Adding this extra ZStack will helps us to keep the black background that we have in our
+        //background
         //This will only work to align the elements inside the Zstack; !against each other!
-        ZStack(alignment: .top) {
+        ZStack {
             //Add black background to the top dropdown bar, and ignore safe areas
             Color.black.edgesIgnoringSafeArea(.all)
             
-            //Adds the grey Colored background
-            Color("background2")
-                //Clips the shape of the corners and rounds the top/bottom corners
-                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                .edgesIgnoringSafeArea(.bottom)
-            
-            CoverView()
-            
-            VStack {
-                HStack {
-                    Image(systemName: "person.crop.circle.fill")
-                        .foregroundColor(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
-                        .frame(width:44, height: 44)
-                        .background(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                        .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
-                        .padding(.leading)
+                ZStack(alignment: .top) {
+                    //Adds the grey Colored background
+                    Color("background2")
+                        //Clips the shape of the corners and rounds the top/bottom corners
+                        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                        .edgesIgnoringSafeArea(.bottom)
                     
-                    TextField("You Email".uppercased(), text: $email)
-                    //Customize the keyboard type
-                        .keyboardType(.emailAddress)
-                        .font(.subheadline)
-                        //This will hopefully be fixed in an update for xcode
-                        //.textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.leading)
-                        .frame(height: 44)
-                }
-                
-                Divider()
-                    .padding(.horizontal, 20)
-                
-                HStack {
-                    Image(systemName: "lock.fill")
-                        .foregroundColor(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
-                        .frame(width:44, height: 44)
-                        .background(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                        .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
-                        .padding(.leading)
+                    CoverView()
                     
-                    SecureField("Password".uppercased(), text: $password)
-                    //Customize the keyboard type
-                        .keyboardType(.default)
-                        .font(.subheadline)
-                        //This will hopefully be fixed in an update for xcode
-                        //.textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.leading)
-                        .frame(height: 44)
-                }
+                    VStack {
+                        HStack {
+                            Image(systemName: "person.crop.circle.fill")
+                                .foregroundColor(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
+                                .frame(width:44, height: 44)
+                                .background(Color.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
+                                .padding(.leading)
+                            
+                            TextField("You Email".uppercased(), text: $email)
+                            //Customize the keyboard type
+                                .keyboardType(.emailAddress)
+                                .font(.subheadline)
+                                //This will hopefully be fixed in an update for xcode
+                                //.textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.leading)
+                                .frame(height: 44)
+                                .onTapGesture {
+                                    self.isFocused = true
+                            }
+                        }
+                        
+                        Divider()
+                            .padding(.horizontal, 20)
+                        
+                        HStack {
+                            Image(systemName: "lock.fill")
+                                .foregroundColor(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
+                                .frame(width:44, height: 44)
+                                .background(Color.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5)
+                                .padding(.leading)
+                            
+                            SecureField("Password".uppercased(), text: $password)
+                            //Customize the keyboard type
+                                .keyboardType(.default)
+                                .font(.subheadline)
+                                //This will hopefully be fixed in an update for xcode
+                                //.textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding(.leading)
+                                .frame(height: 44)
+                                .onTapGesture{
+                                    self.isFocused = true
+                            }
+                        }
+                    }
+                    .frame(height: 136)
+                    .frame(maxWidth: .infinity)
+                    .background(BlurView(style: .systemMaterial))
+                    .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                    .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 20)
+                    .padding(.horizontal)
+                    .offset(y: 460)
             }
-            .frame(height: 136)
-            .frame(maxWidth: .infinity)
-            .background(BlurView(style: .systemMaterial))
-            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-            .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 20)
-            .padding(.horizontal)
-            .offset(y: 460)
-            
+            //Shifts the screen up with
+            .offset(y: isFocused ? -300 : 0)
+            //Gets rid of odd lag by using @State
+            .animation(isFocused ? .easeInOut : nil)
+            .onTapGesture {
+                self.isFocused = false
+                self.hideKeyboard()
+            }
         }
     }
 }
