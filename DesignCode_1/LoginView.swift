@@ -9,10 +9,14 @@
 import SwiftUI
 
 struct LoginView: View {
-    //Create empty State
+    //Create empty States
     @State var email = ""
     @State var password = ""
+    //Creating State for Keyboard Interaction
     @State var isFocused = false
+    //Creating State for Showing Alert
+    @State var showAlert = false
+    
     
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -90,6 +94,26 @@ struct LoginView: View {
                     .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 20)
                     .padding(.horizontal)
                     .offset(y: 460)
+                    
+                    HStack {
+                        Text("Forgot Password?")
+                            .font(.subheadline)
+                        
+                        
+                        Spacer()
+                        
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                            Text("Login")
+                                .foregroundColor(.black)
+                        }
+                        .padding(12)
+                        .padding(.horizontal, 30)
+                        .background(Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)))
+                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                        
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    .padding()
             }
             //Shifts the screen up with
             .offset(y: isFocused ? -300 : 0)
