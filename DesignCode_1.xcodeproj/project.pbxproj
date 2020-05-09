@@ -50,6 +50,8 @@
 		E2D2A7D02439956C00CDA7D2 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7CF2439956C00CDA7D2 /* Data.swift */; };
 		E2D2A7D22439986400CDA7D2 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D2A7D12439986400CDA7D2 /* PostList.swift */; };
 		E2E4D708244E8F110013F3A8 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4D707244E8F110013F3A8 /* BlurView.swift */; };
+		E2F62FAC24670B71002FDEEC /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F62FAA24670B71002FDEEC /* loading.json */; };
+		E2F62FAD24670B71002FDEEC /* success.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F62FAB24670B71002FDEEC /* success.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,8 @@
 		E2D2A7CF2439956C00CDA7D2 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		E2D2A7D12439986400CDA7D2 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
 		E2E4D707244E8F110013F3A8 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		E2F62FAA24670B71002FDEEC /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		E2F62FAB24670B71002FDEEC /* success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,7 @@
 				E2E4D707244E8F110013F3A8 /* BlurView.swift */,
 				E212D6F524553EA200629DC0 /* Buttons.swift */,
 				41E1368C23F0C9FC00F39FDA /* Assets.xcassets */,
+				E2F62FA924670B71002FDEEC /* Lottie */,
 				412597C724257D4A00CABA76 /* Overpass */,
 				41E1369123F0C9FD00F39FDA /* LaunchScreen.storyboard */,
 				41E1369423F0C9FD00F39FDA /* Info.plist */,
@@ -190,6 +195,15 @@
 				41E1368F23F0C9FC00F39FDA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E2F62FA924670B71002FDEEC /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				E2F62FAA24670B71002FDEEC /* loading.json */,
+				E2F62FAB24670B71002FDEEC /* success.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,11 +283,13 @@
 				412597E824257D4A00CABA76 /* Overpass-ExtraBold.ttf in Resources */,
 				412597E224257D4A00CABA76 /* Overpass-ExtraLightItalic.ttf in Resources */,
 				412597DD24257D4A00CABA76 /* Overpass-ExtraBoldItalic.ttf in Resources */,
+				E2F62FAC24670B71002FDEEC /* loading.json in Resources */,
 				41E1368D23F0C9FC00F39FDA /* Assets.xcassets in Resources */,
 				412597DA24257D4A00CABA76 /* Overpass-ThinItalic.ttf in Resources */,
 				412597DE24257D4A00CABA76 /* Overpass-Light.ttf in Resources */,
 				412597DB24257D4A00CABA76 /* Overpass-BoldItalic.ttf in Resources */,
 				412597E624257D4A00CABA76 /* Overpass-Bold.ttf in Resources */,
+				E2F62FAD24670B71002FDEEC /* success.json in Resources */,
 				412597E924257D4A00CABA76 /* Overpass-Thin.ttf in Resources */,
 				412597E724257D4A00CABA76 /* Overpass-Italic.ttf in Resources */,
 				412597D924257D4A00CABA76 /* Overpass-ExtraLight.ttf in Resources */,
