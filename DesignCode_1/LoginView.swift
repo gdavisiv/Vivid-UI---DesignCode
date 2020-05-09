@@ -16,6 +16,7 @@ struct LoginView: View {
     @State var isFocused = false
     //Creating State for Showing Alert
     @State var showAlert = false
+    @State var alertMessage = "Something went wrong?!"
     
     
     func hideKeyboard() {
@@ -98,11 +99,15 @@ struct LoginView: View {
                     HStack {
                         Text("Forgot Password?")
                             .font(.subheadline)
-                        
-                        
+                
                         Spacer()
                         
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                        //Actions of the Button are Below
+                        Button(action: {
+                            self.showAlert = true
+                            self.hideKeyboard()
+                            self.isFocused = false
+                        }) {
                             Text("Login")
                                 .foregroundColor(.black)
                         }
@@ -110,6 +115,11 @@ struct LoginView: View {
                         .padding(.horizontal, 30)
                         .background(Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)))
                         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                        .shadow(color: Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)).opacity(0.3), radius: 20, x: 0, y: 20)
+                        //Show an alert message when the user clicks on the login button
+                        .alert(isPresented: $showAlert) {
+                            Alert(title: Text("Error"), message: Text(self.alertMessage), dismissButton: .default(Text("OK")))
+                        }
                         
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -199,7 +209,7 @@ struct CoverView: View {
             .background(
                 Image(uiImage: #imageLiteral(resourceName: "Card3")).offset(x: viewState.width/26, y: viewState.height/26),
                 alignment: .bottom
-        )
+            )
             //Background Color the forefront image
             .background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
             //Rounds the Edges
