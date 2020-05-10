@@ -54,6 +54,7 @@
 		E2F62FAD24670B71002FDEEC /* success.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F62FAB24670B71002FDEEC /* success.json */; };
 		E2F62FB024670EFA002FDEEC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E2F62FAF24670EFA002FDEEC /* Lottie */; };
 		E2F62FB22467101F002FDEEC /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F62FB12467101F002FDEEC /* LottieView.swift */; };
+		E2F62FB424677C8B002FDEEC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F62FB324677C8B002FDEEC /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +104,7 @@
 		E2F62FAA24670B71002FDEEC /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		E2F62FAB24670B71002FDEEC /* success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success.json; sourceTree = "<group>"; };
 		E2F62FB12467101F002FDEEC /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		E2F62FB324677C8B002FDEEC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				418CE1B42422EDD9003B297A /* TabBar.swift */,
 				E2E4D707244E8F110013F3A8 /* BlurView.swift */,
 				E2F62FB12467101F002FDEEC /* LottieView.swift */,
+				E2F62FB324677C8B002FDEEC /* LoadingView.swift */,
 				E212D6F524553EA200629DC0 /* Buttons.swift */,
 				41E1368C23F0C9FC00F39FDA /* Assets.xcassets */,
 				E2F62FA924670B71002FDEEC /* Lottie */,
@@ -333,6 +336,7 @@
 				E2E4D708244E8F110013F3A8 /* BlurView.swift in Sources */,
 				418CE1B52422EDD9003B297A /* TabBar.swift in Sources */,
 				41C9C288242A88AF00507E51 /* CourseList.swift in Sources */,
+				E2F62FB424677C8B002FDEEC /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
