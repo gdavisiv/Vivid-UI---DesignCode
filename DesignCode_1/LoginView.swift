@@ -17,6 +17,7 @@ struct LoginView: View {
     //Creating State for Showing Alert
     @State var showAlert = false
     @State var alertMessage = "Something went wrong?!"
+    @State var isLoading = false
     
     
     func hideKeyboard() {
@@ -104,11 +105,16 @@ struct LoginView: View {
                         
                         //Actions of the Button are Below
                         Button(action: {
-                            self.showAlert = true
                             self.hideKeyboard()
                             self.isFocused = false
+                            self.isLoading = true
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                //self.showAlert = true
+                                self.isLoading = false
+                            }
                         }) {
-                            Text("Login")
+                            Text("Sign in")
                                 .foregroundColor(.black)
                         }
                         .padding(12)
@@ -133,6 +139,10 @@ struct LoginView: View {
                 self.isFocused = false
                 self.hideKeyboard()
             }
+            if isLoading {
+                LoadingView()
+            }
+            
         }
     }
 }

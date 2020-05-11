@@ -10,7 +10,9 @@ import SwiftUI
 
 struct LoadingView: View {
     var body: some View {
-        LottieView()
+        //Call the filename of the animation
+        LottieView(filename: "loading")
+            //Setting the size/shape/height
             .frame(width: 200, height: 200)
     }
 }

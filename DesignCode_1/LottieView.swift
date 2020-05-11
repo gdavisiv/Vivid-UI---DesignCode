@@ -13,13 +13,14 @@ import Lottie
 
 struct LottieView: UIViewRepresentable {
     typealias UIViewType = UIView
+    var filename: String
     
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView(frame: .zero)
         
         //Create an animation view from the library
         let animationView = AnimationView()
-        let animation = Animation.named("loading")
+        let animation = Animation.named(filename)
         animationView.animation = animation
         animationView.contentMode = .scaleAspectFit
         animationView.play()
