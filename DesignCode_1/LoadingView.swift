@@ -10,8 +10,10 @@ import SwiftUI
 
 struct LoadingView: View {
     var body: some View {
-        //Call the filename of the animation
+        //It is essential that the LottieView is inside a 'Container' so that
+        //when we run the loading view ontop of the loginview
         VStack {
+            //Call the filename of the animation
             LottieView(filename: "loading")
                 //Setting the size/shape/height
                 .frame(width: 200, height: 200)
