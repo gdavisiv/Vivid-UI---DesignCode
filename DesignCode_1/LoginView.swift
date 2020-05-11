@@ -177,6 +177,7 @@ struct CoverView: View {
             
             Text("80 Hours of courses for SwiftUI, React and design tools.")
                 .font(.subheadline)
+                .foregroundColor(.white)
                 .frame(width: 250)
                 //Can also implement the parallax here divide it to slow down movement
                 .offset(x: viewState.width/23, y: viewState.height/23)
