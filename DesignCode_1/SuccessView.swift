@@ -23,8 +23,12 @@ struct SuccessView: View {
         .background(BlurView(style: .systemMaterial))
         .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 30, x: 0, y: 30)
+        .scaleEffect(show ? 1 : 0.5)
+        .animation(.spring(response: 0.75, dampingFraction: 0.6, blendDuration: 0))
         //As soon as we see the Vstack, we are going to start the animation
-        .onAppear()
+        .onAppear {
+                self.show = true
+            }
     }
 }
 
