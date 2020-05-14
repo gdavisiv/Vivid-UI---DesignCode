@@ -18,6 +18,7 @@ struct LoginView: View {
     @State var showAlert = false
     @State var alertMessage = "Something went wrong?!"
     @State var isLoading = false
+    @State var isSuccess = false
     
     
     func hideKeyboard() {
@@ -105,13 +106,17 @@ struct LoginView: View {
                         
                         //Actions of the Button are Below
                         Button(action: {
+                            //Hides the keyboard
                             self.hideKeyboard()
+                            //Focus on the login area
                             self.isFocused = false
+                            //Show the loading animation
                             self.isLoading = true
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                 //self.showAlert = true
                                 self.isLoading = false
+                                self.isSuccess = true
                             }
                         }) {
                             Text("Sign in")
@@ -142,6 +147,9 @@ struct LoginView: View {
             if isLoading {
                 LoadingView()
             }
+            if isSuccess {
+                SuccessView()
+            }
             
         }
     }
@@ -161,6 +169,7 @@ struct CoverView: View {
     //Use for 3D Parallax
     @State var viewState = CGSize.zero
     @State var isDragging = false
+    
     
     var body: some View {
         VStack {

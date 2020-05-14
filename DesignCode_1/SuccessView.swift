@@ -34,7 +34,12 @@ struct SuccessView: View {
         //As soon as we see the Vstack, we are going to start the animation
         .onAppear {
                 self.show = true
-            }
+        }
+        //Since we're already using a background we can either place everything in another VStack or use a fram
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black.opacity(show ? 0.5 : 0))
+        .animation(.linear(duration: 0.5))
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
