@@ -13,11 +13,17 @@ struct SuccessView: View {
     
     var body: some View {
         VStack {
-            Text("Logging You...")
+            Text("Logging You In...")
                 .font(.title).bold()
+                .opacity(show ? 1 : 0)
+                //Title appears first and then animation after below
+                .animation(Animation.linear(duration: 1).delay(0.2))
         
             LottieView(filename: "success")
                 .frame(width: 300, height: 300)
+                .opacity(show ? 1 : 0)
+                .animation(Animation.linear(duration: 1).delay(0.4))
+
         }
         .padding(.top, 30)
         .background(BlurView(style: .systemMaterial))
