@@ -36,6 +36,7 @@ struct LoginView: View {
             
             //Dissmiss the success screeen after a 2 seconds
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                //This dismisses the login animation
                 self.isSuccess = false
             }
         }
