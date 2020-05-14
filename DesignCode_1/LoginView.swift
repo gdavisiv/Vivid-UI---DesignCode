@@ -20,6 +20,26 @@ struct LoginView: View {
     @State var isLoading = false
     @State var isSuccess = false
     
+    //Seperate the login logic from the rest of the code
+    func login() {
+    //Hides the keyboard
+        self.hideKeyboard()
+        //Focus on the login area
+        self.isFocused = false
+        //Show the loading animation
+        self.isLoading = true
+                         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            //self.showAlert = true
+            self.isLoading = false
+            self.isSuccess = true
+            
+            //Dissmiss the success screeen after a 2 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.isSuccess = false
+            }
+        }
+    }
     
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -106,18 +126,7 @@ struct LoginView: View {
                         
                         //Actions of the Button are Below
                         Button(action: {
-                            //Hides the keyboard
-                            self.hideKeyboard()
-                            //Focus on the login area
-                            self.isFocused = false
-                            //Show the loading animation
-                            self.isLoading = true
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                //self.showAlert = true
-                                self.isLoading = false
-                                self.isSuccess = true
-                            }
+                            self.login()
                         }) {
                             Text("Sign in")
                                 .foregroundColor(.black)
