@@ -22,7 +22,7 @@ struct LoginView: View {
     
     //Seperate the login logic from the rest of the code
     func login() {
-    //Hides the keyboard
+        //Hides the keyboard
         self.hideKeyboard()
         //Focus on the login area
         self.isFocused = false
