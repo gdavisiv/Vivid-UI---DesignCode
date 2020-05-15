@@ -22,7 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
 //To make simulator play from the new TabBar, you'll have to change it from : let contentView = ContentView()
 //Changed it to the following :  let contentView = TabBar()
-        let contentView = TabBar()
+        //let contentView = TabBar()
+        let contentView = LoginView()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
