@@ -32,7 +32,7 @@ struct LoginView: View {
                          
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             //self.showAlert = true
-            self.isLoading = false
+            
             self.isSuccess = true
             
             //Dissmiss the success screeen after a 2 seconds
@@ -42,7 +42,14 @@ struct LoginView: View {
             }
         }
         
-        Auth.auth().signIn(withEmail: <#T##String#>, password: <#T##String#>, completion: <#T##AuthDataResultCallback?##AuthDataResultCallback?##(AuthDataResult?, Error?) -> Void#>)
+        //This the code implementation for
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            self.isLoading = false
+            
+            if error != nil {
+                self.alertMessage = error?.localizedDescription ?? ""
+            }
+        }
     }
     
     func hideKeyboard() {
