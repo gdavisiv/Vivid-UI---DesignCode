@@ -31,14 +31,7 @@ struct LoginView: View {
         self.isLoading = true
                          
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            //self.showAlert = true
-            
-            self.isSuccess = true
-            
-            //Dissmiss the success screeen after a 2 seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                //This dismisses the login animation
-                self.isSuccess = false
+
             }
         }
         
@@ -48,6 +41,14 @@ struct LoginView: View {
             
             if error != nil {
                 self.alertMessage = error?.localizedDescription ?? ""
+                self.showAlert = true
+            } else {
+                self.isSuccess = true
+                
+                //Dissmiss the success screeen after a 2 seconds
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    //This dismisses the login animation
+                    self.isSuccess = false
             }
         }
     }
