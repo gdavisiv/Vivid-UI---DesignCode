@@ -29,11 +29,6 @@ struct LoginView: View {
         self.isFocused = false
         //Show the loading animation
         self.isLoading = true
-                         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-
-            }
-        }
         
         //This the code implementation for
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
@@ -49,9 +44,13 @@ struct LoginView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     //This dismisses the login animation
                     self.isSuccess = false
+                    //reset the fields
+                    self.email = ""
+                    self.password = ""
             }
         }
     }
+}
     
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
