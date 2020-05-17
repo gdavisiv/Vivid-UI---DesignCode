@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct LoginView: View {
     //Create empty States
@@ -40,6 +41,8 @@ struct LoginView: View {
                 self.isSuccess = false
             }
         }
+        
+        Auth.auth().signIn(withEmail: <#T##String#>, password: <#T##String#>, completion: <#T##AuthDataResultCallback?##AuthDataResultCallback?##(AuthDataResult?, Error?) -> Void#>)
     }
     
     func hideKeyboard() {
