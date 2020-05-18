@@ -123,8 +123,9 @@ struct Home_Previews: PreviewProvider {
         //Commented out original Home to add in customization of app in dark mode
         //Home()
         Home().environment(\.colorScheme, .dark)
-            //For accessibility you can add the following code to preview works best with dynamic types
-                //.environment(\.sizeCategory, .extraExtraLarge)
+//          //For accessibility you can add the following code to preview works best with dynamic types
+//          .environment(\.sizeCategory, .extraExtraLarge)
+            .environmentObject(UserStore())
     }
 }
 
@@ -136,7 +137,8 @@ struct AvatarView: View {
     
     var body: some View {
         VStack {
-            if /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/ {
+            //Show the avatar icon
+            if user.isLogged {
                 Button(action: { self.showProfile.toggle() }) {
                 Image("Avatar")
                     .renderingMode(.original)
@@ -144,8 +146,15 @@ struct AvatarView: View {
                     .frame(width: 36, height: 36)
                     .clipShape(Circle())
                 }
+                //Show another avatar icon
             } else {
-                /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
+                Button(action: { self.showProfile.toggle() }) {
+                    Image("Avatar")
+                        .renderingMode(.original)
+                        .resizable()
+                        .frame(width: 36, height: 36)
+                        .clipShape(Circle())
+                 }
             }
         }
     }
