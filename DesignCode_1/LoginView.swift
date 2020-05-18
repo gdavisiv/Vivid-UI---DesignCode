@@ -30,17 +30,21 @@ struct LoginView: View {
         //Show the loading animation
         self.isLoading = true
         
-        //This the code implementation for
+        //This the code implementation from Firebase Library for user Authentication
+        //It returns the data or error
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             self.isLoading = false
             
+            //If there is an error then..
             if error != nil {
+                //use Error data from API call
                 self.alertMessage = error?.localizedDescription ?? ""
                 self.showAlert = true
+            //When there is no error and the login is succssful
             } else {
                 self.isSuccess = true
                 
-                //Dissmiss the success screeen after a 2 seconds
+                //Dissmiss the Login success screeen after a 2 seconds
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     //This dismisses the login animation
                     self.isSuccess = false
