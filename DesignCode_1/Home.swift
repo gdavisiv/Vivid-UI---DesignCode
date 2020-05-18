@@ -131,14 +131,22 @@ struct Home_Previews: PreviewProvider {
 struct AvatarView: View {
     //Have to add this binding because the self.showProfile will give an error otherwise below
     @Binding var showProfile: Bool
+    //Now I can get information about the user and use that to show different buttons
+    @EnvironmentObject var user : UserStore
     
     var body: some View {
-        Button(action: { self.showProfile.toggle() }) {
-            Image("Avatar")
-                .renderingMode(.original)
-                .resizable()
-                .frame(width: 36, height: 36)
-                .clipShape(Circle())
+        VStack {
+            if /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/ {
+                Button(action: { self.showProfile.toggle() }) {
+                Image("Avatar")
+                    .renderingMode(.original)
+                    .resizable()
+                    .frame(width: 36, height: 36)
+                    .clipShape(Circle())
+                }
+            } else {
+                /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
+            }
         }
     }
 }
