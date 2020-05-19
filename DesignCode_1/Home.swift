@@ -21,6 +21,8 @@ struct Home: View {
     @State var viewState = CGSize.zero
     //Created the new state: using the state we bind it to HomeView
     @State var showContent = false
+    //Show login screen
+    @EnvironmentObject var user: UserStore
     
     var body: some View {
         ZStack{
@@ -80,6 +82,29 @@ struct Home: View {
                         self.viewState = .zero
                         }
                 )
+            
+            if user.showLogin {
+                ZStack {
+                    LoginView()
+                    
+                    VStack {
+                        HStack {
+                            Spacer()
+                                Image(systemName: "xmark")
+                                    .frame(width: 36, height: 36)
+                                    .foregroundColor(.white)
+                                    .background(Color.black)
+                                    .clipShape(Circle())
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                    //Allows us to close the login screen when opened
+                    .onTapGesture {
+                        self.user.showLogin = false
+                    }
+                }
+            }
                 //This if statement will allow us to show ContentView() with an If statement
                 if showContent {
                     //The content stacks on top of each other so we can hide it by simply setting
@@ -122,7 +147,9 @@ struct Home_Previews: PreviewProvider {
     static var previews: some View {
         //Commented out original Home to add in customization of app in dark mode
         //Home()
-        Home().environment(\.colorScheme, .dark)
+        Home()
+            //Color Scheme for turning on dark mode option
+//          .environment(\.colorScheme, .dark)
 //          //For accessibility you can add the following code to preview works best with dynamic types
 //          .environment(\.sizeCategory, .extraExtraLarge)
             .environmentObject(UserStore())
@@ -146,14 +173,23 @@ struct AvatarView: View {
                     .frame(width: 36, height: 36)
                     .clipShape(Circle())
                 }
-                //Show another avatar icon
+                //Shows avatar icon when you are not logged in
             } else {
-                Button(action: { self.showProfile.toggle() }) {
-                    Image("Avatar")
-                        .renderingMode(.original)
-                        .resizable()
+                Button(action: { self.user.showLogin.toggle() }) {
+                    Image(systemName: "person")
+                        //Comment out renderMode and instead use foreground
+                        //.renderingMode(.original)
+                        .foregroundColor(.primary)
+                        .font(.system(size: 16, weight: .medium))
                         .frame(width: 36, height: 36)
+                        //Updating code for dark mode
+                        //.background(Color.white)
+                        .background(Color("background3"))
+                        //makes the shape a circle
                         .clipShape(Circle())
+                        //Adds two shadows so that it has a foreground/background Shadow
+                        .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
                  }
             }
         }
