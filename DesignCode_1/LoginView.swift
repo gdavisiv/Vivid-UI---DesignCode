@@ -54,7 +54,7 @@ struct LoginView: View {
                     self.password = ""
                     //This dismisses the login animation
                     self.isSuccessful = false
-                    //Closes the Login Screen 
+                    //Closes the Login Screen
                     self.user.showLogin = false
             }
         }
@@ -242,6 +242,7 @@ struct CoverView: View {
                         //This Animation will cause the movement to loop forever within 30 seconds
                         //and turns off autoreverse
                         .animation(Animation.linear(duration: 120).repeatForever(autoreverses: false))
+                        //.animation(nil)
                         .onAppear { self.show = true}
                     
                     Image(uiImage: #imageLiteral(resourceName: "Blob"))
@@ -251,6 +252,7 @@ struct CoverView: View {
                         //Makes image blendmode as difference
                         .blendMode(.difference)
                         .animation(Animation.linear(duration: 100).repeatForever(autoreverses: true))
+                        //.animation(nil)
                 }
         )
             //This adds the Image background
