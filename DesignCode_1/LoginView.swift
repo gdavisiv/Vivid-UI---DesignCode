@@ -19,7 +19,8 @@ struct LoginView: View {
     @State var showAlert = false
     @State var alertMessage = "Something went wrong?!"
     @State var isLoading = false
-    @State var isSuccess = false
+    @State var isSuccessful = false
+    @EnvironmentObject var user: UserStore
     
     //Seperate the login logic from the rest of the code
     func login() {
@@ -42,15 +43,19 @@ struct LoginView: View {
                 self.showAlert = true
             //When there is no error and the login is succssful
             } else {
-                self.isSuccess = true
+                self.isSuccessful = true
+                //When the user logs in and is successful
+                self.user.isLogged = true
                 
                 //Dissmiss the Login success screeen after a 2 seconds
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    //This dismisses the login animation
-                    self.isSuccess = false
                     //reset the fields
                     self.email = ""
                     self.password = ""
+                    //This dismisses the login animation
+                    self.isSuccessful = false
+                    //Closes the Login Screen 
+                    self.user.showLogin = false
             }
         }
     }
@@ -171,7 +176,7 @@ struct LoginView: View {
             if isLoading {
                 LoadingView()
             }
-            if isSuccess {
+            if isSuccessful {
                 SuccessView()
             }
             
