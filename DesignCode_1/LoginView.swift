@@ -46,6 +46,8 @@ struct LoginView: View {
                 self.isSuccessful = true
                 //When the user logs in and is successful
                 self.user.isLogged = true
+                //Store user defaults info
+                UserDefaults.standard.set(true, forKey: "isLogged")
                 
                 //Dissmiss the Login success screeen after a 2 seconds
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
