@@ -42,7 +42,7 @@ struct MenuView: View {
                     .onTapGesture {
                         //Sets islogged to False
                         UserDefaults.standard.set(false, forKey: "isLogged")
-                        //set enviornment object to false
+                        //set enviornment object user to false
                         self.user.isLogged = false
                         //
                         self.showProfile = false
