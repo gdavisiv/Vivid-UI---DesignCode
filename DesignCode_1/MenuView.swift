@@ -9,6 +9,11 @@
 import SwiftUI
 
 struct MenuView: View {
+    //Add Enviornment Object
+    @EnvironmentObject var user: UserStore
+    //Need to create a biding so that Preview is shown
+    @Binding var showProfile: Bool
+    
     var body: some View {
         VStack {
             Spacer()
@@ -33,6 +38,15 @@ struct MenuView: View {
                 MenuRow(title: "Account", icon: "gear")
                 MenuRow(title: "Billing", icon: "creditcard")
                 MenuRow(title: "Sign Out", icon: "person.crop.circle")
+                    //Allows the use to be logged out of Firebase
+                    .onTapGesture {
+                        //Sets islogged to False
+                        UserDefaults.standard.set(false, forKey: "isLogged")
+                        //set enviornment object to false
+                        self.user.isLogged = false
+                        //
+                        self.showProfile = false
+                }
             }
             .frame(maxWidth: .infinity)
             .frame(height: 300)
@@ -61,7 +75,8 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView()
+        //Added Enviornment object so the preview will not go blank
+        MenuView(showProfile: .constant(true)).environmentObject(UserStore())
     }
 }
 

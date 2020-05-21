@@ -55,7 +55,7 @@ struct Home: View {
                 .edgesIgnoringSafeArea(.all)
             
             //This shows on demand when clicked
-            MenuView()
+            MenuView(showProfile: $showProfile)
                 //This allows you to not see the menu, but still make it interactive
                 .background(Color.black.opacity(0.001))
                 //Added the screen.height with the detection code at the bottom of this page
@@ -64,7 +64,7 @@ struct Home: View {
                 //Applies the offset to the menu so that it animates
                 .offset(y: viewState.height)
                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-                //Add this so you can press the profile and make it interactive
+                //Add this so you can press the profile and make it interactive via tap
                 .onTapGesture {
                     self.showProfile.toggle()
                 }
