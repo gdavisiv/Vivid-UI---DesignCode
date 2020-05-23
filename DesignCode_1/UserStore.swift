@@ -9,13 +9,14 @@
 import SwiftUI
 import Combine
 
-//Save login information and make it persistent
+//Saves login information and make it persistent
 class UserStore: ObservableObject {
     //Pulls in data from User Defaults
     @Published var isLogged: Bool = UserDefaults.standard.bool(forKey: "isLogged") {
         didSet {
             //When the applications loads we are going to pull any data that has
             //already been stored using UserDefaults for isLogged
+            //Any data that you are storing needs to have a unique key
             UserDefaults.standard.set(self.isLogged, forKey: "isLogged")
         }
     }
