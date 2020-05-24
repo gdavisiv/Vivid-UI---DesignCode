@@ -16,6 +16,7 @@ class UserStore: ObservableObject {
         didSet {
             //When the applications loads we are going to pull any data that has
             //already been stored using UserDefaults for isLogged
+            //Self meaning the user store is logged, the key is logged
             //Any data that you are storing needs to have a unique key
             UserDefaults.standard.set(self.isLogged, forKey: "isLogged")
         }

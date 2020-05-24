@@ -128,6 +128,8 @@ struct HomeView_Previews: PreviewProvider {
         //we don't have a state to use.  So instead we set .constant(false)
         //We have to do this for both showProfile and showContent for the ringviews
         HomeView(showProfile: .constant(false), showContent: .constant(false))
+        //Add Because we're using an environment to create iPad appropriate view
+        .environmentObject(UserStore())
     }
 }
 
