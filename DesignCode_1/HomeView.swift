@@ -19,104 +19,107 @@ struct HomeView: View {
     @Binding var showContent: Bool
     
     var body: some View {
-        ScrollView {
-            VStack {
-                HStack {
-                    Text("Watching")
-                        //.font(.system(size: 28, weight: .bold))
-                        .modifier(CustomFontModifier(size: 35))
-                    
-                    Spacer()
-                    
-                    //Pass that state as a binding and add the $ :
-                    //Bindings are considered to be a property of the object which is bound,
-                    //and all information related to bindings should be owned by the object.
-                    AvatarView(showProfile: $showProfile)
-                    
-                    //This allows the button to toggle between a true/false state and being able to
-                    //click the bell
-                    Button(action: {self.showUpdate.toggle() }) {
-                        Image(systemName: "bell")
-                            //Comment out renderMode and instead use foreground
-                            //.renderingMode(.original)
-                            .foregroundColor(.primary)
-                            .font(.system(size: 16, weight: .medium))
-                            .frame(width: 36, height: 36)
-                            //Updating code for dark mode
-                            //.background(Color.white)
-                            .background(Color("background3"))
-                            //makes the shape a circle
-                            .clipShape(Circle())
-                            //Adds two shadows so that it has a foreground/background Shadow
-                            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+        //To make sure that the cards are displayed properly on an iPad we need to make sure scrollview works within Geomoetry Reader
+        GeometryReader { bounds in
+            ScrollView {
+                VStack {
+                    HStack {
+                        Text("Watching")
+                            //.font(.system(size: 28, weight: .bold))
+                            .modifier(CustomFontModifier(size: 35))
                         
-                    }
-                    //This brings up the modal ContentView
-                    .sheet(isPresented: $showUpdate) {
-                        //Changed this from ContentView() after finishing the buildout of UpdateList()
-                        UpdateList()
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.leading, 14)
-                .padding(.top, 30)
-            
-            //Enables Horizontal scrolling, and turns off indicators
-            ScrollView(.horizontal, showsIndicators: false) {
-                WatchRingsView()
-                    .padding(.horizontal, 30)
-                    .padding(.bottom, 30)
-                    //This will set it to true whenever the screen is touched
-                    //This will allow that anytime the ring views are clicked it will be aware of that via
-                    //showContent
-                    .onTapGesture {
-                        self.showContent = true
-                    }
-            }
-            
-            //Created Section View now we need to create a repeat for each of these elements and then we
-            //make tha scrollview horizontal and then place the image in the HStack
-            //turn off the scroll indicator
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20){
-                    //Updated with Data structure: use a ForEach() to loop through the collection
-                    //of items and return individual ones declared as item. With item, we can
-                    //specify the variables from your data model.
-                    ForEach(sectionData) { item in
-                        GeometryReader { geomentry in
-                                SectionView(section: item)
-                                    //Adding double converts CGFloat -> Double
-                                    //For a vertical scroll I'd use '.minY' instead
-                                    .rotation3DEffect(Angle(degrees:  Double(geomentry.frame(in: .global).minX - 30) / -20), axis:(x: 0, y: 10.0, z: 0))
-                            }
-                            .frame(width: 275, height: 275)
+                        Spacer()
+                        
+                        //Pass that state as a binding and add the $ :
+                        //Bindings are considered to be a property of the object which is bound,
+                        //and all information related to bindings should be owned by the object.
+                        AvatarView(showProfile: self.$showProfile)
+                        
+                        //This allows the button to toggle between a true/false state and being able to
+                        //click the bell
+                        Button(action: {self.showUpdate.toggle() }) {
+                            Image(systemName: "bell")
+                                //Comment out renderMode and instead use foreground
+                                //.renderingMode(.original)
+                                .foregroundColor(.primary)
+                                .font(.system(size: 16, weight: .medium))
+                                .frame(width: 36, height: 36)
+                                //Updating code for dark mode
+                                //.background(Color.white)
+                                .background(Color("background3"))
+                                //makes the shape a circle
+                                .clipShape(Circle())
+                                //Adds two shadows so that it has a foreground/background Shadow
+                                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 10)
+                            
+                        }
+                        //This brings up the modal ContentView
+                        .sheet(isPresented: $showUpdate) {
+                            //Changed this from ContentView() after finishing the buildout of UpdateList()
+                            UpdateList()
                         }
                     }
-                    //Adds extra padding so the scroll view doesn't clip the dropshadow
-                    .padding(30)
-                    .padding(.bottom, 30)
-                }
-                //This code will offset and move the sections data cards up a bit to reduce the spacing
-                .offset(y: -30)
+                    .padding(.horizontal)
+                    .padding(.leading, 14)
+                    .padding(.top, 30)
                 
-                HStack {
-                    Text("Courses")
-                        .font(.title).bold()
+                //Enables Horizontal scrolling, and turns off indicators
+                ScrollView(.horizontal, showsIndicators: false) {
+                    WatchRingsView()
+                        .padding(.horizontal, 30)
+                        .padding(.bottom, 30)
+                        //This will set it to true whenever the screen is touched
+                        //This will allow that anytime the ring views are clicked it will be aware of that via
+                        //showContent
+                        .onTapGesture {
+                            self.showContent = true
+                        }
+                }
+                
+                //Created Section View now we need to create a repeat for each of these elements and then we
+                //make tha scrollview horizontal and then place the image in the HStack
+                //turn off the scroll indicator
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20){
+                        //Updated with Data structure: use a ForEach() to loop through the collection
+                        //of items and return individual ones declared as item. With item, we can
+                        //specify the variables from your data model.
+                        ForEach(sectionData) { item in
+                            GeometryReader { geomentry in
+                                    SectionView(section: item)
+                                        //Adding double converts CGFloat -> Double
+                                        //For a vertical scroll I'd use '.minY' instead
+                                        .rotation3DEffect(Angle(degrees:  Double(geomentry.frame(in: .global).minX - 30) / -20), axis:(x: 0, y: 10.0, z: 0))
+                                }
+                                .frame(width: 275, height: 275)
+                            }
+                        }
+                        //Adds extra padding so the scroll view doesn't clip the dropshadow
+                        .padding(30)
+                        .padding(.bottom, 30)
+                    }
+                    //This code will offset and move the sections data cards up a bit to reduce the spacing
+                    .offset(y: -30)
+                    
+                    HStack {
+                        Text("Courses")
+                            .font(.title).bold()
+                        Spacer()
+                    }
+                    .padding(.leading, 30)
+                    //Moves up "Courses" on the y axis a bit higher
+                    .offset(y: -60)
+                
+                    //Pulling in the values from the SectionView Allows the width and height to be easily customizable
+                    SectionView(section: sectionData[2], width: screen.width - 60, height: 275)
+                    .offset(y: -60)
+                
                     Spacer()
                 }
-                .padding(.leading, 30)
-                //Moves up "Courses" on the y axis a bit higher
-                .offset(y: -60)
-            
-                //Pulling in the values from the SectionView Allows the width and height to be easily customizable
-                SectionView(section: sectionData[2], width: screen.width - 60, height: 275)
-                .offset(y: -60)
-            
-                Spacer()
+                //I need to set a specific width to fix the odd transition between screens
+                .frame(width: screen.width)
             }
-            //I need to set a specific width to fix the odd transition between screens
-            .frame(width: screen.width)
         }
     }
 }
