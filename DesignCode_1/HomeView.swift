@@ -19,7 +19,9 @@ struct HomeView: View {
     @Binding var showContent: Bool
     
     var body: some View {
-        //To make sure that the cards are displayed properly on an iPad we need to make sure scrollview works within Geomoetry Reader
+        //To make sure that the cards are displayed properly on an iPad
+        //we need to make sure scrollview works within Geomoetry Reader
+        //Geometry read updates dynamically
         GeometryReader { bounds in
             ScrollView {
                 VStack {
@@ -55,7 +57,7 @@ struct HomeView: View {
                             
                         }
                         //This brings up the modal ContentView
-                        .sheet(isPresented: $showUpdate) {
+                            .sheet(isPresented: self.$showUpdate) {
                             //Changed this from ContentView() after finishing the buildout of UpdateList()
                             UpdateList()
                         }
@@ -112,13 +114,14 @@ struct HomeView: View {
                     .offset(y: -60)
                 
                     //Pulling in the values from the SectionView Allows the width and height to be easily customizable
-                    SectionView(section: sectionData[2], width: screen.width - 60, height: 275)
+                    SectionView(section: sectionData[2], width: bounds.size.width - 60, height: 275)
                     .offset(y: -60)
                 
                     Spacer()
                 }
                 //I need to set a specific width to fix the odd transition between screens
-                .frame(width: screen.width)
+                //Updated .frame with bounds.size so that card will display properly on iPad
+                .frame(width: bounds.size.width)
             }
         }
     }
