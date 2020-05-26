@@ -127,7 +127,8 @@ struct ContentView: View {
             GeometryReader { bounds in
                 BottomCardView(show: self.$showCard)
                     //If showcard is true then it will animate and move to the middle of the screen
-                    .offset(x: 0, y: self.showCard ? 360 : bounds.size.height)
+                    //This is detecting the status bar size, and the home indicator through using the Geometry Reader
+                    .offset(x: 0, y: self.showCard ? bounds.size.height / 2 : bounds.size.height + bounds.safeAreaInsets.top + bounds.safeAreaInsets.bottom)
                     //This appplies the drag values from .gesture via bottomState for the y position
                     .offset(y: self.bottomState.height)
                     .blur(radius: self.show ? 20 : 0)
@@ -167,7 +168,8 @@ struct ContentView: View {
                 )
             }
             //The screen height is within the safe area using This trick will fix it.
-            .edgesIgnoringSafeArea(.all)
+            //Using Ignore safe area on a parent container can effect all the content in the container
+            //.edgesIgnoringSafeArea(.all)
         }
     }
 }
