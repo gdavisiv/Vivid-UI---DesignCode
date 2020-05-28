@@ -6,6 +6,7 @@
 //  Created by GdavisIV on 2/9/20.
 //  Copyright © 2020 GdavisIV. All rights reserved.
 //
+//**Rotation 3D Effect does not work on IPAD so comment that code out until a fix is found**
 
 import SwiftUI
 
@@ -87,7 +88,8 @@ struct ContentView: View {
             
             //This is the front facing card
             CardView()
-                .frame(width: showCard ? 370 : 340.0, height: 220.0)
+                .frame(maxWidth: showCard ? 370 : 340.0)
+                .frame(height: 220.0)
                 .background(Color.black)
 //              .cornerRadius(20)
                 .clipShape(RoundedRectangle(cornerRadius: showCard ? 30 : 20, style: .continuous))
