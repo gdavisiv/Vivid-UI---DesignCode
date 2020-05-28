@@ -42,7 +42,8 @@ struct ContentView: View {
             //these different effects upon the struct
             //This is the back card
             BackCardView()
-                .frame(width: showCard ? 300 : 340, height: 220)
+                .frame(maxWidth: showCard ? 300 : 340)
+                .frame(height: 220)
                 .background(show ? Color("card3") : Color("card4"))
                 .cornerRadius(20)
                 .shadow(radius: 20)
@@ -64,7 +65,8 @@ struct ContentView: View {
             //This is the middle card or check Assets to find out
             //Same applies here follow the order of operations for effects
             BackCardView()
-                .frame(width:340, height: 220)
+                .frame(maxWidth:340)
+                .frame(height: 220)
                 .background(show ? Color("card4") : Color("card3"))
                 .cornerRadius(20)
                 .shadow(radius: 20)
@@ -178,6 +180,8 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            //Create a simple preview code to view images that will need to be resized later on
+            .previewLayout(.fixed(width: 320, height: 667))
     }
 }
 
@@ -235,6 +239,9 @@ struct TitleView: View {
                 }
                 .padding()
                 Image("Background1")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: 375)
                 Spacer()
         }
     }
@@ -288,12 +295,15 @@ struct BottomCardView: View {
                 .padding(.horizontal, 20)
                 // This property (maxWidth: .infinity) will mmake sure that the sides touch the left and right
                 //regardless of the device that is used!!
-                .frame(maxWidth: .infinity)
+                //Apple uses a maxwidth for text boxes in their iPads of maxWidth:712
+                .frame(maxWidth: 712)
                 //.background(Color.white)
                 //Updating the background from code used above
                 .background(BlurView(style: .systemThinMaterial))
                 .cornerRadius(30)
                 .shadow(radius: 20)
+                //This centers the box on the bottom of the screen
+                .frame(maxWidth: .infinity)
     }
 }
 
