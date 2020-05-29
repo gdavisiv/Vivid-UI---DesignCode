@@ -29,79 +29,85 @@ struct CourseList: View {
     
     
     var body: some View {
-        ZStack {
-            //Enables the background to change color due to state and binding
-            Color.black.opacity(Double(self.activeView.height/500))
-                .animation(.linear)
-                .edgesIgnoringSafeArea(.all)
-                //Adding in the contentful API Data to test!
+        GeometryReader { bounds in
+            ZStack {
+                //Enables the background to change color due to state and binding
+                Color.black.opacity(Double(self.activeView.height/500))
+                    .animation(.linear)
+                    .edgesIgnoringSafeArea(.all)
+                    //Adding in the contentful API Data to test!
 
-            ScrollView {
-                VStack(spacing: 30) {
-                    Text("Courses")
-                        .font(.largeTitle).bold()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading, 30)
-                        .padding(.top, 30)
-                        //Simple blur animation that is set to 20, otherwise 0
-                        .blur(radius: active ? 20 : 0)
-                    
-                    
-                    //This will repeat the demo record 5 times (***PAY ATTENTION TO SPACING!!!***)
-                    //instead of looping through the courses we are going to get the index value for the courses
-                    //This will provide the index
-                    ForEach(store.courses.indices, id: \.self) { index in
-                    //Don't need the code below now that we are implementing Course Data from an Array
-                    //CourseView(show: $show)
-                    //Use the gemetry reader to detect the scroll positions of every single card, and use those positions
-                    //to create a gap between the two cardsdetermine the spacing over every single card
-                        GeometryReader { geometry in
-                            //We will need to use self since we are inside Geometry Reader
-                            //CourseView(show: self.$show2)
-                            //To use the Courses Array we call the following
-                            CourseView(
-                                show: self.$store.courses[index].show,
-                                course: self.store.courses[index],
-                                active: self.$active,
-                                index: index,
-                                activeIndex: self.$activeIndex,
-                                activeView: self.$activeView
-                            )
-                                //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
-                                //minY is the position of the top of the second card, and we use negative minY to fill the gap left
-                                //by the top card as it receeds, else don't change anything
-                                .offset(y: self.store.courses[index].show ? -geometry.frame(in: .global).minY: 0)
-                                //When the card is not the one that is active, the card not active will have an opacity of 0 otherwise 1 or visible
-                                .opacity(self.activeIndex != index && self.active ? 0 : 1)
-                                //Same as above only will reduce the size of the cards now
-                                .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
-                                //this animation will move the cards to the side
-                                .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
+                ScrollView {
+                    VStack(spacing: 30) {
+                        Text("Courses")
+                            .font(.largeTitle).bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 30)
+                            .padding(.top, 30)
+                            //Simple blur animation that is set to 20, otherwise 0
+                            .blur(radius: self.active ? 20 : 0)
+                        
+                        
+                        //This will repeat the demo record 5 times (***PAY ATTENTION TO SPACING!!!***)
+                        //instead of looping through the courses we are going to get the index value for the courses
+                        //This will provide the index
+                        ForEach(self.store.courses.indices, id: \.self) { index in
+                        //Don't need the code below now that we are implementing Course Data from an Array
+                        //CourseView(show: $show)
+                        //Use the gemetry reader to detect the scroll positions of every single card, and use those positions
+                        //to create a gap between the two cardsdetermine the spacing over every single card
+                            GeometryReader { geometry in
+                                //We will need to use self since we are inside Geometry Reader
+                                //CourseView(show: self.$show2)
+                                //To use the Courses Array we call the following
+                                CourseView(
+                                    show: self.$store.courses[index].show,
+                                    course: self.store.courses[index],
+                                    active: self.$active,
+                                    index: index,
+                                    activeIndex: self.$activeIndex,
+                                    activeView: self.$activeView
+                                )
+                                    //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
+                                    //minY is the position of the top of the second card, and we use negative minY to fill the gap left
+                                    //by the top card as it receeds, else don't change anything
+                                    .offset(y: self.store.courses[index].show ? -geometry.frame(in: .global).minY: 0)
+                                    //When the card is not the one that is active, the card not active will have an opacity of 0 otherwise 1 or visible
+                                    .opacity(self.activeIndex != index && self.active ? 0 : 1)
+                                    //Same as above only will reduce the size of the cards now
+                                    .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
+                                    //this animation will move the cards to the side
+                                    //Updated with bounds.size for Geometry Reader
+                                    .offset(x: self.activeIndex != index && self.active ? bounds.size.width : 0)
+                            }
+                                //Since I added the for each, have to update self.show2 with self first with self.courses[index].show
+                                //this should fix the height of the container at fullscreen
+                                //If show2 is true, set it to scree.height, otherwise set it to 280
+                        //Updating the height value so that it expands consistently
+                        //and not based off its geometry location
+                                //but the cards after are still being displayed
+                                //This sets the size of the horizontalSizeClass so that it will
+                                //be able to adjust based off the device being used
+                                .frame(height: self.horizontalSizeClass == .regular ? 80 :  280)
+                            //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
+                                .frame(maxWidth: self.store.courses[index].show ? .infinity : screen.width - 60)
+                                //If you ever want to animate one element and you want that one element to be ontop of the other elements,
+                                //zIndex is what you use to allow that to happen
+                                .zIndex(self.store.courses[index].show ? 1 : 0)
                         }
-                            //Since I added the for each, have to update self.show2 with self first with self.courses[index].show
-                        //this should fix the height of the container at fullscreen
-                        //If show2 is true, set it to scree.height, otherwise set it to 280
-                    //Updating the height value so that it expands consistently and not based off its geometry location
-                            //but the cards after are still being displayed
-                            //This sets the size of the horizontalSizeClass so that it will be able to adjust based off the device being used
-                            .frame(height: self.horizontalSizeClass == .regular ? 80 :  280)
-                        //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
-                        .frame(maxWidth: self.store.courses[index].show ? .infinity : screen.width - 60)
-                        //If you ever want to animate one element and you want that one element to be ontop of the other elements,
-                        //zIndex is what you use to allow that to happen
-                        .zIndex(self.store.courses[index].show ? 1 : 0)
                     }
+                    //Automatically will resize with iPad split screen options
+                    .frame(width: bounds.size.width)
+                    //This fixes the sudden animation transition with the loading cards
+                    .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+                    
                 }
-                .frame(width: screen.width)
-                //This fixes the sudden animation transition with the loading cards
-                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-                
+                //How to animate hiding the statusbar
+                //active set it to true, otherwise set it to false
+                    .statusBar(hidden: self.active ? true : false)
+                //Add a simple fadeout animation
+                .animation(.linear)
             }
-            //How to animate hiding the statusbar
-            //active set it to true, otherwise set it to false
-            .statusBar(hidden: active ? true : false)
-            //Add a simple fadeout animation
-            .animation(.linear)
         }
     }
 }
