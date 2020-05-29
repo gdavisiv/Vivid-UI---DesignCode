@@ -90,7 +90,7 @@ struct CourseList: View {
                                 //be able to adjust based off the device being used
                                 .frame(height: self.horizontalSizeClass == .regular ? 80 :  280)
                             //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
-                                .frame(maxWidth: self.store.courses[index].show ? .infinity : screen.width - 60)
+                                .frame(maxWidth: self.store.courses[index].show ? 712 : getCardWidth(bounds: bounds)
                                 //If you ever want to animate one element and you want that one element to be ontop of the other elements,
                                 //zIndex is what you use to allow that to happen
                                 .zIndex(self.store.courses[index].show ? 1 : 0)
@@ -110,6 +110,15 @@ struct CourseList: View {
             }
         }
     }
+}
+
+//Create a function to handle the max width of the iPAD
+//IF width is greater then 712 then return 712 else -60
+func getCardWidth(bounds: GeometryProxy) -> CGFloat {
+    if bounds.size.width > 712 {
+        return 712
+    }
+    return screen.width - 60
 }
 
 struct CourseList_Previews: PreviewProvider {
