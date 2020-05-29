@@ -24,6 +24,8 @@ struct CourseList: View {
     @State var active = false
     @State var activeIndex = -1
     @State var activeView = CGSize.zero
+    //Set the enviornment : predefined mode of size mode
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     
     var body: some View {
@@ -81,7 +83,8 @@ struct CourseList: View {
                         //If show2 is true, set it to scree.height, otherwise set it to 280
                     //Updating the height value so that it expands consistently and not based off its geometry location
                             //but the cards after are still being displayed
-                        .frame(height: 280)
+                            //This sets the size of the horizontalSizeClass so that it will be able to adjust based off the device being used
+                            .frame(height: self.horizontalSizeClass == .regular ? 80 :  280)
                         //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
                         .frame(maxWidth: self.store.courses[index].show ? .infinity : screen.width - 60)
                         //If you ever want to animate one element and you want that one element to be ontop of the other elements,
