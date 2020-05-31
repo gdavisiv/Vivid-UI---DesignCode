@@ -24,7 +24,7 @@ struct CourseList: View {
     @State var active = false
     @State var activeIndex = -1
     @State var activeView = CGSize.zero
-    //Set the enviornment : predefined mode of size mode
+    //Set the enviornment  : predefined mode of size for the iPad
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     
