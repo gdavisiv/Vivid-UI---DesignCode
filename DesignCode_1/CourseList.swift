@@ -90,7 +90,7 @@ struct CourseList: View {
                                 //be able to adjust based off the device being used
                                 .frame(height: self.horizontalSizeClass == .regular ? 80 :  280)
                             //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
-                                .frame(maxWidth: self.store.courses[index].show ? 712 : getCardWidth(bounds: bounds))
+                                .frame(maxWidth: self.store.courses[index].show ?  .infinity : bounds.size.width - 60)
                                 //If you ever want to animate one element and you want that one element to be ontop of the other elements,
                                 //zIndex is what you use to allow that to happen
                                 .zIndex(self.store.courses[index].show ? 1 : 0)

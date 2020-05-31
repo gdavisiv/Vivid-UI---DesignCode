@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //To make simulator play from the new TabBar, you'll have to change it from : let contentView = ContentView()
 //Changed it to the following :  let contentView = TabBar()
         //let contentView = TabBar()
-        let contentView = Home()
+        let contentView = CourseList()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
