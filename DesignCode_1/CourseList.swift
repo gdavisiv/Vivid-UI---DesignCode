@@ -90,7 +90,7 @@ struct CourseList: View {
                                 //be able to adjust based off the device being used
                                 .frame(height: self.horizontalSizeClass == .regular ? 80 :  280)
                             //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
-                                .frame(maxWidth: self.store.courses[index].show ?  .infinity : bounds.size.width - 60)
+                                .frame(maxWidth: self.store.courses[index].show ?  720 : getCardWidth(bounds: bounds))
                                 //If you ever want to animate one element and you want that one element to be ontop of the other elements,
                                 //zIndex is what you use to allow that to happen
                                 .zIndex(self.store.courses[index].show ? 1 : 0)
@@ -104,7 +104,7 @@ struct CourseList: View {
                 }
                 //How to animate hiding the statusbar
                 //active set it to true, otherwise set it to false
-                    .statusBar(hidden: self.active ? true : false)
+                .statusBar(hidden: self.active ? true : false)
                 //Add a simple fadeout animation
                 .animation(.linear)
             }
@@ -118,7 +118,7 @@ func getCardWidth(bounds: GeometryProxy) -> CGFloat {
     if bounds.size.width > 712 {
         return 712
     }
-    return screen.width - 60
+    return bounds.size.width - 60
 }
 
 struct CourseList_Previews: PreviewProvider {
@@ -141,6 +141,7 @@ struct CourseView: View {
     //Creating a new state for our dismiss gesture
     @Binding var activeView: CGSize
     //This binding is created so that whenever we open a card, that card will auto hide the status bar
+    
     
     var body: some View {
         //Added ZStack to add content behind the created card on Z axis
