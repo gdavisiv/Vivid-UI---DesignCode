@@ -66,7 +66,7 @@ struct CourseList: View {
                                     active: self.$active,
                                     index: index,
                                     activeIndex: self.$activeIndex,
-                                    activeView: self.$activeView
+                                    activeView: self.$activeView, bounds: bounds
                                 )
                                     //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
                                     //minY is the position of the top of the second card, and we use negative minY to fill the gap left
@@ -141,7 +141,8 @@ struct CourseView: View {
     //Creating a new state for our dismiss gesture
     @Binding var activeView: CGSize
     //This binding is created so that whenever we open a card, that card will auto hide the status bar
-    
+    //
+    var bounds: GeometryProxy
     
     var body: some View {
         //Added ZStack to add content behind the created card on Z axis
@@ -279,7 +280,7 @@ struct CourseView: View {
             //.edgesIgnoringSafeArea(.all)
         }
         //added this code so that it can expands
-        .frame(height: show ? screen.height : 280)
+            .frame(height: show ? bounds.size.height + bounds.safeAreaInsets.top + bounds.safeAreaInsets.bottom : 280)
         //This scale effect will add the animation for the Drag Gesture
         //we divide by 1000 because the number is large due to pizel density of the screen
         .scaleEffect(1 - self.activeView.height / 1000)
