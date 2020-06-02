@@ -43,6 +43,7 @@ struct ContentView: View {
             //these different effects upon the struct
             //This is the back card
             BackCardView()
+                //Updated to maxWidth
                 .frame(maxWidth: showCard ? 300 : 340)
                 .frame(height: 220)
                 .background(show ? Color("card3") : Color("card4"))
@@ -66,6 +67,7 @@ struct ContentView: View {
             //This is the middle card or check Assets to find out
             //Same applies here follow the order of operations for effects
             BackCardView()
+                //Updated to maxWidth/.frame height
                 .frame(maxWidth:340)
                 .frame(height: 220)
                 .background(show ? Color("card4") : Color("card3"))
@@ -81,7 +83,8 @@ struct ContentView: View {
                 //This is the ternary operator 'show ? :' if show = true set 0 else set to 5
                 .rotationEffect(Angle.degrees(show ? 0 : 5))
                 .rotationEffect(Angle(degrees: showCard ? -5 : 0))
-                .rotation3DEffect(Angle(degrees: showCard ? 0 : 5), axis: (x: 10, y: 0, z: 0))
+                //On iPad an odd transformation occurs
+                //.rotation3DEffect(Angle(degrees: showCard ? 0 : 5), axis: (x: 10, y: 0, z: 0))
                 .blendMode(.hardLight)
                 .animation(.easeInOut(duration: 0.3))
             
