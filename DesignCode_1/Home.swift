@@ -32,7 +32,8 @@ struct Home: View {
             
             //Using the above state we will bind $showContent
             HomeView(showProfile: $showProfile, showContent: $showContent)
-                .padding(.top, 35)
+                //Removing padding because it does not display properly on iPad
+                //.padding(.top, 35)
                 //Created a background gradient for the main screen
                 .background(
                     VStack {
@@ -52,7 +53,9 @@ struct Home: View {
                 .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
                 .scaleEffect(showProfile ? 0.9 : 1)
                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-                .edgesIgnoringSafeArea(.all)
+                //WE should NOT use .edge on actual view, only should be used on the background
+                // because it can effect the contentNo longer needed because we remo
+                //.edgesIgnoringSafeArea(.all)
             
             //This shows on demand when clicked
             MenuView(showProfile: $showProfile)
