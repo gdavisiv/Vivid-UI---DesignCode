@@ -30,23 +30,11 @@ struct Home: View {
             Color("background2")
                 .edgesIgnoringSafeArea(.all)
             
+            HomeBackgroundView()
+                .edgesIgnoringSafeArea(.all)
+            
             //Using the above state we will bind $showContent
             HomeView(showProfile: $showProfile, showContent: $showContent)
-                //Removing padding because it does not display properly on iPad
-                //.padding(.top, 35)
-                //Created a background gradient for the main screen
-                .background(
-                    VStack {
-                    //Updating for Dark Mode
-                    LinearGradient(gradient: Gradient(colors:[Color("background2"), Color("background1")]),
-                                   startPoint: .top, endPoint: .bottom)
-                                .frame(height: 200)
-                        Spacer()
-                    }
-                    .background(Color("background1"))
-                )
-                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
                 .offset(y: showProfile ? -450 : 0)
                 //Added Double(viewState.height / 10) - 10 : 0) so that you are dividing 50/10=5 so a softer transition when dragging
                 //the bottom menu up or down
@@ -202,3 +190,21 @@ struct AvatarView: View {
 //We can use this code to detect screen size and now we can make screen size dynamic
 //across all devices by using screen.height or screen.width for example!! 
 let screen = UIScreen.main.bounds
+
+struct HomeBackgroundView: View {
+    var body: some View {
+        //Removing padding because it does not display properly on iPad
+        //.padding(.top, 35)
+        //Created a background gradient for the main screen
+        VStack {
+            //Updating for Dark Mode
+            LinearGradient(gradient: Gradient(colors:[Color("background2"), Color("background1")]),
+                startPoint: .top, endPoint: .bottom)
+                    .frame(height: 200)
+            Spacer()
+        }
+        .background(Color("background1"))
+        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+        .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
+    }
+}
