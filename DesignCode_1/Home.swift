@@ -31,6 +31,13 @@ struct Home: View {
                 .edgesIgnoringSafeArea(.all)
             
             HomeBackgroundView()
+                .offset(y: showProfile ? -450 : 0)
+                //Added Double(viewState.height / 10) - 10 : 0) so that you are dividing 50/10=5 so a softer transition when dragging
+                //the bottom menu up or down
+                .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
+                .scaleEffect(showProfile ? 0.9 : 1)
+                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+                //WE should NOT use .edge on actual view, only should be used on the background
                 .edgesIgnoringSafeArea(.all)
             
             //Using the above state we will bind $showContent
@@ -41,9 +48,6 @@ struct Home: View {
                 .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
                 .scaleEffect(showProfile ? 0.9 : 1)
                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-                //WE should NOT use .edge on actual view, only should be used on the background
-                // because it can effect the contentNo longer needed because we remo
-                //.edgesIgnoringSafeArea(.all)
             
             //This shows on demand when clicked
             MenuView(showProfile: $showProfile)
@@ -156,7 +160,7 @@ struct AvatarView: View {
     var body: some View {
         VStack {
             //Show the avatar icon
-            if user.isLogged {
+            if !user.isLogged {
                 Button(action: { self.showProfile.toggle() }) {
                 Image("Avatar")
                     .renderingMode(.original)
