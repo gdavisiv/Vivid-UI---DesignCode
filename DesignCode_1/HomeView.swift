@@ -122,11 +122,11 @@ struct HomeView: View {
                 //I need to set a specific width to fix the odd transition between screens
                 //Updated .frame with bounds.size so that card will display properly on iPad
                 .frame(width: bounds.size.width)
-                .offset(y: showProfile ? -450 : 0)
+                    .offset(y: self.showProfile ? -450 : 0)
                  //Added Double(viewState.height / 10) - 10 : 0) so that you are dividing 50/10=5 so a softer transition when dragging
                  //the bottom menu up or down
-                 .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
-                 .scaleEffect(showProfile ? 0.9 : 1)
+                    .rotation3DEffect(Angle(degrees: self.showProfile ? Double(self.viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
+                    .scaleEffect(self.showProfile ? 0.9 : 1)
                  .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             }
         }
@@ -139,7 +139,7 @@ struct HomeView_Previews: PreviewProvider {
         //extracting a subview : the HomeView needs some setting.  WE CAN'T pass a state, because
         //we don't have a state to use.  So instead we set .constant(false)
         //We have to do this for both showProfile and showContent for the ringviews
-        HomeView(showProfile: .constant(false), showContent: .constant(false))
+        HomeView(showProfile: .constant(false), showContent: .constant(false), viewState: .constant(.zero))
         //Add Because we're using an environment to create iPad appropriate view
         .environmentObject(UserStore())
     }

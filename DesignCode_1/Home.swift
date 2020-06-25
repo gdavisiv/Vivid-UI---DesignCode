@@ -42,7 +42,7 @@ struct Home: View {
                 .edgesIgnoringSafeArea(.all)
             
             //Using the above state we will bind $showContent
-            HomeView(showProfile: $showProfile, showContent: $showContent)
+            HomeView(showProfile: $showProfile, showContent: $showContent, viewState: $viewState)
             
             //This shows on demand when clicked
             MenuView(showProfile: $showProfile)
