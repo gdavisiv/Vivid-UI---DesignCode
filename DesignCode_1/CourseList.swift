@@ -88,7 +88,7 @@ struct CourseList: View {
                                 //but the cards after are still being displayed
                                 //This sets the size of the horizontalSizeClass so that it will
                                 //be able to adjust based off the device being used
-                                .frame(height: self.horizontalSizeClass == .regular ? 80 :  280)
+                                .frame(height: self.horizontalSizeClass == .regular ? 80 : 280)
                             //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
                                 .frame(maxWidth: self.store.courses[index].show ?  720 : getCardWidth(bounds: bounds))
                                 //If you ever want to animate one element and you want that one element to be ontop of the other elements,
@@ -141,7 +141,6 @@ struct CourseView: View {
     //Creating a new state for our dismiss gesture
     @Binding var activeView: CGSize
     //This binding is created so that whenever we open a card, that card will auto hide the status bar
-    //
     var bounds: GeometryProxy
     
     var body: some View {

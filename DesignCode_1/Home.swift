@@ -43,12 +43,6 @@ struct Home: View {
             
             //Using the above state we will bind $showContent
             HomeView(showProfile: $showProfile, showContent: $showContent)
-                .offset(y: showProfile ? -450 : 0)
-                //Added Double(viewState.height / 10) - 10 : 0) so that you are dividing 50/10=5 so a softer transition when dragging
-                //the bottom menu up or down
-                .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
-                .scaleEffect(showProfile ? 0.9 : 1)
-                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             
             //This shows on demand when clicked
             MenuView(showProfile: $showProfile)

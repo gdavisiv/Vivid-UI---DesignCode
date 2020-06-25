@@ -10,13 +10,13 @@ import SwiftUI
 
 struct HomeView: View {
     @Binding var showProfile: Bool
-    
     //Added a new state for the Scene Transition Button
     @State var showUpdate = false
-    
     //We want to organize all our views in HomeSwift so we create this new binding and
     //bind it to a state in home.swift
     @Binding var showContent: Bool
+    //Create the Binding for the viewState
+    @Binding var viewState: CGSize
     
     var body: some View {
         //To make sure that the cards are displayed properly on an iPad
@@ -122,6 +122,12 @@ struct HomeView: View {
                 //I need to set a specific width to fix the odd transition between screens
                 //Updated .frame with bounds.size so that card will display properly on iPad
                 .frame(width: bounds.size.width)
+                .offset(y: showProfile ? -450 : 0)
+                 //Added Double(viewState.height / 10) - 10 : 0) so that you are dividing 50/10=5 so a softer transition when dragging
+                 //the bottom menu up or down
+                 .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
+                 .scaleEffect(showProfile ? 0.9 : 1)
+                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             }
         }
     }
