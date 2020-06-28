@@ -191,6 +191,9 @@ struct AvatarView: View {
 let screen = UIScreen.main.bounds
 
 struct HomeBackgroundView: View {
+    //Creating a binding so that we can have round corners
+    @Binding var showProfile: Bool
+    
     var body: some View {
         //Removing padding because it does not display properly on iPad
         //.padding(.top, 35)
@@ -203,7 +206,8 @@ struct HomeBackgroundView: View {
             Spacer()
         }
         .background(Color("background1"))
-        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+        //Is showProfile true? if yes, set it to 30 otherwise set it to
+            .clipShape(RoundedRectangle(cornerRadius: showProfile ? 30 : 0, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
     }
 }
