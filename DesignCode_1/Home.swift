@@ -31,7 +31,7 @@ struct Home: View {
             Color("background2")
                 .edgesIgnoringSafeArea(.all)
             
-            HomeBackgroundView()
+            HomeBackgroundView(showProfile: $showProfile)
                 .offset(y: showProfile ? -450 : 0)
                 //Added Double(viewState.height / 10) - 10 : 0) so that you are dividing 50/10=5 so a softer transition when dragging
                 //the bottom menu up or down
