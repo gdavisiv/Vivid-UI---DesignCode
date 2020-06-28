@@ -92,7 +92,7 @@ struct HomeView: View {
                                     SectionView(section: item)
                                         //Adding double converts CGFloat -> Double
                                         //For a vertical scroll I'd use '.minY' instead
-                                        .rotation3DEffect(Angle(degrees:  Double(geomentry.frame(in: .global).minX - 30) / -20), axis:(x: 0, y: 10.0, z: 0))
+                                        .rotation3DEffect(Angle(degrees:  Double(geomentry.frame(in: .global).minX - 30) / -getAngleMultiplier(bounds: bounds)), axis:(x: 0, y: 10.0, z: 0))
                                 }
                                 .frame(width: 275, height: 275)
                             }
@@ -133,6 +133,15 @@ struct HomeView: View {
     }
 }
 
+//Need to make a function that makes the angle of the shadow for the
+//Ipad less sharp so that the shadow is not cut off
+func getAngleMultiplier(bounds: GeometryProxy) -> Double {
+    if bounds.size.width > 500 {
+        return 80
+    } else {
+        return 20
+    }
+}
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         //Have to update this because we created a new file HomeView, this is different from
