@@ -37,6 +37,9 @@ struct TabBar_Previews: PreviewProvider {
         Group {
             TabBar().previewDevice("iPhone 8")
             TabBar().previewDevice("iPhone 11 Pro Max")
+                //Anything that uses a component that depends on the enviornment object, such as the home, it will block the preview
+                //so to fix this we use .environmentObject(UserStore())
+                .environmentObject(UserStore())
         }
     }
 }
