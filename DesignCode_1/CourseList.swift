@@ -142,6 +142,8 @@ struct CourseView: View {
     @Binding var activeView: CGSize
     //This binding is created so that whenever we open a card, that card will auto hide the status bar
     var bounds: GeometryProxy
+    //Creating a new state so that we can control the scrolling independent of show
+    @State var isScrollable = false
     
     var body: some View {
         //Added ZStack to add content behind the created card on Z axis
@@ -265,21 +267,28 @@ struct CourseView: View {
                     } else {
                         self.activeIndex = -1
                     }
-            }
+                    //This State will Wait for the animation to be over first after 0.7 seconds,
+                    //and then summon the fullscreen view
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                        self.isScrollable = true
+                    }
+                }
             
-            if show {
+            if isScrollable {
                 //Until the errors with dragging and gestures can be resolved it is
                 //best to leave this code commented out for now
-//                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex)
-//                    .background(Color.white)
-//                    .animation(nil)
+                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex)
+                    .background(Color.white)
+                    .animation(nil)
+                    //We need to turn off the fade in animation that is set by default
+                    .transition(.identity)
             }
             //This works in tandem with the .frame code from above to make the card expand to fullscreen MODE
             //Move this also with the addition of the Text
             //.edgesIgnoringSafeArea(.all)
         }
         //added this code so that it can expands
-            .frame(height: show ? bounds.size.height + bounds.safeAreaInsets.top + bounds.safeAreaInsets.bottom : 280)
+        .frame(height: show ? bounds.size.height + bounds.safeAreaInsets.top + bounds.safeAreaInsets.bottom : 280)
         //This scale effect will add the animation for the Drag Gesture
         //we divide by 1000 because the number is large due to pizel density of the screen
         .scaleEffect(1 - self.activeView.height / 1000)
