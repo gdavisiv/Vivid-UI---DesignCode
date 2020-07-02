@@ -122,11 +122,11 @@ struct HomeView: View {
                 //I need to set a specific width to fix the odd transition between screens
                 //Updated .frame with bounds.size so that card will display properly on iPad
                 .frame(width: bounds.size.width)
-                    .offset(y: self.showProfile ? -450 : 0)
+                .offset(y: self.showProfile ? -450 : 0)
                  //Added Double(viewState.height / 10) - 10 : 0) so that you are dividing 50/10=5 so a softer transition when dragging
                  //the bottom menu up or down
-                    .rotation3DEffect(Angle(degrees: self.showProfile ? Double(self.viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
-                    .scaleEffect(self.showProfile ? 0.9 : 1)
+                .rotation3DEffect(Angle(degrees: self.showProfile ? Double(self.viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
+                .scaleEffect(self.showProfile ? 0.9 : 1)
                  .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             }
         }
@@ -134,7 +134,7 @@ struct HomeView: View {
 }
 
 //Need to make a function that makes the angle of the shadow for the
-//Ipad less sharp so that the shadow is not cut off
+//Ipad less sharp so that the shadow is not cut off on the bottom
 func getAngleMultiplier(bounds: GeometryProxy) -> Double {
     if bounds.size.width > 500 {
         return 80

@@ -206,8 +206,8 @@ struct HomeBackgroundView: View {
             Spacer()
         }
         .background(Color("background1"))
-        //Is showProfile true? if yes, set it to 30 otherwise set it to
-            .clipShape(RoundedRectangle(cornerRadius: showProfile ? 30 : 0, style: .continuous))
+        //Is showProfile true? if yes, set it to 30 otherwise set it to Zero
+        .clipShape(RoundedRectangle(cornerRadius: showProfile ? 30 : 0, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
     }
 }

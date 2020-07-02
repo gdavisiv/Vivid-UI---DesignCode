@@ -67,6 +67,8 @@ struct UpdateList: View {
                 Text("Add Update")
             }, trailing: EditButton())
         }
+        //For the iPad you can use a stackview for the update list instead of a side menu on the right
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

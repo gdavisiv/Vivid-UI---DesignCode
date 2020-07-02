@@ -48,7 +48,7 @@ struct MenuView: View {
                         self.showProfile = false
                 }
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: 500)
             .frame(height: 300)
             //Create an Linear Gradient and use 'Color Literal' to bring up the hidden menu for choosing
             //a specific color desired.

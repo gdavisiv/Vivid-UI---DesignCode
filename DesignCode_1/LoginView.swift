@@ -133,7 +133,7 @@ struct LoginView: View {
                         }
                     }
                     .frame(height: 136)
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: 712)
                     .background(BlurView(style: .systemMaterial))
                     .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                     .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 20)
