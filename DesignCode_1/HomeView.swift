@@ -17,6 +17,14 @@ struct HomeView: View {
     @Binding var showContent: Bool
     //Create the Binding for the viewState
     @Binding var viewState: CGSize
+    //Need to create states and observed object since we are implementing Courselist info
+    @ObservedObject var store = CourseStore()
+    //Create this state for the status bar toggle
+    @State var active = false
+    @State var activeIndex = -1
+    @State var activeView = CGSize.zero
+    //Set the enviornment  : predefined mode of size for the iPad
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
         //To make sure that the cards are displayed properly on an iPad
@@ -113,9 +121,53 @@ struct HomeView: View {
                     //Moves up "Courses" on the y axis a bit higher
                     .offset(y: -60)
                 
-                    //Pulling in the values from the SectionView Allows the width and height to be easily customizable
-                    SectionView(section: sectionData[2], width: bounds.size.width - 60, height: 275)
-                    .offset(y: -60)
+                    //This will repeat the demo record 5 times (***PAY ATTENTION TO SPACING!!!***)
+                    //instead of looping through the courses we are going to get the index value for the courses
+                    //This will provide the index
+                    ForEach(self.store.courses.indices, id: \.self) { index in
+                    //Don't need the code below now that we are implementing Course Data from an Array
+                    //CourseView(show: $show)
+                    //Use the gemetry reader to detect the scroll positions of every single card, and use those positions
+                    //to create a gap between the two cardsdetermine the spacing over every single card
+                        GeometryReader { geometry in
+                            //We will need to use self since we are inside Geometry Reader
+                            //CourseView(show: self.$show2)
+                            //To use the Courses Array we call the following
+                            CourseView(
+                                show: self.$store.courses[index].show,
+                                course: self.store.courses[index],
+                                active: self.$active,
+                                index: index,
+                                activeIndex: self.$activeIndex,
+                                activeView: self.$activeView, bounds: bounds
+                            )
+                                //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
+                                //minY is the position of the top of the second card, and we use negative minY to fill the gap left
+                                //by the top card as it receeds, else don't change anything
+                                .offset(y: self.store.courses[index].show ? -geometry.frame(in: .global).minY: 0)
+                                //When the card is not the one that is active, the card not active will have an opacity of 0 otherwise 1 or visible
+                                .opacity(self.activeIndex != index && self.active ? 0 : 1)
+                                //Same as above only will reduce the size of the cards now
+                                .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
+                                //this animation will move the cards to the side
+                                //Updated with bounds.size for Geometry Reader
+                                .offset(x: self.activeIndex != index && self.active ? bounds.size.width : 0)
+                        }
+                            //Since I added the for each, have to update self.show2 with self first with self.courses[index].show
+                            //this should fix the height of the container at fullscreen
+                            //If show2 is true, set it to scree.height, otherwise set it to 280
+                    //Updating the height value so that it expands consistently
+                    //and not based off its geometry location
+                            //but the cards after are still being displayed
+                            //This sets the size of the horizontalSizeClass so that it will
+                            //be able to adjust based off the device being used
+                            .frame(height: self.horizontalSizeClass == .regular ? 80 : 280)
+                        //This will move the second card, because the card is set to infinity, and it is centered in the vstack with width - 60
+                            .frame(maxWidth: self.store.courses[index].show ?  720 : getCardWidth(bounds: bounds))
+                            //If you ever want to animate one element and you want that one element to be ontop of the other elements,
+                            //zIndex is what you use to allow that to happen
+                            .zIndex(self.store.courses[index].show ? 1 : 0)
+                    }
                 
                     Spacer()
                 }
