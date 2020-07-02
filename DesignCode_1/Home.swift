@@ -41,8 +41,15 @@ struct Home: View {
                 //WE should NOT use .edge on actual view, only should be used on the background
                 .edgesIgnoringSafeArea(.all)
             
-            //Using the above state we will bind $showContent
-            HomeView(showProfile: $showProfile, showContent: $showContent, viewState: $viewState)
+            //Using the TabView to create a menu on the bottom of the screen
+            TabView {
+                //Using the above state we will bind $showContent
+                HomeView(showProfile: $showProfile, showContent: $showContent, viewState: $viewState)
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                        Text("Home")
+                }
+            }
             
             //This shows on demand when clicked
             MenuView(showProfile: $showProfile)
