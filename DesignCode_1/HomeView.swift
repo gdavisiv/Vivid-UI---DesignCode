@@ -175,6 +175,7 @@ struct HomeView: View {
                                 .zIndex(self.store.courses[index].show ? 1 : 0)
                         }
                     }
+                    .padding(.bottom, 300)
                     .offset(y: -60)
                 
                     Spacer()
