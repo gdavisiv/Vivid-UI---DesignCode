@@ -161,7 +161,7 @@ struct CourseView: View {
             .offset(y: show ? 460 : 0)
             //Update code for dark mode
             //.background(Color.white)
-            .background(Color("background2"))
+            .background(Color("background1"))
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
             .opacity(show ? 1 : 0)
@@ -277,9 +277,10 @@ struct CourseView: View {
             if isScrollable {
                 //Until the errors with dragging and gestures can be resolved it is
                 //best to leave this code commented out for now
-                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex)
+                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex, isScrollable: $isScrollable)
                     .background(Color.white)
                     .animation(nil)
+                    //By defaulw when you use a condition by default it will use a new fade in animation/transition.
                     //We need to turn off the fade in animation that is set by default
                     .transition(.identity)
             }

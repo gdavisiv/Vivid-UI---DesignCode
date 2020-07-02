@@ -15,10 +15,12 @@ struct CourseDetail: View {
     //Create these bindings for the onTapGesture
     @Binding var active: Bool
     @Binding var activeIndex: Int
+    @Binding var isScrollable: Bool
     
     var body: some View {
         ScrollView {
-            VStack {
+            //Fixes the spacing between the bottom of the card, and the beginning on the text, fixing the shadow cut off
+            VStack(spacing: 0) {
                 VStack {
                     HStack(alignment: .top) {
                         VStack(alignment: .leading, spacing: 8.0) {
@@ -47,6 +49,8 @@ struct CourseDetail: View {
                                 self.show = false
                                 self.active = false
                                 self.activeIndex = -1
+                                //Setting this binding will completely hide the CourseDetail View when we click on close button
+                                self.isScrollable = false
                             }
                         }
                     }
@@ -95,6 +99,6 @@ struct CourseDetail: View {
 
 struct CourseDetail_Previews: PreviewProvider {
     static var previews: some View {
-        CourseDetail(course: courseData[0], show: .constant(true), active: .constant(true), activeIndex: .constant(-1))
+        CourseDetail(course: courseData[0], show: .constant(true), active: .constant(true), activeIndex: .constant(-1), isScrollable: .constant(true))
     }
 }
