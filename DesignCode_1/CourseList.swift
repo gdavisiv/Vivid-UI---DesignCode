@@ -249,6 +249,7 @@ struct CourseView: View {
                             self.show = false
                             self.active = false
                             self.activeIndex = -1
+                            self.isScrollable = false
                         }
                         self.activeView = .zero
                     }
@@ -318,6 +319,7 @@ struct CourseView: View {
                             self.show = false
                             self.active = false
                             self.activeIndex = -1
+                            self.isScrollable = false
                         }
                         self.activeView = .zero
                 }
