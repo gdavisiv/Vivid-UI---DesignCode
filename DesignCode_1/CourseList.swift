@@ -26,6 +26,8 @@ struct CourseList: View {
     @State var activeView = CGSize.zero
     //Set the enviornment  : predefined mode of size for the iPad
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    //Create a new state for isScrollable
+    @State var isScrollable = false
     
     
     var body: some View {
@@ -66,7 +68,8 @@ struct CourseList: View {
                                     active: self.$active,
                                     index: index,
                                     activeIndex: self.$activeIndex,
-                                    activeView: self.$activeView, bounds: bounds
+                                    activeView: self.$activeView, bounds: bounds,
+                                    isScrollable: self.$isScrollable
                                 )
                                     //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
                                     //minY is the position of the top of the second card, and we use negative minY to fill the gap left
@@ -107,6 +110,8 @@ struct CourseList: View {
                 .statusBar(hidden: self.active ? true : false)
                 //Add a simple fadeout animation
                 .animation(.linear)
+                //self.active when the user clicks on the card, then not self.isScrollable is set to true, else false
+                .disabled(self.active && !self.isScrollable ? true : false)
             }
         }
     }
@@ -143,7 +148,7 @@ struct CourseView: View {
     //This binding is created so that whenever we open a card, that card will auto hide the status bar
     var bounds: GeometryProxy
     //Creating a new state so that we can control the scrolling independent of show
-    @State var isScrollable = false
+    @Binding var isScrollable: Bool
     
     var body: some View {
         //Added ZStack to add content behind the created card on Z axis
@@ -155,6 +160,7 @@ struct CourseView: View {
                 Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
                 Text("Consequat interdum varius sit amet mattis. A arcu cursus vitae congue mauris rhoncus aenean vel. Integer vitae justo eget magna fermentum iaculis. Vel facilisis volutpat est velit egestas. Id diam vel quam elementum pulvinar etiam non. Purus sit amet volutpat consequat mauris nunc congue nisi vitae. Parturient montes nascetur ridiculus mus mauris vitae")
             }
+            .animation(nil)
             .padding(30)
             //show .infinity otherwise set it to screen.width - 60
             .frame(maxWidth: show ? .infinity : screen.width - 60, maxHeight: show ? .infinity : 280, alignment: .top)
@@ -199,6 +205,9 @@ struct CourseView: View {
                             .clipShape(Circle())
                             //We set this up in reverse since we only want the 'X' to show when we are in full screen mode
                             .opacity(show ? 1 : 0)
+                            //Creating an offset modifier
+                            //Repositining the XMark on the Card, moving it up slightly to right
+                            .offset(x: 2, y: -2)
                         }
                     }
                     Spacer()
@@ -308,7 +317,7 @@ struct CourseView: View {
                     //MAke sure to drag less than 300 else stop/return
                     guard value.translation.height < 300 else { return }
                     //Disable the ability to drag upward and make the card animate
-                    guard value.translation.height > 0 else { return }
+                    guard value.translation.height > 50 else { return }
                     self.activeView = value.translation
                     
                 }
@@ -325,6 +334,10 @@ struct CourseView: View {
                 }
                 : nil
         )
+        //Set disabled after gesture
+        //Disabled Modifier, uses boolean, if true, element can not be draggable/tappable
+        //active when the user is tapped, and not is scrollable, true otherwise false
+        .disabled(active && !isScrollable ? true : false)
         .edgesIgnoringSafeArea(.all)
         
     }

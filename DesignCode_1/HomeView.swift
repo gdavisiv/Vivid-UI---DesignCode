@@ -25,6 +25,8 @@ struct HomeView: View {
     @State var activeView = CGSize.zero
     //Set the enviornment  : predefined mode of size for the iPad
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    //Create State for Scrollable
+    @State var isScrollable = false
     
     var body: some View {
         //To make sure that the cards are displayed properly on an iPad
@@ -145,7 +147,8 @@ struct HomeView: View {
                                     active: self.$active,
                                     index: index,
                                     activeIndex: self.$activeIndex,
-                                    activeView: self.$activeView, bounds: bounds
+                                    activeView: self.$activeView, bounds: bounds,
+                                    isScrollable: self.$isScrollable
                                 )
                                     //If self.show2 this is in fullscreen it will use minY position (between the two cards) else don't change anything
                                     //minY is the position of the top of the second card, and we use negative minY to fill the gap left
