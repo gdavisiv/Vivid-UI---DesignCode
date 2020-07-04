@@ -5,7 +5,6 @@
 //  Created by GdavisIV on 4/3/20.
 //  Copyright © 2020 George Davis IV. All rights reserved.
 //
-
 import SwiftUI
 import SDWebImageSwiftUI
 
@@ -16,6 +15,7 @@ struct CourseDetail: View {
     @Binding var active: Bool
     @Binding var activeIndex: Int
     @Binding var isScrollable: Bool
+    var bounds: GeometryProxy
     
     var body: some View {
         ScrollView {
@@ -74,11 +74,11 @@ struct CourseDetail: View {
                     //.frame(width: show ? screen.width : screen.width - 60, height: show ? screen.height : 280)
                     //There is a better way to write the same code as shown above!  This will ensure that the card
                     //maximizes and takes up the entire screen
-                    .frame(maxWidth: show ? .infinity : screen.width - 60, maxHeight: show ? 460 : 280)
+                    .frame(maxWidth: show ? .infinity : bounds.size.width - 60, maxHeight: show ? 460 : 280)
                     //Update to new Array Data
                     //.background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
                     .background(Color(course.color))
-                    .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                    .clipShape(RoundedRectangle(cornerRadius: getCardCornerRadius(bounds: bounds), style: .continuous))
                     //Update to new Array Data
                     //.shadow(color: Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)).opacity(0.3), radius: 20, x: 0, y: 20)
                     .shadow(color: Color(course.color).opacity(0.3), radius: 20, x: 0, y: 20)
@@ -99,6 +99,8 @@ struct CourseDetail: View {
 
 struct CourseDetail_Previews: PreviewProvider {
     static var previews: some View {
-        CourseDetail(course: courseData[0], show: .constant(true), active: .constant(true), activeIndex: .constant(-1), isScrollable: .constant(true))
+        GeometryReader { bounds in
+        CourseDetail(course: courseData[0], show: .constant(true), active: .constant(true), activeIndex: .constant(-1), isScrollable: .constant(true), bounds: bounds)
+        }
     }
 }

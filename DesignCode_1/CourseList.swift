@@ -287,8 +287,9 @@ struct CourseView: View {
             if isScrollable {
                 //Until the errors with dragging and gestures can be resolved it is
                 //best to leave this code commented out for now
-                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex, isScrollable: $isScrollable)
+                CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex, isScrollable: $isScrollable, bounds: bounds)
                     .background(Color.white)
+                    .clipshape(RoundedRectangle(cornerRadius: getCardCornerRadius(bounds: bounds), style: .continuous))
                     .animation(nil)
                     //By defaulw when you use a condition by default it will use a new fade in animation/transition.
                     //We need to turn off the fade in animation that is set by default
