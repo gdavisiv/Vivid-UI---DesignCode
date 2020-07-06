@@ -288,8 +288,8 @@ struct CourseView: View {
                 //Until the errors with dragging and gestures can be resolved it is
                 //best to leave this code commented out for now
                 CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex, isScrollable: $isScrollable, bounds: bounds)
-                    .background(Color.white)
-                    //****getCardCornerRadius is not working is not working for some reason, reseraching issues*** 
+                    .background(Color("background1")
+                    //****getCardCornerRadius is not working is not working for some reason, reseraching issues***
                     //.clipshape(RoundedRectangle(cornerRadius: getCardCornerRadius(bounds: bounds), style: .continuous))
                     .animation(nil)
                     //By defaulw when you use a condition by default it will use a new fade in animation/transition.
