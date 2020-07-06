@@ -78,7 +78,9 @@ struct CourseDetail: View {
                     //Update to new Array Data
                     //.background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
                     .background(Color(course.color))
-                    .clipShape(RoundedRectangle(cornerRadius: getCardCornerRadius(bounds: bounds), style: .continuous))
+                    //getCardCornerRadius does not work for some reason.. Researching Issue
+                    //.clipShape(RoundedRectangle(cornerRadius: getCardCornerRadius(bounds: bounds), style: .continuous))
+                    .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                     //Update to new Array Data
                     //.shadow(color: Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)).opacity(0.3), radius: 20, x: 0, y: 20)
                     .shadow(color: Color(course.color).opacity(0.3), radius: 20, x: 0, y: 20)

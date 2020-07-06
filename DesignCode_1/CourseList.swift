@@ -289,7 +289,8 @@ struct CourseView: View {
                 //best to leave this code commented out for now
                 CourseDetail(course: course, show: $show, active: $active, activeIndex: $activeIndex, isScrollable: $isScrollable, bounds: bounds)
                     .background(Color.white)
-                    .clipshape(RoundedRectangle(cornerRadius: getCardCornerRadius(bounds: bounds), style: .continuous))
+                    //****getCardCornerRadius is not working is not working for some reason, reseraching issues*** 
+                    //.clipshape(RoundedRectangle(cornerRadius: getCardCornerRadius(bounds: bounds), style: .continuous))
                     .animation(nil)
                     //By defaulw when you use a condition by default it will use a new fade in animation/transition.
                     //We need to turn off the fade in animation that is set by default
