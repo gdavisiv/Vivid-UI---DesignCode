@@ -90,7 +90,7 @@
 		41C76B31242409F3007E3545 /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
 		41C9C287242A88AF00507E51 /* CourseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
 		41D91CB924184AC600E804E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		41E1368323F0C9FB00F39FDA /* DesignCode_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignCode_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		41E1368323F0C9FB00F39FDA /* DesignCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41E1368623F0C9FB00F39FDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41E1368823F0C9FB00F39FDA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		41E1368A23F0C9FB00F39FDA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 		41E1368423F0C9FB00F39FDA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				41E1368323F0C9FB00F39FDA /* DesignCode_1.app */,
+				41E1368323F0C9FB00F39FDA /* DesignCode.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -271,7 +271,7 @@
 				E2F62FAF24670EFA002FDEEC /* Lottie */,
 			);
 			productName = DesignCode_1;
-			productReference = 41E1368323F0C9FB00F39FDA /* DesignCode_1.app */;
+			productReference = 41E1368323F0C9FB00F39FDA /* DesignCode.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -563,7 +563,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GeorgeDIV.DesignCode-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = DesignCode;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -584,7 +584,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GeorgeDIV.DesignCode-1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = DesignCode;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
