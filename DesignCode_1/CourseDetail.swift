@@ -68,13 +68,15 @@ struct CourseDetail: View {
                     //Add animation to the padding modifier so that it updates from CArd to Fullscreen Mode
                     .padding(show ? 40 : 20)
                     //This adds extra padding at the very top so that it does not intefer with the top Status Menu
-                    //.padding(.top, show ? 30 : 0)
+                    .padding(.top, show ? 30 : 0)
                     //This following code will add the transition animation
                     //Adding a Tap Gesture : Just need to update the frame, show screen.width otherwise show width - 60; ""
                     //.frame(width: show ? screen.width : screen.width - 60, height: show ? screen.height : 280)
                     //There is a better way to write the same code as shown above!  This will ensure that the card
                     //maximizes and takes up the entire screen
-                    .frame(maxWidth: show ? .infinity : bounds.size.width - 60, maxHeight: show ? 460 : 280)
+                    .frame(maxWidth: show ? .infinity : bounds.size.width - 60)
+                    //Fixes an issue where the colored card will not take up the top of the entire screen on iPad
+                    .frame(height: show ? 460 : 280)
                     //Update to new Array Data
                     //.background(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
                     .background(Color(course.color))

@@ -193,6 +193,8 @@ struct HomeView: View {
                 .scaleEffect(self.showProfile ? 0.9 : 1)
                  .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             }
+            //This will disable the scrolling for .7 seconds while clicking on the card
+            .disabled(self.active && !self.isScrollable ? true : false)
         }
     }
 }
