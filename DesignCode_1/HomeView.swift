@@ -269,9 +269,9 @@ struct Section: Identifiable {
 }
 
 let sectionData = [
-    Section(title: "Prototype designs made with SwiftUI", text: "18 Sections", logo: "Logo1", image: Image("Card1"), color: Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1))),
-    Section(title: "Designing with Color Literal", text: "3 Sections", logo: "Logo1", image: Image("Card1"), color: Color(#colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1))),
-    Section(title: "Coding with Image Literal", text: "14 Sections", logo: "Logo1", image: Image("Card1"), color: Color(#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1))),
+    Section(title: "Prototype designs made with SwiftUI", text: "18 Sections", logo: "Logo1", image: Image("Card1"), color: Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1))),
+    Section(title: "Designing with Color Literal", text: "3 Sections", logo: "Logo1", image: Image("Card1"), color: Color(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))),
+    Section(title: "Coding with Image Literal", text: "14 Sections", logo: "Logo1", image: Image("Card1"), color: Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))),
 ]
 
 //Below with color literal is a great way to find the color you need
