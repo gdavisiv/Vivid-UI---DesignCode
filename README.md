@@ -28,4 +28,4 @@ https://developer.apple.com/xcode/swiftui/
 
 ## Acknowledgments
 
-* https://designcode.io/swiftui
+* https://designcode.io/
