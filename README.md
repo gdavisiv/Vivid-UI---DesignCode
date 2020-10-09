@@ -14,7 +14,7 @@ This project is a Personal Playground to better understand the new Swift UI Synt
 <img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/VU.png" height="600" width="300">
 <img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/VU2.png" height="600" width="300">
 <img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/VU3.png" height="600" width="300">
-<img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/VU4.png" height="600" width="300"><br>
+<img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/VU4.png" height="600" width="300">
 <img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/VU5.png" height="600" width="300">
 <img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/VU6.png" height="600" width="300">
 <img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/VU7.png" height="600" width="300">
