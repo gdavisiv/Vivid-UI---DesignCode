@@ -1,7 +1,7 @@
 <p align="center">
 <img src="https://github.com/gdavisiv/Vivid-UI---DesignCode/blob/UI-Updates/DesignCode_1/Assets.xcassets/swiftuiLogo.png" height="100" width="100">
 <img src="https://firebase.google.com/images/brand-guidelines/logo-vertical.png" height="100" width="100">
-<img src ="https://d21buns5ku92am.cloudfront.net/41748/logo/small-1441291075.png" height="100" width="100">
+<img src ="https://images.ctfassets.net/aeu1amk9b600/2YCOdZTqTjQyNNFwxFqW9a/1ac7bb924b09ee0f3d15e782df54ac34/347873-Mark_Circular_white_no_shadow-3d0a86-original-1582585736.png" height="100" width="100">
 </p>
 
 # iOS App with a Vivid UI + Firebase Login + Contentful CMS!
