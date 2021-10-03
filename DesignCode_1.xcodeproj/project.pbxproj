@@ -186,8 +186,8 @@
 		41E1368523F0C9FB00F39FDA /* DesignCode_1 */ = {
 			isa = PBXGroup;
 			children = (
-				41E1368623F0C9FB00F39FDA /* AppDelegate.swift */,
 				41E1368823F0C9FB00F39FDA /* SceneDelegate.swift */,
+				41E1368623F0C9FB00F39FDA /* AppDelegate.swift */,
 				41E1368A23F0C9FB00F39FDA /* ContentView.swift */,
 				41C76B31242409F3007E3545 /* RingView.swift */,
 				419A465E242560CC006C2D3E /* Modifiers.swift */,
@@ -554,15 +554,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"DesignCode_1/Preview Content\"";
+				DEVELOPMENT_TEAM = ZY82K3XX7G;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DesignCode_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.GeorgeDIV.DesignCode-1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.GeorgeDIV.DesignCode;
 				PRODUCT_NAME = DesignCode;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -575,15 +577,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"DesignCode_1/Preview Content\"";
+				DEVELOPMENT_TEAM = ZY82K3XX7G;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DesignCode_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.GeorgeDIV.DesignCode-1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.GeorgeDIV.DesignCode;
 				PRODUCT_NAME = DesignCode;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
